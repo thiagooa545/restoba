@@ -1,0 +1,362 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FCFBF9; color: #1B1C21; font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 16px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #7C2239; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: #5E1A2C; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .serif { font-family: 'Petrona', Georgia, serif; }
+    .eyebrow { font-size: 10.5px; letter-spacing: .17em; text-transform: uppercase; font-weight: 700; }
+    .chip { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 4px; font-size: 11px; font-weight: 600; letter-spacing: .04em; font-family: 'IBM Plex Mono', ui-monospace, monospace; border: 1px solid #D3CEC4; color: #4C5160; background: #F4F2ED; white-space: nowrap; }
+    .chip.v { color: #1C6350; background: #E3EFEB; border-color: rgba(28,99,80,.35); }
+    .chip.a { color: #815214; background: #F7EEDF; border-color: rgba(129,82,20,.35); }
+    .chip.w { color: #7C2239; background: #F5E8EB; border-color: rgba(124,34,57,.35); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .14s ease, box-shadow .14s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.wine { background: #7C2239; color: #FFFFFF; box-shadow: 0 2px 8px -2px rgba(124,34,57,.45); }
+    .btn.ghost { background: #FFFFFF; color: #4C5160; border-color: #D3CEC4; }
+    .btn.ghost:hover { border-color: #7C2239; color: #7C2239; }
+    .btn.sm { font-size: 13.5px; padding: 9px 16px; border-radius: 10px; }
+
+    .pill { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 999px; border: 1px solid #D3CEC4; background: #FFFFFF; font-family: inherit; font-size: 13.5px; font-weight: 500; color: #4C5160; cursor: pointer; transition: all .15s ease; }
+    .pill:hover { border-color: #7C2239; color: #7C2239; background: #F5E8EB; }
+    .pill.on { background: #1B1C21; border-color: #1B1C21; color: #FFFFFF; }
+    .pill.on .n { color: rgba(255,255,255,.6); }
+    .pill .n { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11.5px; color: #A9A296; }
+
+    .ph { background: #EDEAE3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .ph svg.gl { position: relative; z-index: 1; }
+
+    .dish { border: 1px solid #E3DFD8; border-radius: 14px; background: #FFFFFF; overflow: hidden; transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease; }
+    .dish:hover { border-color: #D3CEC4; transform: translateY(-3px); box-shadow: 0 10px 28px -16px rgba(27,28,33,.45); }
+    .lead { display: flex; align-items: baseline; gap: 8px; }
+    .lead .dots { flex-grow: 1; border-bottom: 1px dotted #D3CEC4; transform: translateY(-4px); }
+    .cathead { display: flex; align-items: baseline; gap: 14px; padding-bottom: 11px; border-bottom: 2px solid #1B1C21; margin: 0 0 22px; }
+  </style>
+</helmet>
+
+<div style="width: 1200px; background: #FCFBF9;">
+
+  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+    <defs>
+      <pattern id="rayasC" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#E3DFD8" stroke-width="4"></line>
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- Banda con header flotante -->
+  <div style="position: relative; background: #F4F2ED; border-bottom: 1px solid #E3DFD8; overflow: hidden;">
+
+    <svg width="1200" height="300" style="position: absolute; inset: 0; opacity: .5;">
+      <defs>
+        <pattern id="grillaC" width="24" height="24" patternUnits="userSpaceOnUse">
+          <circle cx="1.5" cy="1.5" r="1.1" fill="#D3CEC4"></circle>
+        </pattern>
+      </defs>
+      <rect width="1200" height="300" fill="url(#grillaC)"></rect>
+    </svg>
+
+    <div style="position: absolute; top: 18px; left: 36px; right: 36px; z-index: 3; display: flex; align-items: center; gap: 20px; padding: 11px 12px 11px 24px; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border: 1px solid #E3DFD8; border-radius: 16px; box-shadow: 0 1px 2px rgba(27,28,33,.05), 0 12px 32px -20px rgba(27,28,33,.45);">
+      <b class="serif" style="font-size: 21px; font-weight: 600; letter-spacing: -.012em;">RestoBA</b>
+      <a href="#" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; text-decoration: none; color: #4C5160;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"></path></svg>
+        Volver al perfil
+      </a>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 9px;">
+        <button class="btn ghost sm">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path><path d="M5 14v6h14v-6"></path></svg>
+          Compartir carta
+        </button>
+        <button class="btn wine sm">Reservar mesa</button>
+      </div>
+    </div>
+
+    <div style="position: relative; z-index: 2; padding: 116px 48px 34px;">
+      <p class="eyebrow" style="color: #7C2239; margin: 0 0 10px;">La carta de</p>
+      <h1 class="serif" style="font-size: 46px; font-weight: 600; line-height: 1.05; letter-spacing: -.028em; margin: 0 0 12px;">Cantina San Telmo</h1>
+      <div style="display: flex; gap: 7px; flex-wrap: wrap; align-items: center;">
+        <span class="chip">PASTAS</span>
+        <span class="chip">BODEGÓN</span>
+        <span class="chip v">ABIERTO · CIERRA 00:30</span>
+        <span class="mono" style="font-size: 11.5px; color: #7A7F8C; margin-left: 8px; letter-spacing: .05em;">ACTUALIZADA EL 28 DE AGOSTO · PRECIOS EN PESOS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegación de categorías -->
+  <div style="position: sticky; top: 0; z-index: 4; padding: 16px 48px; background: rgba(252,251,249,.93); backdrop-filter: blur(10px); border-bottom: 1px solid #E3DFD8; display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+    <button class="pill on">Todo <span class="n">10</span></button>
+    <button class="pill">Entradas <span class="n">3</span></button>
+    <button class="pill">Principales <span class="n">5</span></button>
+    <button class="pill">Postres <span class="n">2</span></button>
+    <div style="margin-left: auto; display: flex; gap: 8px;">
+      <button class="pill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-7 0-4.5 4-8.5 7-10 3 1.5 7 5.5 7 10 0 4-3 7-7 7Z"></path><path d="M12 20V9"></path></svg> Vegetariano</button>
+      <button class="pill">Sin TACC</button>
+    </div>
+  </div>
+
+  <div style="padding: 34px 48px 12px;">
+
+    <!-- Plato recomendado -->
+    <div style="display: grid; grid-template-columns: 396px minmax(0,1fr); gap: 0; border: 1px solid #E3DFD8; border-radius: 16px; background: #FFFFFF; overflow: hidden; box-shadow: 0 1px 2px rgba(27,28,33,.05), 0 12px 32px -20px rgba(27,28,33,.4); margin-bottom: 40px;">
+      <div class="ph" style="height: 262px;">
+        <svg width="396" height="262" style="position: absolute; inset: 0;">
+          <rect width="396" height="262" fill="#EDEAE3"></rect>
+          <rect width="396" height="262" fill="url(#rayasC)" opacity=".5"></rect>
+        </svg>
+        <svg class="gl" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+      </div>
+      <div style="padding: 30px 34px 30px 32px; display: flex; flex-direction: column; justify-content: center;">
+        <div style="display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px;">
+          <span class="chip w">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.2l2.6 5.5 5.9.8-4.3 4.2 1 6-5.2-2.9-5.2 2.9 1-6-4.3-4.2 5.9-.8Z"></path></svg>
+            EL MÁS PEDIDO
+          </span>
+          <span class="chip">PRINCIPALES</span>
+        </div>
+        <h2 class="serif" style="font-size: 32px; font-weight: 600; margin: 0 0 10px; letter-spacing: -.022em; line-height: 1.12;">Sorrentinos de jamón y mozzarella</h2>
+        <p style="margin: 0 0 18px; font-size: 15.5px; line-height: 1.6; color: #4C5160; max-width: 520px;">Masa al huevo amasada cada mañana, rellenos a mano. Van con la salsa que elijas: fileto de tomate perita, rosa, o manteca y salvia. Porción de nueve unidades.</p>
+        <div class="lead" style="max-width: 520px;">
+          <span class="eyebrow" style="color: #7A7F8C;">Precio</span>
+          <span class="dots"></span>
+          <span class="mono" style="font-size: 24px; color: #1B1C21;">16.800</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENTRADAS -->
+    <div class="cathead">
+      <h3 class="eyebrow" style="color: #815214; margin: 0;">Entradas</h3>
+      <span class="mono" style="font-size: 11px; color: #7A7F8C;">3 PLATOS</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; margin-bottom: 44px;">
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Provoleta al orégano</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">8.900</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Provolone de campo a la plancha, orégano fresco y aceite de oliva.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip v">VEGETARIANO</span>
+            <span class="chip">SIN TACC</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Berenjenas en escabeche</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">7.400</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Receta de la casa, maceradas siete días con laurel y ajo.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip v">VEGETARIANO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Rabas a la romana</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">12.600</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Con alioli de limón. Porción pensada para compartir entre dos.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip a">PARA COMPARTIR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRINCIPALES -->
+    <div class="cathead">
+      <h3 class="eyebrow" style="color: #815214; margin: 0;">Principales</h3>
+      <span class="mono" style="font-size: 11px; color: #7A7F8C;">5 PLATOS · 1 SIN STOCK</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; margin-bottom: 44px;">
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+          <span class="chip w" style="position: absolute; top: 12px; left: 12px; z-index: 2; background: rgba(245,232,235,.96);">EL 29 DE CADA MES</span>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Ñoquis de papa</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">14.200</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Los días 29, con el billete abajo del plato. Salsa a elección.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip v">VEGETARIANO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Ravioles de verdura y ricota</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">15.400</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Masa verde al huevo, relleno de acelga y ricota de campo.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip v">VEGETARIANO</span>
+            <span class="chip">SIN TACC BAJO PEDIDO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Milanesa napolitana con papas</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">18.500</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">De ternera, con jamón, salsa de tomate y mozzarella gratinada.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip a">PARA COMPARTIR</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish" style="opacity: .55;">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+          <span class="chip" style="position: absolute; top: 12px; left: 12px; z-index: 2; background: rgba(244,242,237,.96);">HOY NO HAY</span>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Lasaña de la casa</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">17.900</span>
+          </div>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Se descuenta del stock automáticamente cuando se agota el ingrediente.</p>
+        </div>
+      </div>
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Sorrentinos de jamón y mozzarella</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">16.800</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Nueve unidades, con salsa a elección. El plato más pedido de la casa.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip w">EL MÁS PEDIDO</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSTRES -->
+    <div class="cathead">
+      <h3 class="eyebrow" style="color: #815214; margin: 0;">Postres</h3>
+      <span class="mono" style="font-size: 11px; color: #7A7F8C;">2 PLATOS</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; margin-bottom: 40px;">
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Flan mixto</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">6.200</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Dulce de leche y crema batida a mano, sin sifón.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip v">VEGETARIANO</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dish">
+        <div class="ph" style="height: 172px;">
+          <svg width="100%" height="172" style="position: absolute; inset: 0;"><rect width="100%" height="172" fill="#EDEAE3"></rect><rect width="100%" height="172" fill="url(#rayasC)" opacity=".5"></rect></svg>
+          <svg class="gl" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+        </div>
+        <div style="padding: 16px 18px 18px;">
+          <div class="lead" style="margin-bottom: 8px;">
+            <span class="serif" style="font-size: 19px; font-weight: 600; letter-spacing: -.012em;">Tiramisú de la nonna</span>
+            <span class="dots"></span>
+            <span class="mono" style="font-size: 16px;">7.100</span>
+          </div>
+          <p style="margin: 0 0 12px; font-size: 13.5px; line-height: 1.5; color: #7A7F8C;">Café fuerte, mascarpone y cacao amargo. Se hace por tanda.</p>
+          <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+            <span class="chip v">VEGETARIANO</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="border: 1px dashed #D3CEC4; border-radius: 14px; background: #F4F2ED; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 28px 24px; text-align: center;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v8"></path><path d="M8 12h8"></path></svg>
+        <p class="serif" style="margin: 12px 0 4px; font-size: 17px; font-weight: 600; color: #4C5160;">Bebidas y vinos</p>
+        <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #7A7F8C;">El local todavía no cargó esta categoría.</p>
+      </div>
+    </div>
+
+    <!-- Pie de carta -->
+    <div style="display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: #F7EEDF; border-left: 3px solid #815214; border-radius: 0 12px 12px 0; margin-bottom: 40px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#815214" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16.2v.2"></path></svg>
+      <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #4C5160; flex-grow: 1;"><strong style="color: #1B1C21; font-weight: 600;">Los precios y la disponibilidad los carga el propio restaurante</strong> desde su panel de gestión. Si un ingrediente se agota, el plato se marca automáticamente como sin stock. Consultá al mozo por alérgenos antes de pedir.</p>
+      <button class="btn wine" style="white-space: nowrap;">Reservar mesa</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

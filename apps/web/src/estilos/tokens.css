@@ -1,0 +1,214 @@
+@import 'tailwindcss';
+
+/* ─────────────────────────────────────────────────────────────
+   Sistema de diseño de RestoBA
+
+   Los valores vienen del marco legal ya publicado (legal/index.html)
+   y de la maqueta de la Fase A. Petrona y Archivo son tipografías
+   argentinas: es una decisión de identidad, no un default.
+
+   Dirección: guía gastronómica impresa porteña.
+   · Papel cálido y tinta, no gris azulado.
+   · Separación por reglas de 1 px y espacio en blanco.
+   · Acción blanda (radios de 12 px) contra dato crispado (chips de 4 px).
+   · Nada de neón, glassmorphism ni degradés multicolor.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  --rb-papel: #fcfbf9;
+  --rb-superficie: #ffffff;
+  --rb-superficie-2: #f4f2ed;
+  --rb-superficie-3: #edeae3;
+
+  --rb-tinta: #1b1c21;
+  --rb-tinta-2: #4c5160;
+  --rb-tinta-3: #7a7f8c;
+
+  --rb-regla: #e3dfd8;
+  --rb-regla-2: #d3cec4;
+
+  --rb-vino: #7c2239;
+  --rb-vino-suave: #f5e8eb;
+  --rb-vino-hover: #5e1a2c;
+  --rb-sobre-vino: #ffffff;
+
+  --rb-verde: #1c6350;
+  --rb-verde-suave: #e3efeb;
+
+  --rb-ambar: #815214;
+  --rb-ambar-suave: #f7eedf;
+
+  /* Marca de agua de los marcadores de foto mientras no haya imágenes reales */
+  --rb-marca: #a9a296;
+
+  --rb-sombra: 0 1px 2px rgb(27 28 33 / 0.05), 0 10px 28px -18px rgb(27 28 33 / 0.3);
+  --rb-sombra-alta: 0 2px 4px rgb(27 28 33 / 0.05), 0 18px 40px -22px rgb(27 28 33 / 0.5);
+
+  color-scheme: light;
+}
+
+/* El modo oscuro sigue al sistema, salvo que el usuario elija explícitamente. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --rb-papel: #131419;
+    --rb-superficie: #191b21;
+    --rb-superficie-2: #20232b;
+    --rb-superficie-3: #272b34;
+
+    --rb-tinta: #eceae5;
+    --rb-tinta-2: #aeb4c1;
+    --rb-tinta-3: #7b818f;
+
+    --rb-regla: #2b2f38;
+    --rb-regla-2: #3a3f4a;
+
+    --rb-vino: #e28fa3;
+    --rb-vino-suave: #331f27;
+    --rb-vino-hover: #f0b3c1;
+    --rb-sobre-vino: #16171c;
+
+    --rb-verde: #6fc4aa;
+    --rb-verde-suave: #17302b;
+
+    --rb-ambar: #d6a55c;
+    --rb-ambar-suave: #2e2718;
+
+    --rb-marca: #4d5460;
+
+    --rb-sombra: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -18px rgb(0 0 0 / 0.7);
+    --rb-sombra-alta: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -22px rgb(0 0 0 / 0.8);
+
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --rb-papel: #131419;
+  --rb-superficie: #191b21;
+  --rb-superficie-2: #20232b;
+  --rb-superficie-3: #272b34;
+
+  --rb-tinta: #eceae5;
+  --rb-tinta-2: #aeb4c1;
+  --rb-tinta-3: #7b818f;
+
+  --rb-regla: #2b2f38;
+  --rb-regla-2: #3a3f4a;
+
+  --rb-vino: #e28fa3;
+  --rb-vino-suave: #331f27;
+  --rb-vino-hover: #f0b3c1;
+  --rb-sobre-vino: #16171c;
+
+  --rb-verde: #6fc4aa;
+  --rb-verde-suave: #17302b;
+
+  --rb-ambar: #d6a55c;
+  --rb-ambar-suave: #2e2718;
+
+  --rb-marca: #4d5460;
+
+  --rb-sombra: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -18px rgb(0 0 0 / 0.7);
+  --rb-sombra-alta: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -22px rgb(0 0 0 / 0.8);
+
+  color-scheme: dark;
+}
+
+/* Se registran como utilidades de Tailwind. `inline` es lo que permite que
+   el valor sea una variable y siga cambiando con el tema. */
+@theme inline {
+  --color-papel: var(--rb-papel);
+  --color-superficie: var(--rb-superficie);
+  --color-superficie-2: var(--rb-superficie-2);
+  --color-superficie-3: var(--rb-superficie-3);
+
+  --color-tinta: var(--rb-tinta);
+  --color-tinta-2: var(--rb-tinta-2);
+  --color-tinta-3: var(--rb-tinta-3);
+
+  --color-regla: var(--rb-regla);
+  --color-regla-2: var(--rb-regla-2);
+
+  --color-vino: var(--rb-vino);
+  --color-vino-suave: var(--rb-vino-suave);
+  --color-vino-hover: var(--rb-vino-hover);
+  --color-sobre-vino: var(--rb-sobre-vino);
+
+  --color-verde: var(--rb-verde);
+  --color-verde-suave: var(--rb-verde-suave);
+
+  --color-ambar: var(--rb-ambar);
+  --color-ambar-suave: var(--rb-ambar-suave);
+
+  --color-marca: var(--rb-marca);
+
+  --font-display: 'Petrona', Georgia, serif;
+  --font-sans: 'Archivo', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --radius-chip: 4px;
+  --radius-boton: 12px;
+  --radius-panel: 14px;
+  --radius-flotante: 16px;
+
+  --shadow-panel: var(--rb-sombra);
+  --shadow-flotante: var(--rb-sombra-alta);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    background: var(--rb-papel);
+    color: var(--rb-tinta);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.62;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+
+  a {
+    color: var(--rb-vino);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    color: var(--rb-vino-hover);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--rb-vino);
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  /* Toda animación se apaga si el sistema lo pide. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@utility volanta {
+  font-size: 10.5px;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  font-weight: 700;
+}

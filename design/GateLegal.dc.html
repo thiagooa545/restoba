@@ -1,0 +1,263 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FCFBF9; color: #1B1C21; font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 16px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #7C2239; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: #5E1A2C; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .serif { font-family: 'Petrona', Georgia, serif; }
+    .eyebrow { font-size: 10.5px; letter-spacing: .17em; text-transform: uppercase; font-weight: 700; }
+    .chip { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 4px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; font-family: 'IBM Plex Mono', ui-monospace, monospace; border: 1px solid #D3CEC4; color: #4C5160; background: #F4F2ED; white-space: nowrap; }
+    .step { display: grid; grid-template-columns: 24px minmax(0,1fr); align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid #E3DFD8; border-radius: 12px; background: #FFFFFF; cursor: pointer; text-align: left; font-family: inherit; }
+    .step.done { border-color: rgba(28,99,80,.4); background: #E3EFEB; }
+    .step.on { border-color: #7C2239; background: #F5E8EB; }
+    .num { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 12px; font-weight: 500; border: 1px solid #D3CEC4; color: #7A7F8C; background: #FCFBF9; }
+    .step.on .num { border-color: #7C2239; color: #7C2239; background: #FFFFFF; }
+    .step.done .num { border-color: #1C6350; background: #1C6350; color: #FFFFFF; }
+    .stt { display: block; font-size: 14px; font-weight: 600; color: #1B1C21; line-height: 1.25; }
+    .sts { display: block; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 11px; color: #7A7F8C; margin-top: 2px; }
+    .check { display: grid; grid-template-columns: 20px minmax(0,1fr); gap: 12px; align-items: start; padding: 14px 0; }
+    .check + .check { border-top: 1px solid #E3DFD8; }
+    .check input { width: 17px; height: 17px; margin: 3px 0 0; accent-color: #7C2239; cursor: pointer; }
+    .check label { display: block; font-size: 14.5px; color: #1B1C21; font-weight: 600; line-height: 1.4; cursor: pointer; }
+    .reader { height: 264px; overflow-y: auto; padding: 22px 24px; background: #FFFFFF; }
+    .reader p { margin: 0 0 12px; font-size: 14.5px; line-height: 1.62; color: #4C5160; }
+    .reader h4 { font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 14px; font-weight: 700; color: #1B1C21; margin: 20px 0 7px; }
+  </style>
+</helmet>
+
+<div style="width: 980px; background: #FCFBF9; padding: 36px 40px 44px;">
+
+  <!-- Encabezado -->
+  <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;">
+    <b class="serif" style="font-size: 20px; font-weight: 600; letter-spacing: -.01em;">RestoBA</b>
+    <span class="eyebrow" style="color: #7A7F8C;">Verificación de cuenta</span>
+  </div>
+  <h1 class="serif" style="font-size: 38px; font-weight: 600; line-height: 1.08; letter-spacing: -.024em; margin: 0 0 12px;">Antes de reservar, leé y aceptá el marco legal</h1>
+  <p class="serif" style="font-size: 18px; line-height: 1.55; color: #4C5160; margin: 0 0 28px; max-width: 660px;">Son tres documentos. Se aceptan por separado y podés leerlos completos acá mismo. Al confirmar guardamos una constancia con la huella del texto que viste.</p>
+
+  <!-- Pasos -->
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 22px;">
+    <button class="{{ clsTyc }}" onClick="{{ verTyc }}">
+      <span class="num">{{ icoTyc }}</span>
+      <span><span class="stt">Términos y Condiciones</span><span class="sts">tyc · v1.0</span></span>
+    </button>
+    <button class="{{ clsPriv }}" onClick="{{ verPriv }}">
+      <span class="num">{{ icoPriv }}</span>
+      <span><span class="stt">Política de Privacidad</span><span class="sts">privacidad · v1.0</span></span>
+    </button>
+    <button class="{{ clsVer }}" onClick="{{ verVer }}">
+      <span class="num">{{ icoVer }}</span>
+      <span><span class="stt">Acuerdo de Verificación</span><span class="sts">verificacion · v1.0</span></span>
+    </button>
+  </div>
+
+  <!-- Lector del documento -->
+  <div style="border: 1px solid #E3DFD8; border-radius: 14px; background: #FFFFFF; overflow: hidden; box-shadow: 0 1px 2px rgba(27,28,33,.05), 0 8px 24px -12px rgba(27,28,33,.12); margin-bottom: 24px;">
+    <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 13px 24px; background: #F4F2ED; border-bottom: 1px solid #E3DFD8;">
+      <b class="serif" style="font-size: 17px; font-weight: 600; margin-right: auto;">{{ docTitulo }}</b>
+      <span class="chip">{{ docClave }}</span>
+      <span class="chip">V1.0</span>
+      <span class="chip">29 AGO 2026</span>
+    </div>
+
+    <div class="reader">
+      <sc-for list="{{ bloques }}" as="b" hint-placeholder-count="5">
+        <sc-if value="{{ b.esTitulo }}" hint-placeholder-val="{{ false }}">
+          <h4>{{ b.t }}</h4>
+        </sc-if>
+        <sc-if value="{{ b.esParrafo }}" hint-placeholder-val="{{ true }}">
+          <p>{{ b.t }}</p>
+        </sc-if>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 11px 24px; background: #F4F2ED; border-top: 1px solid #E3DFD8;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7A7F8C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="1.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+      <span class="eyebrow" style="color: #7A7F8C;">SHA-256 del texto exhibido</span>
+      <span class="mono" style="font-size: 11.5px; color: #4C5160; word-break: break-all;">{{ docHash }}</span>
+    </div>
+  </div>
+
+  <!-- Casillas -->
+  <div style="border: 1px solid #E3DFD8; border-radius: 14px; background: #FFFFFF; overflow: hidden;">
+    <div style="padding: 13px 22px; background: #F4F2ED; border-bottom: 1px solid #E3DFD8;">
+      <b class="serif" style="font-size: 17px; font-weight: 600;">Tu conformidad</b>
+    </div>
+    <div style="padding: 6px 22px 22px;">
+
+      <div class="check">
+        <input type="checkbox" id="ac-tyc" checked="{{ chkTyc }}" onChange="{{ togTyc }}">
+        <span>
+          <label for="ac-tyc">Leí y acepto los Términos y Condiciones de Uso</label>
+          <span style="font-size: 13px; color: #7A7F8C; display: block; margin-top: 2px; line-height: 1.45;">Versión 1.0 · Incluye niveles de acceso, reseñas, puntos, reservas y jurisdicción. <a href="#">Leer completo</a></span>
+        </span>
+      </div>
+
+      <div class="check">
+        <input type="checkbox" id="ac-priv" checked="{{ chkPriv }}" onChange="{{ togPriv }}">
+        <span>
+          <label for="ac-priv">Leí y acepto la Política de Privacidad</label>
+          <span style="font-size: 13px; color: #7A7F8C; display: block; margin-top: 2px; line-height: 1.45;">Versión 1.0 · Ley 25.326. Qué datos guardamos, por cuánto tiempo y tus derechos de acceso, rectificación y supresión. <a href="#">Leer completo</a></span>
+        </span>
+      </div>
+
+      <div class="check">
+        <input type="checkbox" id="ac-ver" checked="{{ chkVer }}" onChange="{{ togVer }}">
+        <span>
+          <label for="ac-ver">Leí y acepto el Acuerdo de Verificación de Usuario</label>
+          <span style="font-size: 13px; color: #7A7F8C; display: block; margin-top: 2px; line-height: 1.45;">Versión 1.0 · Los compromisos que asumís al reseñar y reservar. <a href="#">Leer completo</a></span>
+        </span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; padding-top: 20px; border-top: 1px solid #E3DFD8;">
+        <button disabled="{{ bloqueado }}" onClick="{{ confirmar }}" style="{{ estiloBoton }}">Confirmar y verificar mi cuenta</button>
+        <span style="{{ estiloAviso }}">{{ aviso }}</span>
+      </div>
+
+      <div style="{{ estiloConstancia }}">
+        <span style="color: #7A7F8C;">CONSTANCIA REGISTRADA</span>
+        <br>documento   tyc            version 1.0
+        <br>hash        3f9c1ab2d4e77c05be18a9f42c6d33e0…
+        <br>documento   privacidad     version 1.0
+        <br>hash        b71e04c9aa5d3f8621c0d7e4593a8b16…
+        <br>documento   verificacion   version 1.0
+        <br>hash        e2540ac81b6f97d3e0aa452c78b1f6d9…
+        <br>aceptado_en 2026-09-05T21:14:38-03:00
+        <br>ip          181.xx.xx.xx    user_agent Chrome/141
+      </div>
+    </div>
+  </div>
+
+  <!-- Salida clara -->
+  <div style="display: flex; align-items: center; gap: 14px; margin-top: 20px; padding: 15px 18px; background: #F4F2ED; border-left: 3px solid #D3CEC4; border-radius: 0 12px 12px 0;">
+    <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #4C5160; flex-grow: 1;">Podés cerrar sin aceptar. Vas a seguir usando RestoBA en <strong style="color: #1B1C21; font-weight: 600;">modo lectura</strong>: buscar, ver menús y leer reseñas. No vas a poder reservar, reseñar ni sumar puntos hasta que aceptes.</p>
+    <button style="font-family: inherit; font-size: 13.5px; font-weight: 600; padding: 10px 18px; border-radius: 10px; border: 1px solid #D3CEC4; background: #FFFFFF; color: #4C5160; cursor: pointer; white-space: nowrap;">Salir sin aceptar</button>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { doc: 'tyc', tyc: false, priv: false, ver: false, hecho: false };
+  }
+
+  docs() {
+    return {
+      tyc: {
+        titulo: 'Términos y Condiciones de Uso',
+        clave: 'TYC',
+        hash: '3f9c1ab2d4e77c05be18a9f42c6d33e0b8547aa19c2e6031f45d8b7ce09a2f61',
+        bloques: [
+          { h: 'Artículo 5 — Niveles de acceso' },
+          { p: 'La Plataforma reconoce tres niveles de acceso para el Comensal: Visitante, Usuario Registrado y Usuario Verificado. Buscar restaurantes, ver el menú y leer reseñas está disponible en los tres niveles.' },
+          { p: '5.1. El acceso al nivel de Usuario Verificado requiere la aceptación expresa de estos Términos, de la Política de Privacidad y del Acuerdo de Verificación de Usuario, además del cumplimiento de los requisitos técnicos allí previstos. Sin esa aceptación, la cuenta permanece en el nivel de Usuario Registrado, con acceso de sola lectura a las funciones sociales de la Plataforma.' },
+          { p: '5.2. La verificación no implica que RestoBA haya validado la identidad civil del usuario ni que avale sus opiniones. Significa únicamente que la persona confirmó su correo electrónico y su teléfono, aceptó el marco legal y asumió los compromisos del Artículo 4 del Acuerdo de Verificación.' },
+          { h: 'Artículo 7 — Contenido de Usuario y Reseñas' },
+          { p: '7.5. Reseñas vinculadas a una visita. Para publicar una Reseña sobre un Restaurante Adherido, el sistema exige que exista en la base de datos una Reserva o un Pedido previo del usuario en ese establecimiento. Esta vinculación técnica es lo que da sentido al calificativo de reseña verificada.' },
+          { p: '7.6. Baja de cuenta y reseñas. Si el usuario da de baja su cuenta, sus Reseñas se anonimizan: se elimina la asociación con su identidad y con sus datos de contacto, pero el texto y la puntuación permanecen publicados.' },
+          { h: 'Artículo 10 — Pagos' },
+          { p: 'Para los Comensales el uso de la Plataforma es enteramente gratuito. Los Restaurantes Adheridos abonan una suscripción mensual mediante transferencia bancaria directa, por fuera de la Plataforma. RestoBA no opera como procesador de pagos, no integra pasarelas de pago y no solicita, procesa ni almacena datos de tarjetas de crédito o débito, CBU, CVU ni credenciales bancarias.' }
+        ]
+      },
+      priv: {
+        titulo: 'Política de Privacidad',
+        clave: 'PRIVACIDAD',
+        hash: 'b71e04c9aa5d3f8621c0d7e4593a8b1642fd0c39e8a75b1cd6402e93af18c7b5',
+        bloques: [
+          { h: 'Sección 2 — Qué datos recolectamos' },
+          { p: 'Datos de registro: nombre, correo electrónico, teléfono y contraseña. La contraseña nunca se almacena en texto legible. El teléfono se guarda cifrado.' },
+          { p: 'Datos de geolocalización: las coordenadas aproximadas del dispositivo, únicamente mientras estás usando la búsqueda por cercanía y solo si diste permiso expreso en el navegador. No construimos un historial de tus desplazamientos ni te seguimos en segundo plano.' },
+          { h: 'Sección 2.4 — Qué NO recolectamos' },
+          { p: 'No recolectamos datos de tarjetas de crédito o débito, CBU, CVU ni credenciales bancarias, porque la Plataforma no procesa pagos. No recolectamos datos sensibles en el sentido del artículo 2 de la Ley 25.326.' },
+          { h: 'Sección 6 — Derechos del titular de los datos' },
+          { p: 'El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto, conforme lo establecido en el artículo 14, inciso 3 de la Ley 25.326.' },
+          { p: 'La AGENCIA DE ACCESO A LA INFORMACIÓN PÚBLICA, en su carácter de Órgano de Control de la Ley 25.326, tiene la atribución de atender las denuncias y reclamos que interpongan quienes resulten afectados en sus derechos por incumplimiento de las normas vigentes en materia de protección de datos personales.' }
+        ]
+      },
+      ver: {
+        titulo: 'Acuerdo de Verificación de Usuario',
+        clave: 'VERIFICACION',
+        hash: 'e2540ac81b6f97d3e0aa452c78b1f6d94c07ba3e15d8926fc0b74a3ed812609f',
+        bloques: [
+          { h: 'Sección 2 — Qué habilita la verificación' },
+          { p: 'Ser Usuario Verificado habilita crear reservas de mesa, publicar reseñas y puntuaciones, acumular y canjear Puntos, recibir Cupones y mostrar el distintivo de verificado en tu perfil público.' },
+          { h: 'Sección 3 — Qué pasa si no aceptás' },
+          { p: 'Si decidís no aceptar este Acuerdo, tu cuenta funciona en modo de sola lectura. Podés buscar restaurantes, ver perfiles y menús y leer las reseñas de otros comensales. No se elimina ninguno de tus datos ni se cierra tu cuenta.' },
+          { h: 'Sección 4 — Compromisos que asumís' },
+          { p: 'Reseñar únicamente establecimientos que visitaste. No aceptar dinero, productos ni servicios a cambio de publicar una reseña, sea a favor o en contra del establecimiento. Mantener una sola cuenta. No comercializar ni transferir Puntos ni Cupones por fuera de los canales habilitados.' },
+          { h: 'Sección 6.3 — Validez de la aceptación electrónica' },
+          { p: 'La constancia de aceptación registra la fecha y hora, la versión del documento y la huella criptográfica SHA-256 del texto que se te exhibió. Esta forma de manifestación de la voluntad es válida conforme la Ley 25.506 de Firma Digital y los artículos 286 y 288 del Código Civil y Comercial de la Nación.' },
+          { h: 'Sección 8 — Versionado y reaceptación' },
+          { p: 'Un cambio mayor —que modifique derechos u obligaciones— requiere que vuelvas a aceptar. Te avisamos por correo con diez días de anticipación. Si no reaceptás, tu cuenta pasa al nivel de Usuario Registrado sin que se borre ninguno de tus datos.' }
+        ]
+      }
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const d = this.docs()[s.doc];
+    const n = (s.tyc ? 1 : 0) + (s.priv ? 1 : 0) + (s.ver ? 1 : 0);
+    const listo = n === 3;
+    const faltan = 3 - n;
+
+    const cls = (k, marcado) => 'step' + (marcado ? ' done' : '') + (s.doc === k ? ' on' : '');
+    const ico = (marcado, num) => marcado ? '✓' : num;
+
+    let aviso;
+    if (s.hecho) aviso = 'Cuenta verificada. Ya podés reservar y reseñar.';
+    else if (listo) aviso = 'Las tres casillas están marcadas.';
+    else if (faltan === 1) aviso = 'Falta marcar 1 casilla.';
+    else aviso = 'Faltan ' + faltan + ' casillas por marcar.';
+
+    return {
+      docTitulo: d.titulo,
+      docClave: d.clave,
+      docHash: d.hash,
+      bloques: d.bloques.map((b) => ({ t: b.h || b.p, esTitulo: !!b.h, esParrafo: !b.h })),
+
+      clsTyc: cls('tyc', s.tyc),
+      clsPriv: cls('priv', s.priv),
+      clsVer: cls('ver', s.ver),
+      icoTyc: ico(s.tyc, '1'),
+      icoPriv: ico(s.priv, '2'),
+      icoVer: ico(s.ver, '3'),
+      verTyc: () => this.setState({ doc: 'tyc' }),
+      verPriv: () => this.setState({ doc: 'priv' }),
+      verVer: () => this.setState({ doc: 'ver' }),
+
+      chkTyc: s.tyc,
+      chkPriv: s.priv,
+      chkVer: s.ver,
+      togTyc: () => this.setState({ tyc: !s.tyc, hecho: false }),
+      togPriv: () => this.setState({ priv: !s.priv, hecho: false }),
+      togVer: () => this.setState({ ver: !s.ver, hecho: false }),
+
+      bloqueado: !listo,
+      confirmar: () => { if (listo) this.setState({ hecho: true }); },
+      estiloBoton: 'font-family: inherit; font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: 1px solid transparent; background: #7C2239; color: #FFFFFF; opacity: ' +
+        (listo ? '1' : '.38') + '; cursor: ' + (listo ? 'pointer' : 'not-allowed') + ';',
+      aviso: aviso,
+      estiloAviso: 'font-size: 13.5px; line-height: 1.45; font-weight: ' + (listo ? '600' : '400') + '; color: ' +
+        (s.hecho ? '#1C6350' : (listo ? '#1C6350' : '#7A7F8C')) + ';',
+      estiloConstancia: 'display: ' + (s.hecho ? 'block' : 'none') +
+        '; font-family: \'IBM Plex Mono\', ui-monospace, monospace; font-size: 12px; line-height: 1.75; color: #4C5160; background: #F4F2ED; border: 1px solid #E3DFD8; border-radius: 12px; padding: 14px 16px; margin-top: 18px;'
+    };
+  }
+}
+</script>
+</body>
+</html>

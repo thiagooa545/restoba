@@ -1,0 +1,296 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FCFBF9; color: #1B1C21; font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 16px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #7C2239; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: #5E1A2C; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .serif { font-family: 'Petrona', Georgia, serif; }
+    .eyebrow { font-size: 10.5px; letter-spacing: .17em; text-transform: uppercase; font-weight: 700; }
+    .chip { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 3px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; font-family: 'IBM Plex Mono', ui-monospace, monospace; border: 1px solid #D3CEC4; color: #4C5160; background: #F4F2ED; white-space: nowrap; }
+    .chip.v { color: #1C6350; background: #E3EFEB; border-color: rgba(28,99,80,.35); }
+    .ph { background: #EDEAE3; border: 1px solid #E3DFD8; display: flex; align-items: center; justify-content: center; }
+    .plato { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 4px 14px; padding: 12px 0; border-bottom: 1px solid #E3DFD8; }
+    .plato:last-child { border-bottom: 0; }
+    .lead { display: flex; align-items: baseline; gap: 8px; }
+    .lead .dots { flex-grow: 1; border-bottom: 1px dotted #D3CEC4; transform: translateY(-3px); }
+    .field { border: 1px solid #D3CEC4; border-radius: 8px; background: #FFFFFF; padding: 9px 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .14s ease, box-shadow .14s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.wine { background: #7C2239; color: #FFFFFF; box-shadow: 0 2px 8px -2px rgba(124,34,57,.45); }
+    .btn.wine:hover { box-shadow: 0 6px 16px -4px rgba(124,34,57,.5); }
+    .btn.ghost { background: #FFFFFF; color: #4C5160; border-color: #D3CEC4; }
+    .btn.ghost:hover { border-color: #7C2239; color: #7C2239; }
+    .btn.sm { font-size: 13.5px; padding: 9px 16px; border-radius: 10px; }
+    .qty { flex-grow: 1; font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 14px; padding: 9px 0; border-radius: 10px; border: 1px solid #D3CEC4; background: #FFFFFF; color: #4C5160; cursor: pointer; }
+    .qty.on { border-color: #7C2239; background: #F5E8EB; color: #7C2239; font-weight: 600; }
+    .bar { height: 6px; border-radius: 3px; background: #EDEAE3; overflow: hidden; }
+    .bar span { display: block; height: 100%; background: #7C2239; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #FCFBF9;">
+
+  <!-- Barra superior -->
+  <div style="display: flex; align-items: center; gap: 20px; padding: 13px 40px; border-bottom: 1px solid #E3DFD8;">
+    <b class="serif" style="font-size: 20px; font-weight: 600; letter-spacing: -.01em;">RestoBA</b>
+    <a href="#" style="display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; font-weight: 600; text-decoration: none; color: #4C5160;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4C5160" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 6l-6 6 6 6"></path></svg>
+      Volver a los resultados
+    </a>
+    <div style="margin-left: auto; display: flex; align-items: center; gap: 10px;">
+      <span class="chip">MARTINA G.</span>
+      <span class="chip v">VERIFICADA</span>
+      <span class="chip">1.240 PTS</span>
+    </div>
+  </div>
+
+  <!-- Banda de fotos -->
+  <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1px; background: #E3DFD8; border-bottom: 1px solid #E3DFD8;">
+    <div class="ph" style="height: 330px; border: 0;">
+      <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#B6B0A5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"></rect><path d="M3 15.5 8.5 10l4.5 4.5 3-2.5L21 16"></path><circle cx="8" cy="9" r="1.3"></circle></svg>
+    </div>
+    <div class="ph" style="height: 330px; border: 0;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B6B0A5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"></rect><path d="M3 15.5 8.5 10l4.5 4.5 3-2.5L21 16"></path></svg>
+    </div>
+    <div class="ph" style="height: 330px; border: 0; position: relative;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#B6B0A5" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.5"></rect><path d="M3 15.5 8.5 10l4.5 4.5 3-2.5L21 16"></path></svg>
+      <button class="btn ghost sm" style="position: absolute; right: 18px; bottom: 18px; background: rgba(252,251,249,.94);">Ver las 24 fotos</button>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: minmax(0,1fr) 1px 400px; align-items: start;">
+
+    <!-- Columna principal -->
+    <div style="padding: 42px 48px 60px 64px;">
+
+      <p class="eyebrow" style="color: #7C2239; margin: 0 0 12px;">San Telmo · Ciudad de Buenos Aires</p>
+      <h1 class="serif" style="font-size: 48px; font-weight: 600; line-height: 1.05; letter-spacing: -.028em; margin: 0 0 14px;">Cantina San Telmo</h1>
+
+      <div style="display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 20px;">
+        <span class="chip">PASTAS</span>
+        <span class="chip">BODEGÓN</span>
+        <span class="chip">ITALIANA</span>
+        <span class="chip v">ABIERTO · CIERRA 00:30</span>
+      </div>
+
+      <!-- Datos duros -->
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1px; background: #E3DFD8; border: 1px solid #E3DFD8; border-radius: 5px; overflow: hidden; margin-bottom: 28px;">
+        <div style="background: #FFFFFF; padding: 14px 16px;">
+          <div class="eyebrow" style="color: #7A7F8C; margin-bottom: 5px;">Puntaje</div>
+          <div class="serif" style="font-size: 24px; font-weight: 600; color: #7C2239; line-height: 1;">4,8</div>
+        </div>
+        <div style="background: #FFFFFF; padding: 14px 16px;">
+          <div class="eyebrow" style="color: #7A7F8C; margin-bottom: 5px;">Reseñas</div>
+          <div class="serif" style="font-size: 24px; font-weight: 600; line-height: 1;">312</div>
+        </div>
+        <div style="background: #FFFFFF; padding: 14px 16px;">
+          <div class="eyebrow" style="color: #7A7F8C; margin-bottom: 5px;">Distancia</div>
+          <div class="serif" style="font-size: 24px; font-weight: 600; line-height: 1;">480 m</div>
+        </div>
+        <div style="background: #FFFFFF; padding: 14px 16px;">
+          <div class="eyebrow" style="color: #7A7F8C; margin-bottom: 5px;">Precio</div>
+          <div class="serif" style="font-size: 24px; font-weight: 600; line-height: 1;">$$</div>
+        </div>
+      </div>
+
+      <p class="serif" style="font-size: 19px; line-height: 1.6; color: #4C5160; margin: 0 0 30px; max-width: 640px;">Un sótano de mesas largas donde se amasa a la vista todos los días. La carta es corta a propósito: seis pastas, cuatro salsas y lo que haya de estación. Atienden desde 1987 en la misma esquina.</p>
+
+      <div style="display: flex; gap: 10px; flex-wrap: wrap; padding-bottom: 34px; border-bottom: 1px solid #E3DFD8;">
+        <button class="btn wine">Reservar mesa</button>
+        <button class="btn ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>
+          Ubicar
+        </button>
+        <button class="btn ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v17l-6-4-6 4V4Z"></path></svg>
+          Guardar
+        </button>
+        <button class="btn ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"></path><path d="M8 7l4-4 4 4"></path><path d="M5 14v6h14v-6"></path></svg>
+          Compartir
+        </button>
+      </div>
+
+      <!-- La carta -->
+      <div style="display: flex; align-items: flex-end; gap: 20px; flex-wrap: wrap; margin: 40px 0 26px;">
+        <div style="margin-right: auto;">
+          <h2 class="serif" style="font-size: 28px; font-weight: 600; letter-spacing: -.018em; margin: 0 0 4px;">La carta</h2>
+          <p class="mono" style="font-size: 11.5px; color: #7A7F8C; letter-spacing: .05em; margin: 0;">ACTUALIZADA EL 28 DE AGOSTO · PRECIOS EN PESOS</p>
+        </div>
+        <button class="btn wine">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.8"></rect><path d="M3 15.5 8.5 10l4.5 4.5 3-2.5L21 16"></path><circle cx="8" cy="9" r="1.3"></circle></svg>
+          Ver la carta con fotos
+        </button>
+      </div>
+
+      <p style="margin: -8px 0 24px; font-size: 13.5px; color: #7A7F8C; line-height: 1.5; max-width: 620px;">Este es el listado rápido de precios. Para ver cada plato con foto, ingredientes y las marcas de sin TACC o vegetariano, abrí la carta completa.</p>
+
+      <div style="max-width: 680px;">
+
+        <div>
+          <h3 class="eyebrow" style="color: #815214; margin: 0 0 4px; padding-bottom: 9px; border-bottom: 2px solid #1B1C21;">Entradas</h3>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Provoleta al orégano</span><span class="dots"></span><span class="mono" style="font-size: 15px;">8.900</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Provolone de campo, orégano fresco y aceite de oliva.</p>
+          </div>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Berenjenas en escabeche</span><span class="dots"></span><span class="mono" style="font-size: 15px;">7.400</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Receta de la casa, maceradas siete días.</p>
+          </div>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Rabas a la romana</span><span class="dots"></span><span class="mono" style="font-size: 15px;">12.600</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Con alioli de limón. Porción para compartir.</p>
+          </div>
+
+          <h3 class="eyebrow" style="color: #815214; margin: 34px 0 4px; padding-bottom: 9px; border-bottom: 2px solid #1B1C21;">Principales</h3>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Sorrentinos de jamón y mozzarella</span><span class="dots"></span><span class="mono" style="font-size: 15px;">16.800</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Con salsa a elección: fileto, rosa o manteca y salvia.</p>
+          </div>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Ñoquis de papa</span><span class="dots"></span><span class="mono" style="font-size: 15px;">14.200</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Los días 29, con el billete abajo del plato.</p>
+          </div>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Ravioles de verdura y ricota</span><span class="dots"></span><span class="mono" style="font-size: 15px;">15.400</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Masa verde al huevo. Opción sin TACC bajo pedido.</p>
+          </div>
+          <div class="plato" style="opacity: .5;">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Lasaña de la casa</span><span class="dots"></span><span class="mono" style="font-size: 15px;">17.900</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Hoy no hay.</p>
+          </div>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Milanesa napolitana con papas</span><span class="dots"></span><span class="mono" style="font-size: 15px;">18.500</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">De ternera, con jamón, salsa y mozzarella.</p>
+          </div>
+
+          <h3 class="eyebrow" style="color: #815214; margin: 34px 0 4px; padding-bottom: 9px; border-bottom: 2px solid #1B1C21;">Postres</h3>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Flan mixto</span><span class="dots"></span><span class="mono" style="font-size: 15px;">6.200</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Dulce de leche y crema batida a mano.</p>
+          </div>
+          <div class="plato">
+            <div class="lead"><span class="serif" style="font-size: 17px; font-weight: 600;">Tiramisú de la nonna</span><span class="dots"></span><span class="mono" style="font-size: 15px;">7.100</span></div>
+            <p style="grid-column: 1 / -1; margin: 0; font-size: 13.5px; line-height: 1.45; color: #7A7F8C;">Café fuerte, mascarpone y cacao amargo.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Reseñas -->
+      <h2 class="serif" style="font-size: 28px; font-weight: 600; letter-spacing: -.018em; margin: 52px 0 22px; padding-top: 30px; border-top: 1px solid #E3DFD8;">Lo que dijeron 312 comensales</h2>
+
+      <div style="display: grid; grid-template-columns: 236px minmax(0,1fr); gap: 40px; margin-bottom: 34px;">
+        <div>
+          <div class="serif" style="font-size: 56px; font-weight: 600; color: #7C2239; line-height: 1; letter-spacing: -.03em;">4,8</div>
+          <p class="mono" style="font-size: 11.5px; color: #7A7F8C; letter-spacing: .05em; margin: 8px 0 0;">SOBRE 5 · 312 RESEÑAS<br>VERIFICADAS</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 4px;">
+          <div style="display: grid; grid-template-columns: 18px minmax(0,1fr) 42px; align-items: center; gap: 12px;"><span class="mono" style="font-size: 12px; color: #7A7F8C;">5</span><div class="bar"><span style="width: 85%;"></span></div><span class="mono" style="font-size: 12px; color: #4C5160; text-align: right;">266</span></div>
+          <div style="display: grid; grid-template-columns: 18px minmax(0,1fr) 42px; align-items: center; gap: 12px;"><span class="mono" style="font-size: 12px; color: #7A7F8C;">4</span><div class="bar"><span style="width: 11%;"></span></div><span class="mono" style="font-size: 12px; color: #4C5160; text-align: right;">34</span></div>
+          <div style="display: grid; grid-template-columns: 18px minmax(0,1fr) 42px; align-items: center; gap: 12px;"><span class="mono" style="font-size: 12px; color: #7A7F8C;">3</span><div class="bar"><span style="width: 3%;"></span></div><span class="mono" style="font-size: 12px; color: #4C5160; text-align: right;">8</span></div>
+          <div style="display: grid; grid-template-columns: 18px minmax(0,1fr) 42px; align-items: center; gap: 12px;"><span class="mono" style="font-size: 12px; color: #7A7F8C;">2</span><div class="bar"><span style="width: 1.5%;"></span></div><span class="mono" style="font-size: 12px; color: #4C5160; text-align: right;">3</span></div>
+          <div style="display: grid; grid-template-columns: 18px minmax(0,1fr) 42px; align-items: center; gap: 12px;"><span class="mono" style="font-size: 12px; color: #7A7F8C;">1</span><div class="bar"><span style="width: 1%;"></span></div><span class="mono" style="font-size: 12px; color: #4C5160; text-align: right;">1</span></div>
+        </div>
+      </div>
+
+      <div style="padding: 22px 0; border-top: 1px solid #E3DFD8;">
+        <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;">
+          <span class="serif" style="font-size: 18px; font-weight: 600;">Julián R.</span>
+          <span class="chip v">VISITA VERIFICADA</span>
+          <span class="mono" style="font-size: 11.5px; color: #7A7F8C; margin-left: auto;">12 AGO 2026</span>
+          <span class="mono" style="font-size: 16px; color: #7C2239; font-weight: 500;">5,0</span>
+        </div>
+        <p style="margin: 0 0 14px; font-size: 15px; line-height: 1.6; color: #4C5160;">Fuimos un jueves a la noche sin reserva y esperamos veinte minutos parados en la escalera, pero valió la pena. Los sorrentinos con manteca y salvia son de otra época. Pedimos la provoleta para compartir y alcanzó para tres.</p>
+        <div style="margin-left: 22px; padding: 14px 18px; background: #F4F2ED; border-left: 3px solid #D3CEC4; border-radius: 0 5px 5px 0;">
+          <p class="eyebrow" style="color: #7A7F8C; margin: 0 0 6px;">Respuesta de Cantina San Telmo</p>
+          <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4C5160;">Gracias Julián. Los jueves se nos llena temprano; si nos avisás por la app te guardamos la mesa del fondo.</p>
+        </div>
+      </div>
+
+      <div style="padding: 22px 0; border-top: 1px solid #E3DFD8;">
+        <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px;">
+          <span class="serif" style="font-size: 18px; font-weight: 600;">Carolina M.</span>
+          <span class="chip v">VISITA VERIFICADA</span>
+          <span class="mono" style="font-size: 11.5px; color: #7A7F8C; margin-left: auto;">03 AGO 2026</span>
+          <span class="mono" style="font-size: 16px; color: #7C2239; font-weight: 500;">4,0</span>
+        </div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #4C5160;">La comida impecable y los precios razonables para la zona. Le bajo un punto porque el salón es ruidoso y cuesta escuchar del otro lado de la mesa. Ideal para ir en grupo, no tanto para una cena tranquila.</p>
+      </div>
+    </div>
+
+    <div style="background: #E3DFD8; align-self: stretch;"></div>
+
+    <!-- Columna lateral -->
+    <div style="padding: 42px 64px 60px 36px;">
+
+      <!-- Reserva -->
+      <div style="border: 1px solid #E3DFD8; border-radius: 14px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(27,28,33,.05), 0 10px 28px -18px rgba(27,28,33,.3); overflow: hidden; margin-bottom: 24px;">
+        <div style="padding: 14px 20px; background: #F4F2ED; border-bottom: 1px solid #E3DFD8;">
+          <b class="serif" style="font-size: 18px; font-weight: 600;">Reservar mesa</b>
+        </div>
+        <div style="padding: 20px;">
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; margin-bottom: 10px;">
+            <div>
+              <label class="eyebrow" style="color: #7A7F8C; display: block; margin-bottom: 6px;">Fecha</label>
+              <div class="field mono" style="font-size: 14px;">06/09/2026</div>
+            </div>
+            <div>
+              <label class="eyebrow" style="color: #7A7F8C; display: block; margin-bottom: 6px;">Hora</label>
+              <div class="field mono" style="font-size: 14px;">21:30</div>
+            </div>
+          </div>
+          <label class="eyebrow" style="color: #7A7F8C; display: block; margin-bottom: 6px;">Personas</label>
+          <div style="display: flex; gap: 6px; margin-bottom: 18px;">
+            <button class="qty">2</button>
+            <button class="qty on">4</button>
+            <button class="qty">6</button>
+            <button class="qty">8+</button>
+          </div>
+          <button class="btn wine" style="width: 100%;">Confirmar reserva</button>
+          <p style="margin: 12px 0 0; font-size: 12.5px; color: #7A7F8C; line-height: 1.5;">Reservar suma <strong style="color: #815214; font-weight: 600;">50 puntos</strong> al completarse la visita. Cancelás sin costo hasta 2 horas antes.</p>
+        </div>
+      </div>
+
+      <!-- Horarios -->
+      <p class="eyebrow" style="color: #7A7F8C; margin: 0 0 10px;">Horarios</p>
+      <div style="border: 1px solid #E3DFD8; border-radius: 5px; overflow: hidden; margin-bottom: 24px;">
+        <div style="display: flex; justify-content: space-between; padding: 9px 14px; background: #FFFFFF; border-bottom: 1px solid #E3DFD8;"><span style="font-size: 14px; color: #4C5160;">Lunes</span><span class="mono" style="font-size: 13px; color: #7A7F8C;">Cerrado</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 9px 14px; background: #FFFFFF; border-bottom: 1px solid #E3DFD8;"><span style="font-size: 14px; color: #4C5160;">Martes a jueves</span><span class="mono" style="font-size: 13px; color: #1B1C21;">12:00–15:30 · 20:00–00:30</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 9px 14px; background: #E3EFEB; border-bottom: 1px solid #E3DFD8;"><span style="font-size: 14px; color: #1C6350; font-weight: 600;">Viernes y sábado</span><span class="mono" style="font-size: 13px; color: #1C6350;">12:00–16:00 · 20:00–01:30</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 9px 14px; background: #FFFFFF;"><span style="font-size: 14px; color: #4C5160;">Domingo</span><span class="mono" style="font-size: 13px; color: #1B1C21;">12:00–16:00</span></div>
+      </div>
+
+      <!-- Ubicación -->
+      <p class="eyebrow" style="color: #7A7F8C; margin: 0 0 10px;">Cómo llegar</p>
+      <div style="border: 1px solid #E3DFD8; border-radius: 5px; overflow: hidden; margin-bottom: 12px;">
+        <svg width="298" height="170" viewBox="0 0 298 170" style="display: block;">
+          <rect x="0" y="0" width="298" height="170" fill="#F4F2ED"></rect>
+          <rect x="30" y="96" width="70" height="46" fill="#E3EFEB" stroke="#C4D9D2" stroke-width="1"></rect>
+          <g stroke="#E3DFD8" stroke-width="1"><path d="M0 40 H298 M0 90 H298 M0 140 H298 M60 0 V170 M120 0 V170 M180 0 V170 M240 0 V170"></path></g>
+          <g stroke="#D3CEC4" stroke-width="4"><path d="M0 90 H298"></path><path d="M180 0 V170"></path></g>
+          <circle cx="149" cy="85" r="9" fill="#7C2239" stroke="#FCFBF9" stroke-width="2.5"></circle>
+        </svg>
+      </div>
+      <p style="margin: 0 0 6px; font-size: 14px; color: #1B1C21; line-height: 1.5;">Defensa 1124, San Telmo</p>
+      <p style="margin: 0 0 24px; font-size: 13px; color: #7A7F8C; line-height: 1.5;">A 480 m de donde estás · 6 minutos caminando</p>
+
+      <!-- Nota de verificación -->
+      <div style="padding: 16px 18px; background: #F5E8EB; border-left: 3px solid #7C2239; border-radius: 0 5px 5px 0;">
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #4C5160;"><strong style="color: #1B1C21; font-weight: 600;">Las 312 reseñas son de visitas reales.</strong> Solo puede puntuar quien tenga una reserva o un pedido registrado en este local. <a href="#">Cómo funciona la verificación</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

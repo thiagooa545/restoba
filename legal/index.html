@@ -1,0 +1,2022 @@
+<title>Marco Legal RestoBA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+/* ─────────────────────────────────────────────
+   Marco Legal RestoBA
+   Petrona (Eduardo Tunni) · Archivo (Omnibus-Type)
+   Dos tipografías de origen argentino, para un
+   documento sobre una plataforma porteña.
+   ───────────────────────────────────────────── */
+
+:root {
+  --paper:      #FCFBF9;
+  --surface:    #FFFFFF;
+  --surface-2:  #F4F2ED;
+  --surface-3:  #EDEAE3;
+  --ink:        #1B1C21;
+  --ink-2:      #4C5160;
+  --ink-3:      #7A7F8C;
+  --rule:       #E3DFD8;
+  --rule-2:     #D3CEC4;
+  --wine:       #7C2239;
+  --wine-ink:   #7C2239;
+  --wine-soft:  #F5E8EB;
+  --on-wine:    #FFFFFF;
+  --verde:      #1C6350;
+  --verde-soft: #E3EFEB;
+  --ambar:      #815214;
+  --ambar-soft: #F7EEDF;
+  --shadow:     0 1px 2px rgba(27,28,33,.05), 0 8px 24px -12px rgba(27,28,33,.12);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper:      #131419;
+    --surface:    #191B21;
+    --surface-2:  #20232B;
+    --surface-3:  #272B34;
+    --ink:        #ECEAE5;
+    --ink-2:      #AEB4C1;
+    --ink-3:      #7B818F;
+    --rule:       #2B2F38;
+    --rule-2:     #3A3F4A;
+    --wine:       #E28FA3;
+    --wine-ink:   #E28FA3;
+    --wine-soft:  #331F27;
+    --on-wine:    #16171C;
+    --verde:      #6FC4AA;
+    --verde-soft: #17302B;
+    --ambar:      #D6A55C;
+    --ambar-soft: #2E2718;
+    --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper:      #131419;
+  --surface:    #191B21;
+  --surface-2:  #20232B;
+  --surface-3:  #272B34;
+  --ink:        #ECEAE5;
+  --ink-2:      #AEB4C1;
+  --ink-3:      #7B818F;
+  --rule:       #2B2F38;
+  --rule-2:     #3A3F4A;
+  --wine:       #E28FA3;
+  --wine-ink:   #E28FA3;
+  --wine-soft:  #331F27;
+  --on-wine:    #16171C;
+  --verde:      #6FC4AA;
+  --verde-soft: #17302B;
+  --ambar:      #D6A55C;
+  --ambar-soft: #2E2718;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Archivo', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Barra superior ─────────────────────────── */
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 28px;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.brand b {
+  font-family: 'Petrona', Georgia, serif;
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+
+.brand span {
+  font-size: 11px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-weight: 600;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 3px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  border: 1px solid var(--rule-2);
+  color: var(--ink-2);
+  background: var(--surface-2);
+  white-space: nowrap;
+}
+
+.chip.v  { color: var(--verde); background: var(--verde-soft); border-color: color-mix(in srgb, var(--verde) 35%, transparent); }
+.chip.w  { color: var(--wine);  background: var(--wine-soft);  border-color: color-mix(in srgb, var(--wine) 35%, transparent); }
+.chip.a  { color: var(--ambar); background: var(--ambar-soft); border-color: color-mix(in srgb, var(--ambar) 35%, transparent); }
+
+/* ── Estructura ─────────────────────────────── */
+
+.shell {
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+  gap: 0;
+  max-width: 1180px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.rail {
+  position: sticky;
+  top: 61px;
+  align-self: start;
+  max-height: calc(100vh - 61px);
+  overflow-y: auto;
+  padding: 30px 20px 60px 28px;
+  border-right: 1px solid var(--rule);
+}
+
+.stage {
+  min-width: 0;
+  padding: 30px 40px 120px;
+}
+
+/* ── Navegación de documentos ───────────────── */
+
+.railtitle {
+  font-size: 10.5px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin: 0 0 12px;
+}
+
+.docnav { display: flex; flex-direction: column; gap: 2px; margin-bottom: 30px; }
+
+.docnav button {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: background .13s ease, color .13s ease;
+}
+
+.docnav button em {
+  font-family: 'IBM Plex Mono', monospace;
+  font-style: normal;
+  font-size: 11px;
+  color: var(--ink-3);
+  letter-spacing: .02em;
+}
+
+.docnav button:hover { background: var(--surface-2); color: var(--ink); }
+
+.docnav button[aria-current="true"] {
+  background: var(--wine-soft);
+  color: var(--wine-ink);
+  font-weight: 600;
+}
+
+.docnav button[aria-current="true"] em { color: var(--wine-ink); }
+
+.secindex { display: flex; flex-direction: column; gap: 1px; border-left: 1px solid var(--rule); }
+
+.secindex a {
+  padding: 4px 0 4px 13px;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: var(--ink-3);
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 1.4;
+  transition: color .13s ease, border-color .13s ease;
+}
+
+.secindex a:hover { color: var(--ink); border-left-color: var(--rule-2); }
+.secindex a.on    { color: var(--wine-ink); border-left-color: var(--wine); font-weight: 600; }
+
+/* ── Documentos ─────────────────────────────── */
+
+.doc { display: none; max-width: 720px; }
+.doc.on { display: block; animation: rise .28s ease both; }
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doc.on { animation: none; }
+  * { transition-duration: .01ms !important; }
+}
+
+.eyebrow {
+  font-size: 10.5px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--wine-ink);
+  margin: 0 0 10px;
+}
+
+h1 {
+  font-family: 'Petrona', Georgia, serif;
+  font-size: clamp(30px, 4.6vw, 42px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -.022em;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+h2 {
+  font-family: 'Petrona', Georgia, serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -.014em;
+  margin: 48px 0 12px;
+  padding-top: 22px;
+  border-top: 1px solid var(--rule);
+  text-wrap: balance;
+  scroll-margin-top: 76px;
+}
+
+h2:first-of-type { border-top: 0; padding-top: 0; margin-top: 34px; }
+
+h3 {
+  font-family: 'Archivo', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .005em;
+  margin: 30px 0 8px;
+  color: var(--ink);
+}
+
+p  { margin: 0 0 14px; color: var(--ink-2); }
+li { margin: 0 0 8px; color: var(--ink-2); }
+ul, ol { margin: 0 0 16px; padding-left: 22px; }
+ol.lettered { list-style: lower-alpha; }
+strong { color: var(--ink); font-weight: 600; }
+em { color: var(--ink-2); }
+
+a { color: var(--wine-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+code, .mono {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: .875em;
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: .08em .35em;
+  color: var(--ink);
+}
+
+pre {
+  margin: 0 0 20px;
+  padding: 16px 18px;
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+pre code { background: none; border: 0; padding: 0; font-size: 12.5px; line-height: 1.65; }
+
+/* ── Tablas ─────────────────────────────────── */
+
+.tw { overflow-x: auto; margin: 0 0 22px; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); }
+
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+
+th {
+  text-align: left;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--surface-2);
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule-2);
+  white-space: nowrap;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+tr:last-child td { border-bottom: 0; }
+td strong { color: var(--ink); }
+.num { font-variant-numeric: tabular-nums; }
+.ctr { text-align: center; }
+.si  { color: var(--verde); font-weight: 700; }
+.no  { color: var(--ink-3); }
+
+/* ── Piezas de página ───────────────────────── */
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 30px;
+}
+
+.lead {
+  font-family: 'Petrona', Georgia, serif;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0 0 26px;
+}
+
+.note {
+  margin: 0 0 24px;
+  padding: 16px 18px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--rule-2);
+  border-radius: 0 5px 5px 0;
+  font-size: 14.5px;
+}
+
+.note p:last-child { margin-bottom: 0; }
+.note.w { background: var(--wine-soft);  border-left-color: var(--wine); }
+.note.v { background: var(--verde-soft); border-left-color: var(--verde); }
+.note.a { background: var(--ambar-soft); border-left-color: var(--ambar); }
+
+.legend {
+  margin: 0 0 18px;
+  padding: 14px 18px;
+  border: 1px dashed var(--rule-2);
+  border-radius: 5px;
+  font-family: 'Petrona', Georgia, serif;
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  background: var(--surface);
+}
+
+.foot {
+  margin: 54px 0 0;
+  padding: 18px 20px;
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: var(--surface-2);
+  font-size: 13.5px;
+  color: var(--ink-3);
+}
+
+.foot strong { color: var(--ink-2); }
+
+/* ── Portada ────────────────────────────────── */
+
+.cover {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 38px 36px 32px;
+  margin: 0 0 34px;
+}
+
+.cover .rulez { height: 3px; background: var(--wine); width: 46px; margin: 0 0 22px; border-radius: 2px; }
+
+.coverfacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 1px;
+  margin-top: 28px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.coverfacts div { background: var(--surface); padding: 13px 15px; }
+.coverfacts dt { font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; margin-bottom: 4px; }
+.coverfacts dd { margin: 0; font-family: 'Petrona', Georgia, serif; font-size: 17px; font-weight: 600; color: var(--ink); }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+  gap: 12px;
+  margin: 0 0 30px;
+}
+
+.card {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--surface);
+  padding: 18px 18px 16px;
+  text-align: left;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+}
+
+.card:hover { border-color: var(--wine); transform: translateY(-2px); box-shadow: var(--shadow); }
+.card em { font-family: 'IBM Plex Mono', monospace; font-style: normal; font-size: 11px; color: var(--wine-ink); letter-spacing: .06em; font-weight: 500; }
+.card h4 { font-family: 'Petrona', Georgia, serif; font-size: 18px; font-weight: 600; margin: 6px 0 6px; color: var(--ink); line-height: 1.25; }
+.card p  { font-size: 13.5px; margin: 0; line-height: 1.5; color: var(--ink-3); }
+
+/* ── Maqueta de la pantalla de aceptación ───── */
+
+.gate {
+  border: 1px solid var(--rule-2);
+  border-radius: 6px;
+  background: var(--surface);
+  overflow: hidden;
+  margin: 0 0 14px;
+  box-shadow: var(--shadow);
+}
+
+.gate header {
+  padding: 14px 20px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.gate header b { font-family: 'Petrona', Georgia, serif; font-size: 17px; font-weight: 600; }
+.gate .body { padding: 20px; }
+
+.check {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+}
+
+.check:last-of-type { border-bottom: 0; }
+.check input { width: 17px; height: 17px; margin: 3px 0 0; accent-color: var(--wine); cursor: pointer; }
+.check .t { font-size: 14.5px; color: var(--ink); font-weight: 600; }
+.check .s { font-size: 13px; color: var(--ink-3); display: block; margin-top: 2px; line-height: 1.45; }
+
+.gate .act { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--rule); }
+
+.gate .act button {
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  background: var(--wine);
+  color: var(--on-wine);
+  cursor: pointer;
+  transition: opacity .15s ease;
+}
+
+.gate .act button:disabled { opacity: .38; cursor: not-allowed; }
+.gate .act .st { font-size: 13px; color: var(--ink-3); }
+.gate .act .st.ok { color: var(--verde); font-weight: 600; }
+
+.receipt {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  line-height: 1.75;
+  color: var(--ink-2);
+  background: var(--surface-2);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  padding: 14px 16px;
+  margin-top: 16px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+.receipt[hidden] { display: none !important; }
+.receipt b { color: var(--wine-ink); font-weight: 500; }
+
+/* ── Responsive ─────────────────────────────── */
+
+@media (max-width: 880px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .rail {
+    position: static;
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 20px 22px;
+  }
+  .docnav { flex-direction: row; flex-wrap: wrap; margin-bottom: 0; }
+  .docnav button { width: auto; grid-template-columns: auto auto; padding: 7px 12px; border: 1px solid var(--rule); }
+  .secindex { display: none; }
+  .stage { padding: 26px 22px 90px; }
+  .topbar { padding: 12px 22px; }
+  .cover { padding: 26px 22px 24px; }
+}
+</style>
+
+<header class="topbar">
+  <div class="brand"><b>RestoBA</b><span>Marco legal</span></div>
+  <span class="chip">v1.0</span>
+  <span class="chip">29 ago 2026</span>
+  <span class="chip a">Borrador académico</span>
+</header>
+
+<main class="shell">
+  <aside class="rail">
+    <p class="railtitle">Documentos</p>
+    <nav class="docnav" id="docnav">
+      <button data-doc="portada" aria-current="true"><em>—</em><span>Portada</span></button>
+      <button data-doc="tyc"><em>01</em><span>Términos y Condiciones</span></button>
+      <button data-doc="privacidad"><em>02</em><span>Política de Privacidad</span></button>
+      <button data-doc="verificacion"><em>03</em><span>Acuerdo de Verificación</span></button>
+      <button data-doc="anexo"><em>04</em><span>Anexo Técnico</span></button>
+    </nav>
+    <p class="railtitle" id="secTitle" hidden>En este documento</p>
+    <div class="secindex" id="secindex"></div>
+  </aside>
+
+  <div class="stage">
+
+<!-- ══════════════════ PORTADA ══════════════════ -->
+<section class="doc on" data-doc="portada">
+
+  <div class="cover">
+    <div class="rulez"></div>
+    <p class="eyebrow">Plataforma de descubrimiento y gestión gastronómica · CABA</p>
+    <h1>Marco legal de RestoBA</h1>
+    <p class="lead">Cuatro documentos que definen qué datos guardamos, cómo los ciframos y qué
+    compromisos asume quien quiere convertirse en usuario verificado.</p>
+    <dl class="coverfacts">
+      <div><dt>Versión</dt><dd>1.0</dd></div>
+      <div><dt>Vigencia</dt><dd>29·08·2026</dd></div>
+      <div><dt>Jurisdicción</dt><dd>Argentina</dd></div>
+      <div><dt>Alcance</dt><dd>Comensales</dd></div>
+    </dl>
+  </div>
+
+  <h2 id="p-gate">La regla que ordena todo el conjunto</h2>
+  <p>La plataforma promete <strong>reseñas verificadas</strong>. Esa promesa solo vale si detrás de
+  cada reseña hay una persona que asumió compromisos concretos y por escrito. De ahí sale la única
+  regla de negocio que atraviesa los cuatro documentos:</p>
+
+  <div class="note w">
+    <p>Un usuario es <strong>verificado</strong> si y solo si tiene constancias de aceptación
+    vigentes de los tres documentos —Términos, Privacidad y Acuerdo de Verificación— en su versión
+    actual, además de correo y teléfono confirmados.</p>
+    <p style="margin-top:10px">Sin esas constancias la cuenta funciona igual, pero en modo
+    <strong>sola lectura</strong>: puede buscar, ver menús y leer reseñas. No puede reservar,
+    reseñar ni acumular puntos.</p>
+  </div>
+
+  <h3>Los tres niveles de acceso</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Función</th><th class="ctr">Visitante</th><th class="ctr">Registrado</th><th class="ctr">Verificado</th></tr></thead>
+      <tbody>
+        <tr><td>Buscar restaurantes con filtros</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Búsqueda por proximidad geográfica</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Consultar menú y perfil del restaurante</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Leer reseñas de otros usuarios</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Guardar restaurantes favoritos</td><td class="ctr no">No</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Reservar mesas</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Publicar reseñas y puntuaciones</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Acumular y canjear puntos</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Recibir cupones y beneficios</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Distintivo público de verificado</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="p-docs">Los cuatro documentos</h2>
+  <div class="cards">
+    <button class="card" data-goto="tyc">
+      <em>01 · tyc</em>
+      <h4>Términos y Condiciones</h4>
+      <p>Reglas de uso, niveles de acceso, reseñas, puntos, reservas, responsabilidad y jurisdicción.</p>
+    </button>
+    <button class="card" data-goto="privacidad">
+      <em>02 · privacidad</em>
+      <h4>Política de Privacidad</h4>
+      <p>Qué datos se guardan, para qué, cuánto tiempo, con quién se comparten y cómo ejercer tus derechos.</p>
+    </button>
+    <button class="card" data-goto="verificacion">
+      <em>03 · verificacion</em>
+      <h4>Acuerdo de Verificación</h4>
+      <p>El documento que habilita el estado de usuario verificado. Requisitos, compromisos y revocación.</p>
+    </button>
+    <button class="card" data-goto="anexo">
+      <em>04 · anexo-tecnico</em>
+      <h4>Anexo Técnico</h4>
+      <p>Cifrado, autenticación, protecciones de aplicación y las limitaciones que declaramos.</p>
+    </button>
+  </div>
+  <p style="font-size:14px;color:var(--ink-3)">El Anexo Técnico es informativo: se referencia desde
+  los otros tres, pero no requiere aceptación independiente. Los que se aceptan son el 01, el 02 y
+  el 03.</p>
+
+  <h2 id="p-maqueta">Cómo se ve la pantalla de aceptación</h2>
+  <p>La forma de pedir el consentimiento no es un detalle de diseño: es lo que hace que la
+  aceptación sea válida. El artículo 5 de la Ley 25.326 exige que sea <strong>libre, expresa e
+  informada</strong>, y cada uno de esos tres requisitos se traduce en una decisión de interfaz.</p>
+
+  <div class="gate">
+    <header>
+      <b>Convertite en usuario verificado</b>
+      <span class="chip">Maqueta</span>
+    </header>
+    <div class="body">
+      <label class="check">
+        <input type="checkbox" data-req>
+        <span><span class="t">Acepto los Términos y Condiciones</span>
+        <span class="s">Versión 1.0 · Reglas de uso, reseñas, puntos y reservas</span></span>
+      </label>
+      <label class="check">
+        <input type="checkbox" data-req>
+        <span><span class="t">Acepto la Política de Privacidad</span>
+        <span class="s">Versión 1.0 · Tratamiento de mis datos personales</span></span>
+      </label>
+      <label class="check">
+        <input type="checkbox" data-req>
+        <span><span class="t">Acepto el Acuerdo de Verificación</span>
+        <span class="s">Versión 1.0 · Reseñar solo lugares visitados, no aceptar pagos por reseñar, una sola cuenta</span></span>
+      </label>
+      <div class="act">
+        <button id="gateBtn" disabled>Verificarme</button>
+        <span class="st" id="gateSt">Faltan 3 documentos por aceptar</span>
+      </div>
+      <div class="receipt" id="gateRc" hidden></div>
+    </div>
+  </div>
+  <p style="font-size:13px;color:var(--ink-3);margin-bottom:26px">Es una maqueta de demostración: no
+  envía ni guarda ningún dato.</p>
+
+  <h3>Por qué la pantalla es así</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Decisión de interfaz</th><th>Requisito legal que satisface</th></tr></thead>
+      <tbody>
+        <tr><td>Ninguna casilla viene pre-marcada</td><td><strong>Expreso</strong> — el consentimiento es un acto positivo del usuario, no su silencio</td></tr>
+        <tr><td>Una casilla independiente por documento</td><td><strong>Expreso</strong> — se consiente cada tratamiento por separado, no en bloque</td></tr>
+        <tr><td>Se exhibe el texto completo, no un resumen</td><td><strong>Informado</strong> — art. 5 Ley 25.326</td></tr>
+        <tr><td>El botón queda deshabilitado hasta marcar las tres</td><td><strong>Informado</strong> — impide aceptar sin haber pasado por cada documento</td></tr>
+        <tr><td>Se puede cerrar sin aceptar y seguir usando la app</td><td><strong>Libre</strong> — no hay coacción: negarse no cuesta la cuenta</td></tr>
+        <tr><td>Se guarda el hash SHA-256 del texto exhibido</td><td><strong>Prueba</strong> — permite demostrar años después qué decía exactamente lo aceptado</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="p-hash">La constancia y su huella</h2>
+  <p>Cada aceptación deja un registro inmutable. El campo decisivo es el
+  <code>hash_texto</code>: la huella SHA-256 del texto literal que se le mostró al usuario. Si
+  alguien modificara después el documento archivado —aun en una coma— el hash dejaría de coincidir
+  y la alteración quedaría en evidencia. El usuario no tiene que confiar en la palabra de nadie
+  sobre qué decía lo que aceptó.</p>
+
+<pre><code>CREATE TABLE aceptacion_legal (
+  id           SERIAL PRIMARY KEY,
+  usuario_id   INTEGER      NOT NULL REFERENCES comensal(id) ON DELETE CASCADE,
+  documento    VARCHAR(32)  NOT NULL,  -- 'tyc' | 'privacidad' | 'verificacion'
+  version      VARCHAR(16)  NOT NULL,  -- '1.0'
+  hash_texto   CHAR(64)     NOT NULL,  -- SHA-256 del texto exhibido
+  aceptado_en  TIMESTAMPTZ  NOT NULL DEFAULT now(),
+  revocado_en  TIMESTAMPTZ,            -- NULL mientras esté vigente
+  ip           INET,
+  user_agent   TEXT,
+  CONSTRAINT documento_valido
+    CHECK (documento IN ('tyc', 'privacidad', 'verificacion')),
+  CONSTRAINT una_aceptacion_por_version
+    UNIQUE (usuario_id, documento, version)
+);</code></pre>
+
+  <p>La constancia <strong>no se borra nunca</strong>: al revocar se completa
+  <code>revocado_en</code>. El registro se conserva 5 años desde la baja de la cuenta, como prueba
+  del consentimiento prestado.</p>
+
+  <h2 id="p-normas">Normativa aplicada</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Norma</th><th>Dónde impacta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Ley 25.326</strong> — Protección de los Datos Personales</td><td>Documento 02 completo; art. 9 en el Anexo Técnico</td></tr>
+        <tr><td><strong>Decreto 1558/2001</strong> y <strong>Disp. AAIP 10/2008</strong></td><td>Leyendas obligatorias del documento 02</td></tr>
+        <tr><td><strong>Ley 24.240</strong> — Defensa del Consumidor</td><td>Documento 01, artículos 13 y 16</td></tr>
+        <tr><td><strong>Ley 25.506</strong> — Firma Digital</td><td>Documento 03, sección 6.3</td></tr>
+        <tr><td><strong>CCyC</strong> arts. 25, 286, 288 y 1106</td><td>Capacidad legal y consentimiento electrónico</td></tr>
+        <tr><td><strong>Ley 11.723</strong> — Propiedad Intelectual</td><td>Documento 01, artículo 12</td></tr>
+        <tr><td><strong>Ley 26.388</strong> — Delitos Informáticos</td><td>Documento 01, artículo 6</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="p-pend">Qué falta antes de producción</h2>
+  <ul>
+    <li>Completar los marcadores <code>[COMPLETAR]</code>: razón social, CUIT, domicilio, casillas de correo, proveedores contratados y plazos de vigencia de puntos y cancelación.</li>
+    <li>Inscribir la base de datos ante la <strong>AAIP</strong> (art. 21 Ley 25.326).</li>
+    <li>Revisión por un profesional del derecho matriculado.</li>
+    <li>Verificar que la implementación coincida con lo declarado en el Anexo Técnico —bcrypt costo 12, TLS 1.3, JWT de 15 minutos, AES-256-GCM sobre el teléfono— y corregir el documento si alguna decisión cambia.</li>
+    <li>Redactar el <strong>contrato de suscripción B2B</strong> para los restaurantes adheridos, que no forma parte de este marco.</li>
+  </ul>
+
+  <div class="foot">
+    <strong>Alcance.</strong> Estos documentos cubren la relación con el comensal. La relación con
+    los restaurantes adheridos —suscripción, obligaciones, nivel de servicio, baja— requiere un
+    contrato comercial separado. Fueron redactados en el marco de un proyecto académico y no
+    constituyen asesoramiento legal profesional.
+  </div>
+</section>
+
+<!-- ══════════════════ 01 · TÉRMINOS ══════════════════ -->
+<section class="doc" data-doc="tyc">
+  <p class="eyebrow">Documento 01 · <span class="mono" style="background:none;border:0;padding:0">tyc</span></p>
+  <h1>Términos y Condiciones de Uso</h1>
+  <div class="meta">
+    <span class="chip">Versión 1.0</span>
+    <span class="chip">Vigencia 29·08·2026</span>
+    <span class="chip w">Requiere aceptación</span>
+  </div>
+  <div class="note">
+    <p>Este documento integra, junto con la Política de Privacidad, el Acuerdo de Verificación y el
+    Anexo Técnico de Seguridad, el marco legal completo de la plataforma. Los cuatro deben leerse en
+    conjunto.</p>
+  </div>
+
+  <h2 id="t1">Artículo 1 — Aceptación y ámbito de aplicación</h2>
+  <p>1.1. Los presentes Términos y Condiciones (los <strong>«Términos»</strong>) regulan el acceso y
+  uso de la plataforma web <strong>RestoBA</strong> (la <strong>«Plataforma»</strong>), operada por
+  <code>[COMPLETAR: razón social]</code>, CUIT <code>[COMPLETAR]</code>, con domicilio en
+  <code>[COMPLETAR]</code>, Ciudad Autónoma de Buenos Aires, República Argentina
+  (<strong>«RestoBA»</strong>).</p>
+  <p>1.2. El acceso a la Plataforma, la creación de una cuenta o el uso de cualquiera de sus
+  funciones implica la aceptación plena y sin reservas de estos Términos. Si no está de acuerdo con
+  alguna de sus cláusulas, debe abstenerse de utilizar la Plataforma.</p>
+  <p>1.3. Estos Términos se aplican a los <strong>comensales</strong>: usuarios finales que buscan
+  restaurantes, reservan mesas, dejan reseñas y participan del programa de fidelización. La relación
+  contractual con los restaurantes que contratan el módulo de gestión por suscripción se rige por un
+  contrato comercial independiente que no forma parte de este documento.</p>
+  <p>1.4. El uso de la Plataforma por parte del comensal es <strong>gratuito</strong>. Véase el
+  artículo 10.</p>
+
+  <h2 id="t2">Artículo 2 — Definiciones</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Término</th><th>Significado</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Plataforma</strong></td><td>El sitio web RestoBA, su interfaz de usuario, su API y todos los servicios asociados.</td></tr>
+        <tr><td><strong>Comensal</strong></td><td>Persona humana que utiliza la Plataforma para descubrir restaurantes, reservar, reseñar o acumular Puntos.</td></tr>
+        <tr><td><strong>Visitante</strong></td><td>Quien navega la Plataforma sin haber creado una cuenta.</td></tr>
+        <tr><td><strong>Usuario Registrado</strong></td><td>Quien creó una cuenta con correo electrónico y contraseña, pero no completó el proceso de verificación.</td></tr>
+        <tr><td><strong>Usuario Verificado</strong></td><td>Usuario Registrado que completó el proceso descripto en el Acuerdo de Verificación y aceptó expresamente los tres documentos del marco legal.</td></tr>
+        <tr><td><strong>Restaurante Adherido</strong></td><td>Establecimiento gastronómico que contrató el módulo de gestión y publica su perfil, menú y disponibilidad en la Plataforma.</td></tr>
+        <tr><td><strong>Contenido de Usuario</strong></td><td>Todo texto, puntuación, fotografía u opinión que un usuario publica en la Plataforma, incluyendo las Reseñas.</td></tr>
+        <tr><td><strong>Reseña</strong></td><td>Opinión y puntuación que un Usuario Verificado publica sobre un Restaurante Adherido que efectivamente visitó.</td></tr>
+        <tr><td><strong>Puntos</strong></td><td>Unidades de fidelización no dinerarias que el Usuario Verificado acumula por su actividad en la Plataforma.</td></tr>
+        <tr><td><strong>Cupón</strong></td><td>Beneficio o descuento nominativo emitido por RestoBA o por un Restaurante Adherido, canjeable según sus propias condiciones.</td></tr>
+        <tr><td><strong>Reserva</strong></td><td>Solicitud de mesa que el Comensal gestiona a través de la Plataforma y que el Restaurante Adherido confirma o rechaza.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="t3">Artículo 3 — Capacidad legal</h2>
+  <p>3.1. Para crear una cuenta es necesario ser <strong>persona humana mayor de 18 años</strong> y
+  contar con plena capacidad para contratar conforme el artículo 25 del Código Civil y Comercial de
+  la Nación.</p>
+  <p>3.2. La Plataforma no está dirigida a menores de edad y no recolecta deliberadamente sus datos
+  personales. Si detectamos una cuenta perteneciente a una persona menor de 18 años, procederemos a
+  darla de baja y a eliminar sus datos.</p>
+  <p>3.3. No se admiten cuentas creadas por personas jurídicas en el rol de Comensal. Los
+  establecimientos gastronómicos deben registrarse por la vía prevista para Restaurantes
+  Adheridos.</p>
+
+  <h2 id="t4">Artículo 4 — Registro y cuenta de usuario</h2>
+  <p>4.1. El registro requiere proporcionar información <strong>veraz, exacta y actualizada</strong>.
+  Es responsabilidad del usuario mantenerla al día.</p>
+  <p>4.2. Cada persona puede tener <strong>una única cuenta</strong>. La creación de cuentas
+  múltiples —en particular con el objeto de acumular Puntos, multiplicar Cupones o publicar varias
+  Reseñas sobre un mismo establecimiento— constituye una infracción grave a estos Términos.</p>
+  <p>4.3. La contraseña es personal e intransferible. El usuario es responsable de toda actividad
+  realizada desde su cuenta y debe notificarnos de inmediato ante cualquier sospecha de uso no
+  autorizado, escribiendo a <code>[COMPLETAR: email de soporte]</code>.</p>
+  <p>4.4. RestoBA no almacena la contraseña del usuario en texto legible. El mecanismo empleado se
+  detalla en el Anexo Técnico de Seguridad, sección 3.</p>
+
+  <h2 id="t5">Artículo 5 — Niveles de acceso</h2>
+  <p>La Plataforma reconoce tres niveles de acceso para el Comensal. Las funciones habilitadas en
+  cada nivel son las siguientes:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Función</th><th class="ctr">Visitante</th><th class="ctr">Registrado</th><th class="ctr">Verificado</th></tr></thead>
+      <tbody>
+        <tr><td>Buscar restaurantes con filtros (cocina, precio, zona)</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Búsqueda por proximidad geográfica</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Consultar el menú y el perfil de un restaurante</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Leer reseñas de otros usuarios</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td>Guardar restaurantes favoritos</td><td class="ctr no">No</td><td class="ctr si">Sí</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Crear reservas de mesa</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Publicar reseñas y puntuaciones</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Acumular y canjear Puntos</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Recibir Cupones y beneficios</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+        <tr><td><strong>Distintivo de verificado en el perfil público</strong></td><td class="ctr no">No</td><td class="ctr no">No</td><td class="ctr si">Sí</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>5.1. El acceso al nivel de <strong>Usuario Verificado</strong> requiere la aceptación expresa de
+  estos Términos, de la Política de Privacidad y del Acuerdo de Verificación de Usuario, además del
+  cumplimiento de los requisitos técnicos allí previstos. <strong>Sin esa aceptación, la cuenta
+  permanece en el nivel de Usuario Registrado, con acceso de sola lectura a las funciones sociales
+  de la Plataforma.</strong></p>
+  <p>5.2. La verificación no implica que RestoBA haya validado la identidad civil del usuario ni que
+  avale sus opiniones. Significa únicamente que la persona confirmó su correo electrónico y su
+  teléfono, aceptó el marco legal y asumió los compromisos del artículo 4 del Acuerdo de
+  Verificación.</p>
+
+  <h2 id="t6">Artículo 6 — Conductas prohibidas</h2>
+  <p>Queda expresamente prohibido:</p>
+  <ol class="lettered">
+    <li>Publicar <strong>Reseñas falsas</strong>, sobre establecimientos no visitados, o redactadas a cambio de dinero, productos, servicios u otra contraprestación, sea a favor o en contra del establecimiento.</li>
+    <li>Crear o utilizar <strong>cuentas múltiples</strong>, cuentas de terceros o identidades simuladas.</li>
+    <li>Suplantar la identidad de otra persona, de un Restaurante Adherido o de RestoBA.</li>
+    <li>Emplear <strong>robots, scrapers o crawlers</strong> o cualquier medio automatizado para extraer datos de la Plataforma, así como reproducir o comercializar su contenido sin autorización escrita.</li>
+    <li>Realizar <strong>ingeniería inversa</strong>, descompilar, desensamblar o intentar obtener el código fuente de la Plataforma.</li>
+    <li>Intentar vulnerar los mecanismos de seguridad, acceder a datos de otros usuarios, o sobrecargar deliberadamente la infraestructura (ataques de denegación de servicio, peticiones masivas, fuerza bruta sobre el inicio de sesión).</li>
+    <li>Publicar contenido ilícito, difamatorio, discriminatorio, violento, obsceno, que vulnere derechos de terceros o que incluya <strong>datos personales de otras personas</strong> sin su consentimiento.</li>
+    <li>Utilizar la Plataforma con fines publicitarios no autorizados, envío de spam o promoción de productos o servicios ajenos.</li>
+    <li>Comercializar, transferir o intercambiar <strong>Puntos y Cupones</strong> por fuera de los canales habilitados.</li>
+  </ol>
+  <p>Las conductas descriptas en los incisos e) y f) pueden además configurar delitos previstos en la
+  <strong>Ley 26.388 de Delitos Informáticos</strong>, sin perjuicio de las acciones civiles que
+  correspondan.</p>
+
+  <h2 id="t7">Artículo 7 — Contenido de Usuario y Reseñas</h2>
+  <p>7.1. <strong>Titularidad.</strong> El usuario conserva la titularidad de los derechos sobre el
+  Contenido de Usuario que publica.</p>
+  <p>7.2. <strong>Licencia.</strong> Al publicar Contenido de Usuario, el usuario otorga a RestoBA
+  una licencia <strong>no exclusiva, gratuita, mundial y por el plazo de vigencia de la
+  publicación</strong>, para almacenar, reproducir, mostrar y distribuir ese contenido dentro de la
+  Plataforma y en sus comunicaciones institucionales, con el único fin de prestar el servicio. Esta
+  licencia no habilita a RestoBA a ceder el contenido a terceros para fines publicitarios ajenos a
+  la Plataforma.</p>
+  <p>7.3. <strong>Responsabilidad.</strong> El usuario es el único responsable por el contenido que
+  publica y garantiza que es de su autoría, que refleja su experiencia real y que no vulnera
+  derechos de terceros.</p>
+  <p>7.4. <strong>Moderación.</strong> RestoBA puede revisar, ocultar o eliminar Contenido de Usuario
+  que infrinja estos Términos, previa notificación al usuario cuando ello sea posible. El usuario
+  podrá presentar su descargo por el canal indicado en el artículo 17.</p>
+  <p>7.5. <strong>Reseñas vinculadas a una visita.</strong> Para publicar una Reseña sobre un
+  Restaurante Adherido, el sistema exige que exista en la base de datos una Reserva o un Pedido
+  previo del usuario en ese establecimiento. Esta vinculación técnica es lo que da sentido al
+  calificativo de <em>reseña verificada</em>.</p>
+  <p>7.6. <strong>Baja de cuenta y reseñas.</strong> Si el usuario da de baja su cuenta, sus Reseñas
+  se <strong>anonimizan</strong>: se elimina la asociación con su identidad y con sus datos de
+  contacto, pero el texto y la puntuación permanecen publicados, ya que forman parte del historial
+  de valoraciones del Restaurante Adherido y de la información que otros comensales utilizan para
+  decidir. El usuario puede solicitar la eliminación completa de una Reseña determinada conforme el
+  procedimiento de la Política de Privacidad.</p>
+  <p>7.7. <strong>Derecho a réplica.</strong> El Restaurante Adherido puede responder públicamente a
+  una Reseña. No puede exigir su eliminación por el solo hecho de resultarle desfavorable, siempre
+  que la Reseña no infrinja el artículo 6.</p>
+
+  <h2 id="t8">Artículo 8 — Programa de fidelización: Puntos y Cupones</h2>
+  <p>8.1. <strong>Naturaleza de los Puntos.</strong> Los Puntos son unidades de fidelización sin
+  valor dinerario. <strong>No constituyen dinero, moneda, criptoactivo, título valor ni instrumento
+  de pago.</strong> En consecuencia:</p>
+  <ul>
+    <li>no son canjeables por dinero en efectivo;</li>
+    <li>no son transferibles entre usuarios;</li>
+    <li>no son heredables;</li>
+    <li>no generan intereses ni actualización de ningún tipo.</li>
+  </ul>
+  <p>8.2. <strong>Acumulación.</strong> El Usuario Verificado acumula Puntos por las acciones que la
+  Plataforma determine (completar una Reserva, publicar una Reseña, entre otras). Cada Restaurante
+  Adherido define su propia tabla de equivalencias y beneficios.</p>
+  <p>8.3. <strong>Canje.</strong> El canje de Puntos genera un Cupón nominativo, de uso personal, con
+  una fecha de vencimiento indicada en el momento de la emisión. El canje es
+  <strong>irreversible</strong>: una vez descontados los Puntos, no se reintegran, salvo error
+  atribuible a la Plataforma.</p>
+  <p>8.4. <strong>Vigencia.</strong> Los Puntos tienen una vigencia de
+  <code>[COMPLETAR: por ejemplo, 12 meses]</code> desde su acreditación. RestoBA notificará al
+  usuario con al menos 30 días de antelación al vencimiento de un saldo de Puntos.</p>
+  <p>8.5. <strong>Ejecución del beneficio.</strong> El Cupón se hace efectivo <strong>en el local del
+  Restaurante Adherido</strong>. RestoBA actúa como emisor del cupón y registro del canje, pero no es
+  quien presta el servicio gastronómico. Si un establecimiento se niega injustificadamente a honrar
+  un Cupón válido, el usuario puede reclamarlo por el canal del artículo 17 y RestoBA arbitrará los
+  medios a su alcance para resolverlo, incluida la desvinculación del establecimiento.</p>
+  <p>8.6. <strong>Modificación del programa.</strong> RestoBA puede modificar las reglas de
+  acumulación y canje con un preaviso de 30 días. Los Puntos ya acreditados conservan las condiciones
+  vigentes al momento de su acreditación.</p>
+  <p>8.7. <strong>Reversión.</strong> RestoBA puede revertir Puntos y anular Cupones obtenidos
+  mediante infracción al artículo 6, en particular mediante cuentas múltiples o Reseñas falsas.</p>
+
+  <h2 id="t9">Artículo 9 — Reservas</h2>
+  <p>9.1. RestoBA es un <strong>intermediario tecnológico</strong>. El contrato de consumo
+  gastronómico se celebra directa y exclusivamente entre el Comensal y el Restaurante Adherido.
+  RestoBA no es parte de esa relación, no presta el servicio de gastronomía ni responde por su
+  calidad, salubridad, precio o condiciones.</p>
+  <p>9.2. La Reserva se considera confirmada únicamente cuando la Plataforma le notifica al usuario
+  la confirmación del Restaurante Adherido. Una solicitud enviada no equivale a una mesa
+  asegurada.</p>
+  <p>9.3. El usuario puede cancelar una Reserva desde la Plataforma hasta
+  <code>[COMPLETAR: por ejemplo, 2 horas]</code> antes del horario reservado.</p>
+  <p>9.4. <strong>Inasistencias.</strong> La inasistencia reiterada sin cancelación previa
+  (<em>no-show</em>) puede dar lugar a la reversión de los Puntos asociados y, tras
+  <code>[COMPLETAR: por ejemplo, 3]</code> incumplimientos en un período de 90 días, a la suspensión
+  temporal de la facultad de reservar. Esta medida se aplica previa notificación y admite
+  descargo.</p>
+  <p>9.5. El Restaurante Adherido puede cancelar o rechazar una Reserva por falta de disponibilidad.
+  En ese caso RestoBA notificará al usuario a la brevedad, sin que ello genere derecho a
+  indemnización por parte de la Plataforma.</p>
+
+  <h2 id="t10">Artículo 10 — Gratuidad y ausencia de procesamiento de pagos</h2>
+  <p>10.1. El uso de la Plataforma por parte del Comensal es <strong>gratuito en su
+  totalidad</strong>. No existen cargos por registro, verificación, reservas, reseñas ni
+  participación en el programa de fidelización.</p>
+  <p>10.2. Los Restaurantes Adheridos abonan una suscripción mensual por el módulo de gestión. Ese
+  cobro se realiza mediante <strong>transferencia bancaria directa</strong>, por fuera de la
+  Plataforma.</p>
+  <div class="note w">
+    <p>10.3. En consecuencia, y de manera expresa: <strong>RestoBA no opera como procesador de pagos,
+    no integra pasarelas de pago y no solicita, procesa ni almacena datos de tarjetas de crédito o
+    débito, CBU, CVU ni credenciales bancarias de ningún usuario.</strong> Si alguien le solicita
+    esos datos invocando el nombre de RestoBA, se trata de un intento de fraude y le pedimos que nos
+    lo reporte.</p>
+  </div>
+  <p>10.4. El pago de la cuenta en el restaurante, así como la aplicación de descuentos y Cupones, se
+  efectúa íntegramente en el establecimiento, por los medios que este acepte.</p>
+
+  <h2 id="t11">Artículo 11 — Disponibilidad del servicio</h2>
+  <p>11.1. RestoBA procura mantener la Plataforma disponible de forma continua, con un objetivo de
+  disponibilidad del <strong>99 % mensual</strong>, medido conforme el requerimiento no funcional
+  RNF-02 del proyecto.</p>
+  <p>11.2. Ese objetivo constituye una meta de calidad de servicio y no una garantía contractual de
+  funcionamiento ininterrumpido. La Plataforma puede resultar total o parcialmente inaccesible por
+  tareas de mantenimiento programado, fallas de los proveedores de infraestructura, cortes de
+  conectividad o eventos de fuerza mayor.</p>
+  <p>11.3. El mantenimiento programado se anunciará con al menos 48 horas de anticipación y se
+  realizará, siempre que sea posible, en horarios de baja demanda.</p>
+  <p>11.4. La Plataforma <strong>requiere conexión a internet</strong> y no ofrece funcionalidad
+  fuera de línea. La búsqueda por proximidad requiere que el usuario otorgue permiso de
+  geolocalización en su navegador.</p>
+
+  <h2 id="t12">Artículo 12 — Propiedad intelectual</h2>
+  <p>12.1. El nombre RestoBA, su logotipo, el diseño de la interfaz, los textos, la estructura de la
+  base de datos, el código fuente y la documentación son propiedad de RestoBA o se utilizan bajo
+  licencia, y están protegidos por la <strong>Ley 11.723 de Propiedad Intelectual</strong>.</p>
+  <p>12.2. Estos Términos no transfieren al usuario ningún derecho de propiedad intelectual. Se le
+  concede únicamente una licencia de uso personal, revocable, no exclusiva e intransferible sobre la
+  Plataforma.</p>
+  <p>12.3. Los nombres, logotipos, fotografías y menús de los Restaurantes Adheridos pertenecen a
+  cada establecimiento y se publican con su autorización.</p>
+  <p>12.4. La Plataforma se construye sobre componentes de software libre y de código abierto, cuyas
+  licencias respectivas se respetan y documentan en el repositorio del proyecto.</p>
+
+  <h2 id="t13">Artículo 13 — Responsabilidad</h2>
+  <p>13.1. RestoBA responde por el correcto funcionamiento de la Plataforma como herramienta de
+  intermediación, dentro de los límites previstos en este artículo.</p>
+  <p>13.2. RestoBA <strong>no responde</strong> por:</p>
+  <ol class="lettered">
+    <li>la calidad, salubridad, precio, puntualidad o condiciones del servicio gastronómico prestado por los Restaurantes Adheridos;</li>
+    <li>la exactitud de la información que cada Restaurante Adherido publica sobre su menú, precios, horarios o disponibilidad, sin perjuicio de las medidas de control que aplique;</li>
+    <li>el contenido de las Reseñas publicadas por otros usuarios;</li>
+    <li>los daños derivados del uso indebido de la cuenta por parte del propio usuario o de terceros a quienes este haya facilitado sus credenciales;</li>
+    <li>las interrupciones ocasionadas por proveedores de infraestructura o por eventos de fuerza mayor.</li>
+  </ol>
+  <div class="note v">
+    <p>13.3. <strong>Derechos del consumidor.</strong> Ninguna disposición de estos Términos —y en
+    particular ninguna de las limitaciones del punto 13.2— puede interpretarse como una renuncia,
+    restricción o menoscabo de los derechos que la <strong>Ley 24.240 de Defensa del
+    Consumidor</strong> y el Código Civil y Comercial de la Nación reconocen a los consumidores. Toda
+    cláusula que resulte contraria a esas normas se tendrá por no escrita, manteniendo el resto del
+    documento su plena vigencia.</p>
+  </div>
+  <p>13.4. Si un tribunal declarara inválida alguna cláusula de estos Términos, las restantes
+  conservarán su validez.</p>
+
+  <h2 id="t14">Artículo 14 — Suspensión y baja de la cuenta</h2>
+  <p>14.1. <strong>Baja voluntaria.</strong> El usuario puede solicitar la baja de su cuenta en
+  cualquier momento, sin expresión de causa, desde la sección de configuración de su perfil o
+  escribiendo a <code>[COMPLETAR: email de soporte]</code>. La baja se hace efectiva dentro de los 5
+  días hábiles y sus efectos sobre los datos personales se detallan en la Política de Privacidad.</p>
+  <p>14.2. <strong>Pérdida de Puntos por baja voluntaria.</strong> La baja de la cuenta extingue el
+  saldo de Puntos acumulados, que no son reembolsables ni transferibles conforme el punto 8.1.</p>
+  <p>14.3. <strong>Suspensión y baja por incumplimiento.</strong> RestoBA puede suspender o dar de
+  baja una cuenta que infrinja estos Términos. Salvo casos de gravedad manifiesta o riesgo para
+  terceros o para la seguridad del sistema, la medida se aplicará de forma escalonada:</p>
+  <ol>
+    <li>notificación de la infracción con intimación a cesar en la conducta;</li>
+    <li>pérdida del estado de Usuario Verificado;</li>
+    <li>reversión de Puntos y anulación de Cupones obtenidos irregularmente;</li>
+    <li>suspensión temporal de la cuenta;</li>
+    <li>baja definitiva.</li>
+  </ol>
+  <p>14.4. <strong>Derecho de descargo.</strong> El usuario dispone de 10 días corridos desde la
+  notificación para presentar su descargo. RestoBA debe responderlo de forma fundada antes de aplicar
+  una medida definitiva.</p>
+
+  <h2 id="t15">Artículo 15 — Modificación de los Términos</h2>
+  <p>15.1. RestoBA puede modificar estos Términos para adecuarlos a cambios legales, técnicos o
+  funcionales de la Plataforma.</p>
+  <p>15.2. Toda modificación se notificará al correo electrónico registrado y se anunciará en la
+  Plataforma con una antelación mínima de <strong>10 días corridos</strong> a su entrada en
+  vigencia.</p>
+  <p>15.3. Cuando la modificación implique un <strong>cambio de versión mayor</strong> (por ejemplo,
+  de 1.x a 2.0), el Usuario Verificado deberá aceptar nuevamente el marco legal para conservar ese
+  estado. Mientras no lo haga, la cuenta permanece activa en el nivel de Usuario Registrado.</p>
+  <p>15.4. Si el usuario no acepta la nueva versión, puede dar de baja su cuenta conforme el punto
+  14.1.</p>
+  <p>15.5. Todas las versiones anteriores de estos Términos quedan archivadas y disponibles para
+  consulta, junto con la constancia de qué versión aceptó cada usuario y cuándo.</p>
+
+  <h2 id="t16">Artículo 16 — Ley aplicable y jurisdicción</h2>
+  <p>16.1. Estos Términos se rigen por las leyes de la <strong>República Argentina</strong>.</p>
+  <p>16.2. Tratándose de una relación de consumo, y conforme el artículo 36 de la Ley 24.240 —norma
+  de orden público—, será competente el tribunal correspondiente al <strong>domicilio real del
+  consumidor</strong>. Esta competencia no puede ser prorrogada por acuerdo de partes.</p>
+  <p>16.3. Con carácter previo o alternativo a la vía judicial, el usuario puede iniciar un reclamo
+  ante:</p>
+  <ul>
+    <li>la <strong>Dirección General de Defensa y Protección al Consumidor</strong> de la Ciudad Autónoma de Buenos Aires;</li>
+    <li>el <strong>Servicio de Conciliación Previa en las Relaciones de Consumo (COPREC)</strong>;</li>
+    <li>la <strong>Agencia de Acceso a la Información Pública (AAIP)</strong>, cuando el reclamo se refiera al tratamiento de sus datos personales.</li>
+  </ul>
+  <p>16.4. Ninguna de estas vías desplaza a las demás ni requiere agotamiento previo.</p>
+
+  <h2 id="t17">Artículo 17 — Contacto</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Motivo</th><th>Canal</th></tr></thead>
+      <tbody>
+        <tr><td>Soporte general y reclamos</td><td><code>[COMPLETAR: soporte@restoba.com.ar]</code></td></tr>
+        <tr><td>Privacidad y derechos sobre datos personales</td><td><code>[COMPLETAR: privacidad@restoba.com.ar]</code></td></tr>
+        <tr><td>Reporte de incidentes de seguridad</td><td><code>[COMPLETAR: seguridad@restoba.com.ar]</code></td></tr>
+        <tr><td>Domicilio postal</td><td><code>[COMPLETAR]</code>, Ciudad Autónoma de Buenos Aires</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Los reclamos se responden dentro de los <strong>10 días hábiles</strong> de recibidos.</p>
+
+  <div class="foot">
+    <strong>Nota sobre el alcance de este documento.</strong> Estos Términos fueron redactados en el
+    marco de un proyecto académico, sobre la base del análisis funcional y técnico real de la
+    Plataforma. No constituyen asesoramiento legal profesional. Antes de una puesta en producción con
+    usuarios reales, el documento debe ser revisado por un profesional del derecho matriculado.
+  </div>
+</section>
+
+<!-- ══════════════════ 02 · PRIVACIDAD ══════════════════ -->
+<section class="doc" data-doc="privacidad">
+  <p class="eyebrow">Documento 02 · <span class="mono" style="background:none;border:0;padding:0">privacidad</span></p>
+  <h1>Política de Privacidad</h1>
+  <div class="meta">
+    <span class="chip">Versión 1.0</span>
+    <span class="chip">Vigencia 29·08·2026</span>
+    <span class="chip w">Requiere aceptación</span>
+  </div>
+  <div class="note">
+    <p>Esta Política explica qué datos personales recolectamos, para qué los usamos, cuánto tiempo
+    los conservamos, con quién los compartimos y cómo podés controlarlos. Está redactada conforme la
+    <strong>Ley 25.326 de Protección de los Datos Personales</strong>, su Decreto Reglamentario
+    1558/2001 y las disposiciones de la Agencia de Acceso a la Información Pública (AAIP).</p>
+  </div>
+
+  <h2 id="v1">1. Responsable del tratamiento</h2>
+  <div class="tw">
+    <table>
+      <tbody>
+        <tr><td style="width:36%"><strong>Responsable</strong></td><td><code>[COMPLETAR: razón social]</code></td></tr>
+        <tr><td><strong>CUIT</strong></td><td><code>[COMPLETAR]</code></td></tr>
+        <tr><td><strong>Domicilio</strong></td><td><code>[COMPLETAR]</code>, Ciudad Autónoma de Buenos Aires, Argentina</td></tr>
+        <tr><td><strong>Contacto de privacidad</strong></td><td><code>[COMPLETAR: privacidad@restoba.com.ar]</code></td></tr>
+        <tr><td><strong>Registro de base de datos</strong></td><td>Registro Nacional de Bases de Datos de la AAIP — N.º <code>[COMPLETAR]</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>La inscripción de la base de datos ante la AAIP es obligatoria conforme el artículo 21 de la
+  Ley 25.326 y debe completarse antes de la puesta en producción de la Plataforma.</p>
+
+  <h2 id="v2">2. Qué datos recolectamos</h2>
+  <p>Los datos que se detallan a continuación se corresponden con las entidades reales del modelo de
+  datos de la Plataforma.</p>
+
+  <h3>2.1. Datos que nos proporcionás al registrarte</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Dato</th><th>Entidad</th><th>Obligatorio</th><th>Por qué lo pedimos</th></tr></thead>
+      <tbody>
+        <tr><td>Nombre y apellido</td><td><code>Comensal</code></td><td class="si">Sí</td><td>Identificarte en la reserva y en tus reseñas</td></tr>
+        <tr><td>Correo electrónico</td><td><code>Comensal</code></td><td class="si">Sí</td><td>Iniciar sesión, confirmar reservas, recuperar la contraseña</td></tr>
+        <tr><td>Contraseña</td><td><code>Comensal</code></td><td class="si">Sí</td><td>Autenticarte. <strong>Se almacena como hash irreversible, nunca en texto legible</strong></td></tr>
+        <tr><td>Teléfono</td><td><code>Comensal</code></td><td>Solo para verificarte</td><td>Confirmar tu identidad por código y permitir que el restaurante te contacte ante un cambio en la reserva</td></tr>
+        <tr><td>Fecha de nacimiento</td><td><code>Comensal</code></td><td>Solo para verificarte</td><td>Acreditar que sos mayor de 18 y emitir el cupón de cumpleaños</td></tr>
+        <tr><td>Foto de perfil</td><td><code>Comensal</code></td><td class="no">No</td><td>Mostrarla junto a tus reseñas, si decidís cargarla</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2.2. Datos que se generan por tu uso de la Plataforma</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Dato</th><th>Entidad</th></tr></thead>
+      <tbody>
+        <tr><td>Reservas: restaurante, mesa, fecha, hora, cantidad de personas, estado</td><td><code>Reserva</code></td></tr>
+        <tr><td>Pedidos y su detalle: productos, cantidades, importes</td><td><code>Pedido</code>, <code>DetallePedido</code></td></tr>
+        <tr><td>Reseñas: texto, puntuación, fecha, restaurante reseñado</td><td><code>Reseña</code></td></tr>
+        <tr><td>Movimientos de puntos: acreditaciones, canjes, vencimientos y saldo</td><td><code>MovimientoPuntos</code></td></tr>
+        <tr><td>Cupones emitidos, su tipo, vencimiento y estado de uso</td><td><code>Cupon</code></td></tr>
+        <tr><td>Restaurantes marcados como favoritos y filtros guardados</td><td><code>Comensal</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>2.3. Datos de verificación</h3>
+  <p>Correo confirmado (marca temporal), teléfono confirmado (marca temporal), código de un solo uso
+  enviado por SMS o correo —que <strong>se descarta apenas es validado o vence</strong>— y la
+  constancia de aceptación del marco legal descripta en la sección 8.</p>
+
+  <h3>2.4. Datos de geolocalización</h3>
+  <p>Si activás la búsqueda por proximidad, tu navegador nos envía tus coordenadas aproximadas. Se
+  usan <strong>en el momento</strong> para ejecutar la consulta geográfica con PostGIS y devolverte
+  los restaurantes cercanos. <strong>No conservamos un historial de tus ubicaciones</strong>: la
+  coordenada no se persiste en la base de datos ni se asocia a tu perfil. El permiso es opcional, se
+  te solicita de forma explícita y podés revocarlo desde la configuración de tu navegador en
+  cualquier momento; la Plataforma sigue funcionando sin él, buscando por barrio o dirección
+  ingresada manualmente.</p>
+
+  <h3>2.5. Datos técnicos</h3>
+  <p>Dirección IP, tipo de navegador y sistema operativo (<em>user-agent</em>), fecha y hora de
+  acceso, páginas visitadas dentro de la Plataforma y registros de error. Se usan para operar el
+  servicio, detectar fraudes y abusos, y diagnosticar problemas.</p>
+
+  <h3>2.6. Qué NO recolectamos</h3>
+  <p>De forma expresa, la Plataforma <strong>no solicita, no procesa y no almacena</strong>:</p>
+  <ul>
+    <li><strong>Datos de tarjetas de crédito o débito, CBU, CVU ni credenciales bancarias.</strong> La Plataforma no procesa pagos. El comensal no paga nada, y la suscripción de los restaurantes se cobra por transferencia bancaria directa, por fuera del sistema.</li>
+    <li><strong>Datos sensibles</strong> en los términos del artículo 2 de la Ley 25.326: origen racial o étnico, opiniones políticas, convicciones religiosas o filosóficas, afiliación sindical, y datos referidos a la salud o a la vida sexual. Si mencionás alguno de estos aspectos por tu cuenta en el texto de una reseña, lo hacés voluntariamente y bajo tu responsabilidad; podés pedir su eliminación en cualquier momento.</li>
+    <li><strong>Datos biométricos</strong>: no usamos reconocimiento facial, huella dactilar ni voz.</li>
+    <li><strong>Número de documento</strong>, salvo que en el futuro una obligación legal lo exija, lo que se comunicaría previamente.</li>
+  </ul>
+
+  <h2 id="v3">3. Para qué usamos tus datos, con qué base legal y por cuánto tiempo</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Dato</th><th>Finalidad</th><th>Base legal</th><th>Conservación</th></tr></thead>
+      <tbody>
+        <tr><td>Nombre, email, contraseña</td><td>Crear y operar tu cuenta</td><td>Consentimiento (art. 5 Ley 25.326) y ejecución del servicio</td><td>Mientras la cuenta esté activa</td></tr>
+        <tr><td>Teléfono</td><td>Verificación por código y contacto ante cambios en la reserva</td><td>Consentimiento explícito al verificarte</td><td>Mientras conserves el estado de verificado</td></tr>
+        <tr><td>Fecha de nacimiento</td><td>Acreditar mayoría de edad y emitir el cupón de cumpleaños</td><td>Consentimiento y cumplimiento del art. 3 de los Términos</td><td>Mientras la cuenta esté activa</td></tr>
+        <tr><td>Reservas y pedidos</td><td>Prestar el servicio de reserva y calcular puntos</td><td>Ejecución del servicio</td><td>24 meses desde el evento</td></tr>
+        <tr><td>Reseñas</td><td>Publicarlas para la comunidad</td><td>Consentimiento al publicar</td><td>Indefinida, anonimizada si das de baja la cuenta</td></tr>
+        <tr><td>Movimientos de puntos y cupones</td><td>Operar el programa de fidelización y auditar tu saldo</td><td>Ejecución del servicio</td><td>24 meses desde el movimiento</td></tr>
+        <tr><td>Geolocalización</td><td>Búsqueda por proximidad</td><td>Consentimiento explícito y revocable</td><td><strong>No se persiste</strong></td></tr>
+        <tr><td>IP, user-agent, logs</td><td>Seguridad, detección de fraude, diagnóstico</td><td>Interés legítimo en la seguridad del servicio</td><td>12 meses</td></tr>
+        <tr><td>Constancia de aceptación legal</td><td>Acreditar tu consentimiento informado</td><td>Obligación de prueba del consentimiento</td><td>5 años desde la baja</td></tr>
+        <tr><td>Copias de respaldo</td><td>Recuperación ante incidentes</td><td>Seguridad del servicio</td><td>30 días de rotación</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Cumplidos los plazos, los datos se eliminan o se anonimizan de forma irreversible.</p>
+  <div class="note">
+    <p><strong>Nota sobre las copias de respaldo:</strong> cuando solicitás la supresión de tus
+    datos, estos se eliminan de inmediato del sistema en producción, pero pueden persistir hasta 30
+    días adicionales en las copias de respaldo cifradas hasta que estas roten. Durante ese período no
+    se utilizan para ninguna finalidad y solo serían accesibles en caso de una restauración por
+    desastre.</p>
+  </div>
+
+  <h2 id="v4">4. Con quién compartimos tus datos</h2>
+  <h3>4.1. Restaurantes Adheridos</h3>
+  <p>Cuando reservás o pedís en un establecimiento, este recibe <strong>únicamente los datos
+  necesarios para atenderte</strong>: tu nombre, la fecha, la hora, la cantidad de personas y, si lo
+  verificaste, tu teléfono de contacto. El restaurante <strong>no accede</strong> a tu correo
+  electrónico, a tu historial en otros establecimientos, a tu saldo de puntos global ni a tus datos
+  de cuenta. Cada Restaurante Adherido es responsable del uso que haga de esa información en su
+  propio ámbito.</p>
+
+  <h3>4.2. Proveedores de infraestructura</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Proveedor</th><th>Servicio</th><th>Datos alcanzados</th></tr></thead>
+      <tbody>
+        <tr><td><code>[COMPLETAR: Render / Railway / DigitalOcean]</code></td><td>Servidor y base de datos</td><td>Todos los datos de la Plataforma</td></tr>
+        <tr><td><code>[COMPLETAR: correo transaccional]</code></td><td>Envío de confirmaciones y códigos</td><td>Nombre y correo electrónico</td></tr>
+        <tr><td><code>[COMPLETAR: proveedor de SMS]</code></td><td>Envío de códigos de verificación</td><td>Teléfono</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>4.3. Autoridades</h3>
+  <p>Ante un requerimiento judicial o de autoridad competente debidamente fundado, y en la medida
+  estrictamente exigida por ese requerimiento.</p>
+
+  <h3>4.4. Lo que nunca hacemos</h3>
+  <div class="note v">
+    <p><strong>No vendemos, alquilamos ni cedemos tus datos personales a terceros con fines
+    comerciales o publicitarios.</strong> No los utilizamos para entrenar modelos de inteligencia
+    artificial. No los compartimos con redes sociales ni con corredores de datos.</p>
+  </div>
+
+  <h2 id="v5">5. Transferencia internacional de datos</h2>
+  <p>La infraestructura de la Plataforma se aloja en un servidor virtual cuyo centro de datos puede
+  encontrarse <strong>fuera de la República Argentina</strong> (por ejemplo, en los Estados Unidos o
+  en la Unión Europea, según el proveedor y la región contratada).</p>
+  <p>Conforme el artículo 12 de la Ley 25.326, te informamos de esta circunstancia y dejamos
+  constancia de que:</p>
+  <ul>
+    <li>se contratan proveedores que ofrecen niveles de protección adecuados, con cláusulas contractuales de confidencialidad y seguridad;</li>
+    <li>los datos viajan cifrados en tránsito y se almacenan cifrados en reposo;</li>
+    <li>al aceptar esta Política prestás tu consentimiento informado para esa transferencia.</li>
+  </ul>
+  <p>Región contratada actualmente: <code>[COMPLETAR]</code>.</p>
+
+  <h2 id="v6">6. Tus derechos sobre tus datos</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Derecho</th><th>Qué podés hacer</th><th>Plazo de respuesta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Acceso</strong> (art. 14)</td><td>Pedir una copia de todos los datos que tenemos sobre vos</td><td><strong>10 días corridos</strong></td></tr>
+        <tr><td><strong>Rectificación</strong> (art. 16)</td><td>Corregir datos inexactos</td><td><strong>5 días hábiles</strong></td></tr>
+        <tr><td><strong>Actualización</strong> (art. 16)</td><td>Poner al día datos desactualizados</td><td><strong>5 días hábiles</strong></td></tr>
+        <tr><td><strong>Supresión</strong> (art. 16)</td><td>Pedir que borremos tus datos, con los límites de la sección 3</td><td><strong>5 días hábiles</strong></td></tr>
+        <tr><td><strong>Revocación</strong></td><td>Retirar el consentimiento para un tratamiento determinado, como la geolocalización o el estado de verificado</td><td>Inmediato</td></tr>
+        <tr><td><strong>Portabilidad</strong></td><td>Recibir tus datos en un formato estructurado y legible por máquina (JSON)</td><td>10 días corridos</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Cómo ejercerlos:</strong> desde <em>Mi perfil → Mis datos</em> en la Plataforma, o
+  escribiendo a <code>[COMPLETAR: privacidad@restoba.com.ar]</code> desde la dirección de correo
+  registrada en tu cuenta. Si escribís desde otra dirección, podremos pedirte una acreditación
+  razonable de identidad antes de responder.</p>
+
+  <h3>Leyendas obligatorias (Disposición AAIP 10/2008)</h3>
+  <div class="legend">«El titular de los datos personales tiene la facultad de ejercer el derecho de
+  acceso a los mismos en forma gratuita a intervalos no inferiores a seis meses, salvo que se
+  acredite un interés legítimo al efecto conforme lo establecido en el artículo 14, inciso 3 de la
+  Ley N.º 25.326.»</div>
+  <div class="legend">«La AGENCIA DE ACCESO A LA INFORMACIÓN PÚBLICA, en su carácter de Órgano de
+  Control de la Ley N.º 25.326, tiene la atribución de atender las denuncias y reclamos que se
+  interpongan con relación al incumplimiento de las normas sobre protección de datos
+  personales.»</div>
+
+  <h2 id="v7">7. Cookies y almacenamiento local</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Tipo</th><th>Para qué</th><th>¿Se puede desactivar?</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Técnicas / de sesión</strong></td><td>Mantener tu sesión iniciada (token de autenticación) y recordar preferencias de interfaz</td><td class="no">No — sin ellas no podés iniciar sesión</td></tr>
+        <tr><td><strong>De preferencia</strong></td><td>Recordar filtros de búsqueda, tema claro u oscuro</td><td class="si">Sí, desde tu navegador</td></tr>
+        <tr><td><strong>Analíticas</strong></td><td><code>[COMPLETAR: herramienta de analítica; si no se usa ninguna, dejar constancia expresa]</code></td><td class="si">Sí</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>No utilizamos cookies publicitarias ni de seguimiento entre sitios.</strong> Podés
+  borrar el almacenamiento local desde tu navegador en cualquier momento; eso cerrará tu sesión.</p>
+
+  <h2 id="v8">8. Cómo registramos tu consentimiento</h2>
+  <p>Cada vez que aceptás un documento del marco legal, guardamos una constancia con: tu
+  identificador de usuario, qué documento aceptaste, en qué versión, la fecha y hora en UTC, tu
+  dirección IP, tu user-agent y el <strong>hash SHA-256 del texto exacto que se te exhibió</strong>.
+  Ese hash permite demostrar, años después, cuál era el contenido literal que aceptaste, sin
+  necesidad de confiar en la memoria de nadie.</p>
+  <p>El consentimiento se recoge mediante una casilla que <strong>no viene pre-marcada</strong> y
+  solo después de mostrarte el documento completo. El detalle del procedimiento está en el Acuerdo de
+  Verificación de Usuario, sección 6.</p>
+
+  <h2 id="v9">9. Seguridad de la información</h2>
+  <p>Aplicamos medidas técnicas y organizativas para proteger tus datos contra el acceso no
+  autorizado, la alteración, la pérdida y el tratamiento no permitido, conforme el artículo 9 de la
+  Ley 25.326.</p>
+  <p>Entre ellas: cifrado de las comunicaciones con TLS, almacenamiento de contraseñas mediante hash
+  irreversible con sal, cifrado de las copias de respaldo, control de acceso por roles, registro de
+  auditoría y protecciones contra los ataques más comunes en aplicaciones web. El detalle completo,
+  con los algoritmos y parámetros concretos, está en el Anexo Técnico de Seguridad.</p>
+  <div class="note a">
+    <p><strong>Ningún sistema es invulnerable.</strong> Si detectamos un incidente que afecte tus
+    datos personales, te lo notificaremos por correo electrónico dentro de las <strong>72
+    horas</strong> de confirmado, informándote qué datos se vieron comprometidos y qué medidas podés
+    tomar, y daremos aviso a la AAIP.</p>
+  </div>
+
+  <h2 id="v10">10. Menores de edad</h2>
+  <p>La Plataforma está destinada a personas mayores de 18 años. No recolectamos deliberadamente
+  datos de menores. Si tomamos conocimiento de que una cuenta pertenece a una persona menor de edad,
+  procederemos a darla de baja y a eliminar sus datos. Si sos madre, padre o tutor y creés que un
+  menor a tu cargo nos proporcionó datos, escribinos a
+  <code>[COMPLETAR: privacidad@restoba.com.ar]</code>.</p>
+
+  <h2 id="v11">11. Cambios en esta Política</h2>
+  <p>Podemos actualizar esta Política. Los cambios se notifican al correo registrado y se anuncian en
+  la Plataforma con <strong>10 días corridos</strong> de anticipación. Si el cambio implica una
+  finalidad nueva o sustancialmente distinta para tus datos, te pediremos un consentimiento nuevo y
+  expreso: el silencio no se interpretará como aceptación. Las versiones anteriores quedan archivadas
+  y disponibles para consulta.</p>
+
+  <h2 id="v12">12. Contacto y reclamos</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Motivo</th><th>Canal</th></tr></thead>
+      <tbody>
+        <tr><td>Ejercicio de derechos y consultas de privacidad</td><td><code>[COMPLETAR: privacidad@restoba.com.ar]</code></td></tr>
+        <tr><td>Reporte de un incidente de seguridad</td><td><code>[COMPLETAR: seguridad@restoba.com.ar]</code></td></tr>
+        <tr><td>Reclamo ante la autoridad de control</td><td>Agencia de Acceso a la Información Pública — Av. Pte. Julio A. Roca 710, piso 2.º, CABA</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    <strong>Nota sobre el alcance de este documento.</strong> Esta Política fue redactada en el marco
+    de un proyecto académico, sobre el modelo de datos real de la Plataforma. No constituye
+    asesoramiento legal profesional. Antes de una puesta en producción con usuarios reales debe ser
+    revisada por un profesional del derecho matriculado, y debe completarse la inscripción de la base
+    de datos ante la AAIP.
+  </div>
+</section>
+
+<!-- ══════════════════ 03 · VERIFICACIÓN ══════════════════ -->
+<section class="doc" data-doc="verificacion">
+  <p class="eyebrow">Documento 03 · <span class="mono" style="background:none;border:0;padding:0">verificacion</span></p>
+  <h1>Acuerdo de Verificación de Usuario</h1>
+  <div class="meta">
+    <span class="chip">Versión 1.0</span>
+    <span class="chip">Vigencia 29·08·2026</span>
+    <span class="chip w">Requiere aceptación</span>
+    <span class="chip v">Habilita el estado verificado</span>
+  </div>
+
+  <div class="note w">
+    <p><strong>Este es el documento que tenés que aceptar para convertirte en Usuario
+    Verificado.</strong></p>
+    <p>Podés usar RestoBA sin aceptarlo: vas a poder buscar restaurantes, ver menús y leer reseñas.
+    Pero para <strong>reservar mesas, publicar reseñas y participar del programa de puntos</strong>
+    necesitás aceptar este Acuerdo junto con los Términos y Condiciones y la Política de
+    Privacidad.</p>
+    <p>El motivo es simple: la credibilidad de las reseñas es el activo principal de la Plataforma.
+    Si cualquiera pudiera reseñar sin asumir compromisos, las reseñas no valdrían nada, ni para vos
+    ni para los restaurantes.</p>
+  </div>
+
+  <h2 id="a1">1. Qué habilita ser Usuario Verificado</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Función</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Reservar mesas</strong></td><td>Solicitar y gestionar reservas en cualquier Restaurante Adherido</td></tr>
+        <tr><td><strong>Publicar reseñas</strong></td><td>Escribir opiniones y puntuar establecimientos que efectivamente visitaste</td></tr>
+        <tr><td><strong>Acumular puntos</strong></td><td>Sumar puntos por reservas concretadas y reseñas publicadas</td></tr>
+        <tr><td><strong>Canjear puntos</strong></td><td>Convertir tu saldo en cupones de descuento y beneficios</td></tr>
+        <tr><td><strong>Recibir cupones</strong></td><td>Acceder a los cupones de bienvenida, cumpleaños, reseña, referido, reactivación y fidelidad</td></tr>
+        <tr><td><strong>Distintivo público</strong></td><td>Un indicador visible junto a tus reseñas que le muestra a otros comensales que sos un usuario verificado</td></tr>
+        <tr><td><strong>Historial completo</strong></td><td>Consultar tus reservas, pedidos y movimientos de puntos desde tu perfil</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="a2">2. Qué pasa si no aceptás</h2>
+  <p>Tu cuenta sigue existiendo y funcionando, en el nivel de <strong>Usuario Registrado</strong>,
+  con acceso de <strong>sola lectura</strong> a las funciones sociales:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Podés</th><th>No podés</th></tr></thead>
+      <tbody>
+        <tr><td>Buscar restaurantes con todos los filtros</td><td>Reservar una mesa</td></tr>
+        <tr><td>Usar la búsqueda por proximidad</td><td>Publicar reseñas o puntuaciones</td></tr>
+        <tr><td>Ver menús, precios y perfiles completos</td><td>Acumular o canjear puntos</td></tr>
+        <tr><td>Leer todas las reseñas de la comunidad</td><td>Recibir cupones y beneficios</td></tr>
+        <tr><td>Guardar restaurantes favoritos</td><td>Mostrar el distintivo de verificado</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>No hay ninguna penalización por no aceptar, y podés hacerlo más adelante en cualquier momento
+  desde tu perfil. Tampoco hay costo: la verificación es <strong>gratuita</strong>.</p>
+
+  <h2 id="a3">3. Requisitos para verificarte</h2>
+  <p>Para obtener el estado de Usuario Verificado tenés que cumplir, de forma acumulativa:</p>
+  <ol>
+    <li><strong>Tener una cuenta registrada</strong> a tu nombre, con datos veraces.</li>
+    <li><strong>Confirmar tu correo electrónico</strong>, haciendo clic en el enlace que te enviamos.</li>
+    <li><strong>Confirmar tu teléfono</strong>, ingresando el código de un solo uso que te enviamos por SMS. El código vence a los 10 minutos y se descarta apenas lo validás.</li>
+    <li><strong>Ser mayor de 18 años</strong>, declarándolo mediante tu fecha de nacimiento.</li>
+    <li><strong>Aceptar de forma expresa los tres documentos</strong> del marco legal: los Términos y Condiciones, la Política de Privacidad y este Acuerdo.</li>
+    <li><strong>No tener otra cuenta activa</strong> en la Plataforma con el mismo correo o teléfono.</li>
+  </ol>
+  <p>El teléfono cumple una doble función: acredita que detrás de la cuenta hay una persona
+  alcanzable y encarece la creación masiva de cuentas falsas, que es el principal vector de las
+  reseñas fraudulentas.</p>
+  <div class="note">
+    <p><strong>Lo que la verificación NO significa:</strong> no validamos tu identidad civil contra
+    un registro oficial, no verificamos tu documento y no avalamos el contenido de tus opiniones.
+    Verificado significa exactamente lo que dice esta sección: correo confirmado, teléfono
+    confirmado, mayoría de edad declarada y marco legal aceptado.</p>
+  </div>
+
+  <h2 id="a4">4. Tus compromisos como Usuario Verificado</h2>
+  <p>Al aceptar este Acuerdo asumís los siguientes compromisos. No son formalidades: son las reglas
+  que hacen que el distintivo de verificado signifique algo.</p>
+
+  <h3>4.1. Sobre las reseñas</h3>
+  <ol class="lettered">
+    <li><strong>Reseñar solo lugares donde estuviste.</strong> El sistema exige que exista una reserva o un pedido previo tuyo en ese establecimiento para habilitarte a reseñarlo. No intentes eludir esa validación.</li>
+    <li><strong>No publicar reseñas pagas.</strong> No vas a escribir reseñas —positivas ni negativas— a cambio de dinero, comidas gratis, descuentos, productos o cualquier otra contraprestación, ni por pedido de un establecimiento, de un competidor o de un tercero.</li>
+    <li><strong>Opinar sobre tu experiencia real.</strong> Tu reseña debe reflejar lo que efectivamente viviste en ese lugar, en esa visita.</li>
+    <li><strong>No incluir datos de terceros.</strong> No publiques el nombre, la foto, el teléfono ni ningún dato personal de otros comensales, de empleados del local ni de nadie que no haya prestado su consentimiento.</li>
+    <li><strong>Sin lenguaje discriminatorio ni difamatorio.</strong> No se admiten expresiones discriminatorias por origen, género, religión, orientación sexual, nacionalidad, discapacidad ni ninguna otra condición, ni imputaciones falsas que dañen la reputación de una persona o un establecimiento.</li>
+    <li><strong>Distinguir el hecho de la opinión.</strong> Podés decir que la comida no te gustó; afirmar como un hecho que un local tiene problemas de higiene o que cometió una infracción, sin fundamento, te expone a responsabilidad personal.</li>
+  </ol>
+
+  <h3>4.2. Sobre los puntos y cupones</h3>
+  <ol class="lettered" start="7">
+    <li><strong>Una sola cuenta.</strong> No vas a crear cuentas adicionales —propias o a nombre de terceros— para acumular puntos, multiplicar cupones o reseñar más de una vez el mismo lugar.</li>
+    <li><strong>No comercializar el beneficio.</strong> Los puntos y cupones son personales e intransferibles. No los vendas, no los intercambies ni los cedas por fuera de la Plataforma.</li>
+    <li><strong>No simular actividad.</strong> No vas a generar reservas que no pensás cumplir con el solo objeto de sumar puntos.</li>
+  </ol>
+
+  <h3>4.3. Sobre tus reservas</h3>
+  <ol class="lettered" start="10">
+    <li><strong>Cancelar si no vas a ir.</strong> Si no podés asistir, cancelá desde la Plataforma con la antelación prevista en los Términos. Detrás de cada mesa reservada hay un establecimiento que la retuvo para vos y otro comensal que no pudo tomarla.</li>
+  </ol>
+
+  <h3>4.4. Sobre tu cuenta</h3>
+  <ol class="lettered" start="11">
+    <li><strong>Cuidar tus credenciales.</strong> No compartas tu contraseña. Si sospechás que alguien accedió a tu cuenta, avisanos de inmediato.</li>
+    <li><strong>Mantener tus datos actualizados</strong>, en particular el correo y el teléfono, que son los canales por los que te llegan las confirmaciones de reserva.</li>
+  </ol>
+
+  <h2 id="a5">5. Qué pasa si incumplís</h2>
+  <p>Las medidas se aplican de forma <strong>escalonada y proporcional</strong> a la gravedad y a la
+  reiteración del incumplimiento:</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th class="ctr">Etapa</th><th>Medida</th><th>Cuándo se aplica</th></tr></thead>
+      <tbody>
+        <tr><td class="ctr num">1</td><td><strong>Notificación e intimación</strong> a cesar en la conducta</td><td>Primer incumplimiento leve</td></tr>
+        <tr><td class="ctr num">2</td><td><strong>Ocultamiento o baja de la reseña</strong> cuestionada</td><td>Reseña que infringe la sección 4.1</td></tr>
+        <tr><td class="ctr num">3</td><td><strong>Pérdida del estado de Usuario Verificado</strong></td><td>Incumplimiento reiterado o grave</td></tr>
+        <tr><td class="ctr num">4</td><td><strong>Reversión de puntos y anulación de cupones</strong> obtenidos irregularmente</td><td>Acumulación fraudulenta</td></tr>
+        <tr><td class="ctr num">5</td><td><strong>Suspensión temporal</strong> de la cuenta</td><td>Incumplimiento persistente tras las etapas anteriores</td></tr>
+        <tr><td class="ctr num">6</td><td><strong>Baja definitiva</strong> de la cuenta</td><td>Fraude, uso de cuentas múltiples con fines de manipulación, o reincidencia tras la suspensión</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Excepción.</strong> RestoBA puede aplicar directamente una medida de las etapas 3 a 6,
+  sin escalonamiento previo, cuando exista un riesgo cierto para la seguridad del sistema, para otros
+  usuarios o para un Restaurante Adherido, o ante un fraude manifiesto.</p>
+  <div class="note v">
+    <p><strong>Tu derecho de descargo.</strong> Toda medida se te notifica al correo registrado, con
+    indicación concreta de la conducta imputada y de la prueba en la que se funda. Contás con
+    <strong>10 días corridos</strong> para presentar tu descargo, que debe ser respondido de forma
+    fundada antes de que la medida se torne definitiva. Si el descargo prospera, se revierten sus
+    efectos, incluida la restitución de los puntos revertidos.</p>
+  </div>
+
+  <h2 id="a6">6. Cómo se registra tu aceptación y por qué tiene validez</h2>
+  <h3>6.1. Cómo te lo mostramos</h3>
+  <ul>
+    <li>Se te exhibe el <strong>texto completo</strong> de los tres documentos antes de pedirte que aceptes.</li>
+    <li>La casilla de aceptación <strong>no viene pre-marcada</strong>: tenés que marcarla vos.</li>
+    <li>Hay una casilla independiente por documento, con enlace a cada texto íntegro.</li>
+    <li>El botón de confirmación permanece deshabilitado hasta que marques las tres casillas.</li>
+    <li>Aceptar es un acto voluntario: podés cerrar la pantalla y seguir usando la Plataforma como Usuario Registrado.</li>
+  </ul>
+
+  <h3>6.2. Qué guardamos como constancia</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Campo</th><th>Contenido</th></tr></thead>
+      <tbody>
+        <tr><td>Identificador de usuario</td><td>Tu ID interno en la Plataforma</td></tr>
+        <tr><td>Documento</td><td><code>tyc</code>, <code>privacidad</code> o <code>verificacion</code></td></tr>
+        <tr><td>Versión</td><td>La versión exacta que se te exhibió (por ejemplo, <code>1.0</code>)</td></tr>
+        <tr><td>Hash SHA-256</td><td>Huella criptográfica del texto literal que se te mostró</td></tr>
+        <tr><td>Fecha y hora</td><td>Marca temporal en UTC</td></tr>
+        <tr><td>Dirección IP</td><td>Desde dónde aceptaste</td></tr>
+        <tr><td>User-agent</td><td>Navegador y sistema operativo utilizados</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>El <strong>hash SHA-256</strong> es lo que hace robusta a esta constancia: permite demostrar
+  años después cuál era el contenido exacto del documento que aceptaste. Si alguien modificara el
+  texto archivado —aun en una coma—, el hash dejaría de coincidir y la alteración quedaría en
+  evidencia. No hace falta que confíes en nuestra palabra sobre qué decía el documento.</p>
+
+  <h3>6.3. Por qué esta aceptación tiene valor legal</h3>
+  <p>El consentimiento prestado por medios electrónicos es válido en la República Argentina
+  conforme:</p>
+  <ul>
+    <li>la <strong>Ley 25.506 de Firma Digital</strong>, que reconoce eficacia jurídica a la firma electrónica;</li>
+    <li>los <strong>artículos 286 y 288 del Código Civil y Comercial</strong>, que admiten la expresión escrita por medios electrónicos y la firma que asegure indubitablemente la autoría;</li>
+    <li>el <strong>artículo 1106 del Código Civil y Comercial</strong>, sobre contratos celebrados por medios electrónicos en las relaciones de consumo;</li>
+    <li>el <strong>artículo 5 de la Ley 25.326</strong>, que exige que el consentimiento para el tratamiento de datos personales sea <strong>libre, expreso e informado</strong>, y que conste por escrito o por un medio equiparable.</li>
+  </ul>
+  <p>La combinación de casilla no pre-marcada, exhibición previa del texto completo y constancia con
+  hash es la que satisface los tres requisitos: libre —podés no aceptar y seguir usando el
+  servicio—, expreso —un acto positivo tuyo, no el silencio— e informado —viste el texto antes.</p>
+
+  <h2 id="a7">7. Cómo revocar tu aceptación</h2>
+  <p>Podés revocar este Acuerdo en cualquier momento, sin expresar causa, desde <em>Mi perfil →
+  Configuración → Estado de verificación</em>, o escribiendo a
+  <code>[COMPLETAR: privacidad@restoba.com.ar]</code>.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Qué pasa</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td>Perdés el estado de verificado</td><td>Tu cuenta vuelve al nivel de Usuario Registrado, con acceso de sola lectura</td></tr>
+        <tr><td>Tu cuenta sigue activa</td><td>No se da de baja; podés seguir buscando restaurantes y leyendo reseñas</td></tr>
+        <tr><td>Tus reseñas se anonimizan</td><td>Se elimina la asociación con tu identidad, pero el texto permanece publicado como parte del historial del restaurante</td></tr>
+        <tr><td>Tu saldo de puntos se congela</td><td>Queda sin efecto mientras no estés verificado. Si te volvés a verificar dentro de los <strong>6 meses</strong>, se restituye; pasado ese plazo, caduca</td></tr>
+        <tr><td>Tus reservas futuras se cancelan</td><td>Se notifica a los establecimientos correspondientes</td></tr>
+        <tr><td>Tus cupones vigentes se anulan</td><td>Los cupones no canjeados quedan sin efecto</td></tr>
+        <tr><td>Tu teléfono se elimina</td><td>Deja de ser necesario y se borra de nuestros sistemas</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>La revocación <strong>no tiene efecto retroactivo</strong> sobre los tratamientos ya realizados
+  de forma lícita ni sobre la constancia de aceptación, que conservamos como prueba conforme la
+  sección 3 de la Política de Privacidad.</p>
+
+  <h2 id="a8">8. Vigencia y nuevas versiones</h2>
+  <p>8.1. Este Acuerdo rige desde que lo aceptás y hasta que lo revoques o se dé de baja tu
+  cuenta.</p>
+  <p>8.2. <strong>Cambios menores</strong> (versiones 1.1, 1.2…): correcciones de redacción,
+  aclaraciones o mejoras que no alteran tus derechos ni tus obligaciones. Se notifican por correo,
+  sin requerir nueva aceptación.</p>
+  <p>8.3. <strong>Cambios mayores</strong> (versión 2.0 en adelante): modifican compromisos,
+  requisitos o efectos. Se notifican con <strong>10 días corridos</strong> de anticipación y
+  <strong>requieren que aceptes nuevamente</strong> para conservar el estado de verificado. Mientras
+  no lo hagas, tu cuenta funciona en el nivel de Usuario Registrado, sin pérdida de datos: los puntos
+  quedan congelados con el mismo régimen de la sección 7 y se restituyen apenas aceptes.</p>
+  <p>8.4. En ningún caso la falta de aceptación de una versión nueva produce la baja de tu cuenta ni
+  la eliminación de tu información.</p>
+
+  <h2 id="a9">9. Resumen para leer rápido</h2>
+  <div class="note v">
+    <p>No reemplaza al texto completo, pero sirve para saber qué estás aceptando.</p>
+    <ul style="margin-bottom:0">
+      <li>La verificación es <strong>gratuita, opcional y reversible</strong>.</li>
+      <li>Te habilita a <strong>reservar, reseñar y sumar puntos</strong>. Sin ella, la cuenta es de sola lectura.</li>
+      <li>Necesitás <strong>correo y teléfono confirmados</strong> y ser <strong>mayor de 18</strong>.</li>
+      <li>Te comprometés a <strong>reseñar solo lugares donde estuviste</strong>, a <strong>no aceptar pagos por reseñar</strong> y a <strong>no crear cuentas múltiples</strong>.</li>
+      <li>Si incumplís, las medidas son <strong>graduales</strong> y siempre tenés <strong>derecho a descargo</strong>.</li>
+      <li>Guardamos <strong>constancia de tu aceptación con hash SHA-256</strong>, para que puedas verificar qué aceptaste.</li>
+      <li>Podés <strong>revocar cuando quieras</strong>: la cuenta sobrevive, los puntos se congelan 6 meses.</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    <strong>Nota sobre el alcance de este documento.</strong> Este Acuerdo fue redactado en el marco
+    de un proyecto académico. No constituye asesoramiento legal profesional. Antes de una puesta en
+    producción con usuarios reales debe ser revisado por un profesional del derecho matriculado.
+  </div>
+</section>
+
+<!-- ══════════════════ 04 · ANEXO TÉCNICO ══════════════════ -->
+<section class="doc" data-doc="anexo">
+  <p class="eyebrow">Documento 04 · <span class="mono" style="background:none;border:0;padding:0">anexo-tecnico</span></p>
+  <h1>Anexo Técnico de Seguridad y Cifrado</h1>
+  <div class="meta">
+    <span class="chip">Versión 1.0</span>
+    <span class="chip">Vigencia 29·08·2026</span>
+    <span class="chip">Informativo — no requiere aceptación</span>
+  </div>
+  <div class="note">
+    <p>Este Anexo describe, en términos concretos, <strong>cómo protegemos técnicamente los
+    datos</strong> que la Política de Privacidad declara. Cumple con lo exigido por el artículo 9 de
+    la Ley 25.326 y documenta el requerimiento no funcional <strong>RNF-03</strong> del proyecto.</p>
+    <p>Cada sección arranca con una explicación en lenguaje llano y sigue con el detalle técnico.</p>
+  </div>
+
+  <h2 id="s1">1. Arquitectura y superficie de exposición</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Capa</th><th>Tecnología</th><th>Qué expone</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Presentación</strong></td><td>React (SPA) servida por el navegador del usuario</td><td>Solo la interfaz. <strong>Nunca contiene claves, secretos ni credenciales de base de datos</strong></td></tr>
+        <tr><td><strong>Lógica</strong></td><td>Node.js + Express — API REST, Socket.IO</td><td>Única puerta de entrada a los datos. Valida, autentica y autoriza cada petición</td></tr>
+        <tr><td><strong>Datos</strong></td><td>PostgreSQL + PostGIS</td><td><strong>No accesible desde internet.</strong> Solo acepta conexiones desde el servidor de aplicación</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Principio de fondo:</strong> el navegador nunca habla directamente con la base de datos.
+  Toda consulta pasa por la capa de lógica, que verifica quién sos y qué tenés permitido antes de
+  tocar un solo registro. Un usuario no puede pedirle a la base de datos algo que la API no le
+  autorice.</p>
+
+  <h2 id="s2">2. Cifrado en tránsito</h2>
+  <div class="note">
+    <p><strong>En simple:</strong> todo lo que viaja entre tu navegador y nuestros servidores va
+    dentro de un túnel cifrado. Aunque alguien intercepte la comunicación —por ejemplo, en el Wi-Fi
+    público de un bar— solo vería ruido ilegible.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Medida</th><th>Implementación</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Protocolo</strong></td><td>HTTPS obligatorio en todo el dominio, con TLS 1.3 (y TLS 1.2 como mínimo aceptado). Se rechazan SSL 3.0, TLS 1.0 y TLS 1.1</td></tr>
+        <tr><td><strong>Certificado</strong></td><td>Emitido por <strong>Let's Encrypt</strong>, gratuito, con renovación automática cada 90 días vía <code>certbot</code></td></tr>
+        <tr><td><strong>Redirección</strong></td><td>Todo acceso por HTTP recibe una redirección permanente (301) a HTTPS. No existe una versión no cifrada del sitio</td></tr>
+        <tr><td><strong>HSTS</strong></td><td><code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code>, que instruye al navegador a no volver a intentar HTTP durante un año</td></tr>
+        <tr><td><strong>Cookies</strong></td><td><code>Secure</code> (solo viajan por HTTPS), <code>HttpOnly</code> (inaccesibles desde JavaScript, lo que neutraliza el robo de sesión por XSS) y <code>SameSite=Strict</code> (no se envían desde otros sitios, lo que mitiga CSRF)</td></tr>
+        <tr><td><strong>Tiempo real</strong></td><td>Las conexiones de Socket.IO usan <strong>WSS</strong> (WebSocket sobre TLS), con el mismo certificado</td></tr>
+        <tr><td><strong>Base de datos</strong></td><td>La conexión entre la aplicación y PostgreSQL exige SSL (<code>sslmode=require</code>), incluso cuando ambos están en la misma red privada</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="s3">3. Contraseñas — el punto más sensible</h2>
+  <div class="note w">
+    <p><strong>En simple: no guardamos tu contraseña.</strong> Ni cifrada, ni escondida, ni en ningún
+    lado. Lo que guardamos es una huella matemática irreversible de ella. Ni el equipo de desarrollo,
+    ni el administrador de la base de datos, ni alguien que robara la base entera podrían leerla.</p>
+  </div>
+  <p>Cuando creás tu contraseña, se le aplica una función de hash de un solo sentido: transforma el
+  texto en una cadena de longitud fija, y <strong>el proceso no se puede revertir</strong>. Cuando
+  iniciás sesión, aplicamos la misma función a lo que escribiste y comparamos las dos huellas. Si
+  coinciden, la contraseña era correcta —sin que jamás hayamos necesitado conocerla.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Aspecto</th><th>Implementación</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Algoritmo</strong></td><td><strong>bcrypt</strong> con factor de costo 12</td></tr>
+        <tr><td><strong>Sal (<em>salt</em>)</strong></td><td>Única y aleatoria por usuario, generada automáticamente por bcrypt e incorporada al hash</td></tr>
+        <tr><td><strong>Qué se almacena</strong></td><td>Solo el hash resultante, en la columna <code>password_hash</code>. <strong>La contraseña en texto plano no se escribe jamás en disco, ni en la base, ni en los registros de error</strong></td></tr>
+        <tr><td><strong>Costo deliberado</strong></td><td>El factor 12 hace que calcular un hash demore unos 250 ms. Es imperceptible al iniciar sesión, pero encarece brutalmente un ataque de fuerza bruta sobre una base robada</td></tr>
+        <tr><td><strong>Recuperación</strong></td><td>No podemos enviarte tu contraseña porque no la tenemos. El «olvidé mi contraseña» genera un enlace de un solo uso, válido por 30 minutos, que te permite establecer una nueva</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Por qué la sal importa</h3>
+  <p>Sin sal, dos usuarios con la misma contraseña tendrían el mismo hash, y un atacante podría
+  descifrar miles de cuentas de una sola vez con tablas precalculadas. Con una sal única por usuario,
+  cada hash es distinto aunque las contraseñas sean idénticas, y el atacante debe atacar cada cuenta
+  por separado.</p>
+  <h3>Requisitos de contraseña</h3>
+  <p>Mínimo 8 caracteres, con al menos una letra y un número. Además, se rechazan las contraseñas que
+  figuran en listas públicas de credenciales filtradas.</p>
+
+  <h2 id="s4">4. Autenticación de sesión — JWT</h2>
+  <div class="note">
+    <p><strong>En simple:</strong> cuando iniciás sesión, te entregamos un «pase» digital firmado.
+    Cada vez que pedís algo, mostrás el pase. El servidor verifica la firma y sabe que sos vos, sin
+    volver a pedirte la contraseña.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Aspecto</th><th>Implementación</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Formato</strong></td><td>JSON Web Token (JWT) firmado con <strong>HS256</strong> (HMAC-SHA256)</td></tr>
+        <tr><td><strong>Clave de firma</strong></td><td>Almacenada en una variable de entorno del servidor (<code>.env</code>), <strong>fuera del repositorio de código</strong> y nunca versionada en Git</td></tr>
+        <tr><td><strong>Contenido del token</strong></td><td>Solo el identificador interno del usuario (<code>sub</code>), su rol y la fecha de expiración. <strong>No contiene tu nombre, tu correo, tu teléfono ni ningún otro dato personal</strong></td></tr>
+        <tr><td><strong>Vigencia</strong></td><td>El token de acceso expira a los <strong>15 minutos</strong></td></tr>
+        <tr><td><strong>Renovación</strong></td><td>Un <em>refresh token</em> de mayor duración, rotativo (se emite uno nuevo en cada uso e invalida el anterior), almacenado en cookie <code>HttpOnly</code></td></tr>
+        <tr><td><strong>Cierre de sesión</strong></td><td>El <em>refresh token</em> se revoca del lado del servidor, con lo que la sesión no puede reanudarse</td></tr>
+        <tr><td><strong>Firma, no cifrado</strong></td><td>El contenido del JWT es legible; lo que garantiza la firma es que <strong>nadie puede alterarlo</strong> sin invalidarlo. Por eso el token no lleva datos personales</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>Por qué la expiración es corta:</strong> si alguien te robara el token, tendría 15
+  minutos de ventana en lugar de días. Es el equilibrio entre seguridad y no obligarte a iniciar
+  sesión todo el tiempo.</p>
+
+  <h2 id="s5">5. Cifrado en reposo</h2>
+  <div class="note">
+    <p><strong>En simple:</strong> los datos guardados en el servidor también están cifrados, para
+    que no sirvan de nada si alguien accediera físicamente al disco o robara una copia de
+    respaldo.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Capa</th><th>Medida</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Disco del servidor</strong></td><td>El volumen del VPS opera con cifrado a nivel de disco provisto por el proveedor de infraestructura</td></tr>
+        <tr><td><strong>Copias de respaldo</strong></td><td>Cifradas con <strong>AES-256</strong> antes de almacenarse. La clave de cifrado se conserva por separado de las copias</td></tr>
+        <tr><td><strong>Teléfono</strong></td><td>Cifrado a nivel de columna con <strong>AES-256-GCM</strong>, con la clave en variable de entorno. Se descifra únicamente cuando hay que enviar un código de verificación o comunicar un cambio de reserva</td></tr>
+        <tr><td><strong>Contraseñas</strong></td><td>No cifradas sino <em>hasheadas</em> — ver sección 3. La diferencia es esencial: el cifrado es reversible con la clave, el hash no lo es con nada</td></tr>
+        <tr><td><strong>Códigos de verificación</strong></td><td>Almacenados hasheados y con vencimiento a los 10 minutos. Se eliminan apenas se validan</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>AES-256-GCM</strong> aporta, además de confidencialidad, autenticación del dato: si
+  alguien modificara el valor cifrado directamente en la base, el descifrado fallaría en lugar de
+  devolver un dato adulterado en silencio.</p>
+
+  <h2 id="s6">6. Control de acceso y aislamiento multiempresa</h2>
+  <div class="note">
+    <p><strong>En simple:</strong> cada persona ve únicamente lo que le corresponde, y cada
+    restaurante ve únicamente sus propios datos.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Rol</th><th>Alcance</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Comensal</strong></td><td>Sus propias reservas, pedidos, reseñas y puntos. Datos públicos de los restaurantes</td></tr>
+        <tr><td><strong>Mozo</strong></td><td>Mesas y pedidos del restaurante al que pertenece</td></tr>
+        <tr><td><strong>Cocina</strong></td><td>Tablero de pedidos del restaurante al que pertenece, con permiso para cambiar su estado</td></tr>
+        <tr><td><strong>Administrador de restaurante</strong></td><td>Configuración, menú, inventario, reportes y empleados de <em>su</em> restaurante</td></tr>
+        <tr><td><strong>Administrador de plataforma</strong></td><td>Gestión del sistema. <strong>Sin acceso a contraseñas</strong> (son hashes) y con cada acceso a datos personales registrado en la auditoría</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Aislamiento entre restaurantes</h3>
+  <p>Todas las tablas del módulo de gestión incluyen una columna <code>restaurante_id</code>, y
+  <strong>toda consulta la filtra de forma obligatoria</strong> a partir del token del usuario
+  autenticado, nunca a partir de un parámetro que envíe el cliente. Un administrador del Restaurante
+  A no puede acceder a los datos del Restaurante B ni siquiera manipulando la petición: el
+  identificador que determina el alcance no viaja en la petición, se deriva de la sesión en el
+  servidor.</p>
+  <h3>Mínimo privilegio en la base</h3>
+  <p>La aplicación se conecta a PostgreSQL con un usuario que tiene solo los permisos que necesita
+  (<code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code> sobre las tablas
+  de la aplicación). No es superusuario y no puede alterar el esquema en tiempo de ejecución.</p>
+
+  <h2 id="s7">7. Protecciones a nivel de aplicación</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Amenaza</th><th>Qué es</th><th>Cómo la mitigamos</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Inyección SQL</strong></td><td>Insertar código SQL malicioso a través de un campo del formulario</td><td><strong>Consultas parametrizadas</strong> en el 100 % de los accesos a la base. Los datos del usuario nunca se concatenan dentro de una sentencia SQL</td></tr>
+        <tr><td><strong>XSS</strong></td><td>Inyectar JavaScript en una reseña para que se ejecute en el navegador de otros usuarios</td><td>Sanitización de entrada, escapado automático de salida en React, y <code>Content-Security-Policy</code> restrictiva</td></tr>
+        <tr><td><strong>CSRF</strong></td><td>Hacer que tu navegador ejecute una acción sin que lo sepas</td><td>Cookies <code>SameSite=Strict</code> y token anti-CSRF en las operaciones que modifican datos</td></tr>
+        <tr><td><strong>Fuerza bruta</strong></td><td>Probar miles de contraseñas hasta acertar</td><td><em>Rate limiting</em>: máximo 5 intentos por cuenta cada 15 minutos, más límite por IP. El costo de bcrypt encarece cada intento</td></tr>
+        <tr><td><strong>Spam de reseñas</strong></td><td>Inundar un restaurante de reseñas falsas</td><td>Límite de una reseña por usuario y por visita registrada, más <em>rate limiting</em> sobre la publicación</td></tr>
+        <tr><td><strong>Enumeración de usuarios</strong></td><td>Descubrir qué correos están registrados</td><td>Los mensajes de error de inicio de sesión y de recuperación son idénticos exista o no la cuenta</td></tr>
+        <tr><td><strong>Peticiones externas</strong></td><td>Que un sitio externo consuma nuestra API</td><td><strong>CORS</strong> restringido al dominio oficial de la Plataforma</td></tr>
+        <tr><td><strong>Cabeceras inseguras</strong></td><td>Configuración por defecto que filtra información</td><td>Middleware <code>helmet</code> en Express: <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, ocultamiento de <code>X-Powered-By</code></td></tr>
+        <tr><td><strong>Archivos maliciosos</strong></td><td>Subir un ejecutable disfrazado de foto de perfil</td><td>Validación de tipo MIME real, límite de tamaño, reprocesamiento de la imagen y almacenamiento fuera del directorio ejecutable</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Toda entrada del usuario se <strong>valida en el servidor</strong>, con independencia de las
+  validaciones del formulario en el navegador. La validación del lado del cliente mejora la
+  experiencia; la del servidor es la que protege.</p>
+
+  <h2 id="s8">8. Geolocalización</h2>
+  <ul>
+    <li>El permiso lo otorga el usuario en su navegador, de forma <strong>explícita y revocable</strong>.</li>
+    <li>La coordenada se usa <strong>en memoria</strong>, dentro de la consulta PostGIS que busca restaurantes cercanos, y se descarta al terminar la petición.</li>
+    <li><strong>No se persiste en la base de datos</strong> ni se asocia al perfil del usuario. No existe un historial de ubicaciones porque no se construye.</li>
+    <li>La precisión se reduce deliberadamente a nivel de manzana: alcanza para ordenar restaurantes por cercanía y evita identificar un domicilio.</li>
+    <li>Si el permiso se deniega, la búsqueda funciona igual por barrio o dirección ingresada a mano.</li>
+  </ul>
+
+  <h2 id="s9">9. Registro de auditoría</h2>
+  <p>Se registran, con fecha, hora y actor: inicios de sesión, exitosos y fallidos; accesos
+  administrativos a datos personales de usuarios; modificaciones y bajas de reseñas; ajustes manuales
+  de saldos de puntos; cambios de rol y de permisos; y aceptaciones y revocaciones del marco
+  legal.</p>
+  <div class="note a">
+    <p><strong>Los registros nunca contienen contraseñas, tokens de sesión, códigos de verificación
+    ni el contenido cifrado de campos sensibles.</strong> Se conservan 12 meses y luego se
+    eliminan.</p>
+  </div>
+
+  <h2 id="s10">10. Copias de respaldo y continuidad</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Aspecto</th><th>Definición</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Frecuencia</strong></td><td>Respaldo completo diario, automatizado</td></tr>
+        <tr><td><strong>Cifrado</strong></td><td>AES-256 antes del almacenamiento</td></tr>
+        <tr><td><strong>Ubicación</strong></td><td>Separada del servidor de producción</td></tr>
+        <tr><td><strong>Retención</strong></td><td>30 días de rotación</td></tr>
+        <tr><td><strong>Prueba de restauración</strong></td><td>Verificación periódica de que una copia efectivamente se puede restaurar. Un respaldo que nunca se probó no es un respaldo</td></tr>
+        <tr><td><strong>Objetivo de recuperación</strong></td><td><code>[COMPLETAR: por ejemplo, RTO 4 horas / RPO 24 horas]</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="s11">11. Gestión de incidentes de seguridad</h2>
+  <ol>
+    <li><strong>Detección y contención</strong> — aislar el vector, revocar credenciales y sesiones comprometidas.</li>
+    <li><strong>Evaluación</strong> — determinar qué datos, de qué usuarios y en qué volumen se vieron afectados.</li>
+    <li><strong>Notificación a los usuarios afectados</strong> — por correo electrónico, dentro de las <strong>72 horas</strong> de confirmado el incidente, indicando qué datos se comprometieron, qué estamos haciendo y qué medidas conviene que tomen.</li>
+    <li><strong>Aviso a la AAIP</strong> como autoridad de control.</li>
+    <li><strong>Registro y análisis posterior</strong> — documentar causa raíz y medidas correctivas adoptadas.</li>
+  </ol>
+  <p><strong>Canal para reportar una vulnerabilidad:</strong>
+  <code>[COMPLETAR: seguridad@restoba.com.ar]</code>. Agradecemos el reporte responsable y nos
+  comprometemos a no iniciar acciones contra quien investigue de buena fe, sin acceder a datos de
+  terceros ni degradar el servicio.</p>
+
+  <h2 id="s12">12. Lo que explícitamente NO hacemos</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>No hacemos</th><th>Por qué importa</th></tr></thead>
+      <tbody>
+        <tr><td><strong>No almacenamos datos de tarjetas, CBU, CVU ni credenciales bancarias</strong></td><td>La Plataforma no procesa pagos. El comensal no paga; la suscripción de los restaurantes se cobra por transferencia bancaria directa, fuera del sistema. No hay datos de pago que robar porque no existen en la base</td></tr>
+        <tr><td><strong>No vendemos ni cedemos datos personales</strong></td><td>No hay un modelo de negocio basado en datos: los ingresos vienen de la suscripción de los restaurantes</td></tr>
+        <tr><td><strong>No entrenamos modelos de IA</strong> con datos de usuarios</td><td>Ni propios ni de terceros</td></tr>
+        <tr><td><strong>No tomamos decisiones automatizadas</strong> que afecten derechos</td><td>Ninguna suspensión, baja ni pérdida de puntos se aplica sin revisión humana y sin derecho de descargo</td></tr>
+        <tr><td><strong>No usamos cookies publicitarias</strong> ni de seguimiento entre sitios</td><td>No hay rastreo del usuario fuera de la Plataforma</td></tr>
+        <tr><td><strong>No guardamos historial de ubicaciones</strong></td><td>La geolocalización se usa y se descarta</td></tr>
+        <tr><td><strong>No enviamos contraseñas por correo</strong></td><td>Es técnicamente imposible: no las tenemos</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="s13">13. Limitaciones declaradas</h2>
+  <p>Preferimos ser explícitos sobre los límites actuales antes que sugerir garantías que no podemos
+  sostener:</p>
+  <ul>
+    <li><strong>Sin auditoría de seguridad externa.</strong> No se contrató una consultora independiente ni se realizó un test de intrusión profesional.</li>
+    <li><strong>Sin certificaciones.</strong> La Plataforma no cuenta con ISO 27001 ni con certificación PCI-DSS —esta última no aplica, dado que no se procesan pagos.</li>
+    <li><strong>Sin programa formal de recompensas</strong> por reporte de vulnerabilidades.</li>
+    <li><strong>Sin cifrado de extremo a extremo</strong> en el sentido estricto: el servidor puede leer las reseñas y los datos de reserva, porque necesita procesarlos para prestar el servicio. Lo que está cifrado es el transporte y el almacenamiento frente a terceros.</li>
+    <li><strong>Dependencia de proveedores externos.</strong> La seguridad física del centro de datos y el cifrado de disco dependen del proveedor de infraestructura contratado.</li>
+    <li><strong>Ningún sistema es invulnerable.</strong> Estas medidas reducen el riesgo de forma sustancial; no lo eliminan.</li>
+  </ul>
+
+  <h2 id="s14">14. Tabla resumen — dato por dato</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Dato</th><th>Dónde vive</th><th>Cómo se protege</th><th>¿Reversible?</th></tr></thead>
+      <tbody>
+        <tr><td>Contraseña</td><td><code>Comensal.password_hash</code></td><td>Hash <strong>bcrypt</strong> con sal única, costo 12</td><td><strong>No</strong> — nadie puede leerla</td></tr>
+        <tr><td>Correo electrónico</td><td><code>Comensal.email</code></td><td>TLS en tránsito, cifrado de disco, acceso por rol</td><td>Sí</td></tr>
+        <tr><td>Teléfono</td><td><code>Comensal.telefono</code></td><td><strong>AES-256-GCM</strong> a nivel de columna + todo lo anterior</td><td>Sí, solo con la clave</td></tr>
+        <tr><td>Fecha de nacimiento</td><td><code>Comensal.fecha_nac</code></td><td>TLS, cifrado de disco, acceso por rol</td><td>Sí</td></tr>
+        <tr><td>Código de verificación</td><td>Tabla temporal</td><td>Hasheado, vence a los 10 minutos, se elimina al validarse</td><td><strong>No</strong></td></tr>
+        <tr><td>Reservas y pedidos</td><td><code>Reserva</code>, <code>Pedido</code></td><td>TLS, cifrado de disco, aislamiento por <code>restaurante_id</code></td><td>Sí</td></tr>
+        <tr><td>Reseñas</td><td><code>Reseña</code></td><td>Contenido público por diseño; se anonimiza al dar de baja la cuenta</td><td>Sí</td></tr>
+        <tr><td>Puntos y cupones</td><td><code>MovimientoPuntos</code>, <code>Cupon</code></td><td>TLS, cifrado de disco, auditoría de ajustes manuales</td><td>Sí</td></tr>
+        <tr><td>Geolocalización</td><td><strong>En ninguna parte</strong></td><td>No se persiste</td><td>—</td></tr>
+        <tr><td>Token de sesión</td><td>Cookie <code>HttpOnly</code></td><td>Firmado HS256, expira en 15 minutos, sin datos personales</td><td>Legible pero inalterable</td></tr>
+        <tr><td>IP y user-agent</td><td>Registros del servidor</td><td>Acceso restringido, se eliminan a los 12 meses</td><td>Sí</td></tr>
+        <tr><td>Constancia de aceptación</td><td><code>aceptacion_legal</code></td><td>Hash SHA-256 del texto aceptado, inmutable</td><td><strong>No</strong> — es su garantía</td></tr>
+        <tr><td>Datos de tarjeta</td><td><strong>No existen</strong></td><td>No se recolectan</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="s15">15. Glosario</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Término</th><th>Qué significa</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Hash</strong></td><td>Huella digital de un dato. Del dato se obtiene la huella, pero de la huella no se puede volver al dato</td></tr>
+        <tr><td><strong>Sal (<em>salt</em>)</strong></td><td>Valor aleatorio que se agrega antes de hashear, para que dos datos iguales produzcan huellas distintas</td></tr>
+        <tr><td><strong>bcrypt</strong></td><td>Algoritmo de hash diseñado específicamente para contraseñas, deliberadamente lento para frustrar la fuerza bruta</td></tr>
+        <tr><td><strong>AES-256</strong></td><td>Estándar de cifrado simétrico. «256» es el tamaño de la clave; es el mismo estándar que usan bancos y gobiernos</td></tr>
+        <tr><td><strong>TLS</strong></td><td>El protocolo que cifra la conexión entre tu navegador y el servidor. Es la «s» de HTTPS</td></tr>
+        <tr><td><strong>JWT</strong></td><td>Credencial digital firmada que prueba quién sos en cada petición, sin reenviar la contraseña</td></tr>
+        <tr><td><strong>SHA-256</strong></td><td>Función de hash usada para las constancias de aceptación; produce una huella de 64 caracteres</td></tr>
+        <tr><td><strong>PostGIS</strong></td><td>Extensión de PostgreSQL que permite consultas geográficas, como «restaurantes a menos de 2 km»</td></tr>
+        <tr><td><strong>XSS / CSRF / SQL injection</strong></td><td>Las tres familias de ataque más frecuentes contra aplicaciones web. Ver sección 7</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    <strong>Nota sobre el alcance de este documento.</strong> Este Anexo fue redactado en el marco de
+    un proyecto académico y describe el diseño de seguridad previsto para la Plataforma. Los
+    parámetros aquí declarados deben verificarse contra la implementación efectiva antes de la puesta
+    en producción, y el documento debe actualizarse cada vez que cambie la arquitectura.
+  </div>
+</section>
+
+  </div>
+</main>
+
+<script>
+(function () {
+  var docs    = Array.prototype.slice.call(document.querySelectorAll('.doc'));
+  var navBtns = Array.prototype.slice.call(document.querySelectorAll('#docnav button'));
+  var index   = document.getElementById('secindex');
+  var idxTtl  = document.getElementById('secTitle');
+  var obs     = null;
+
+  function buildIndex(section) {
+    index.innerHTML = '';
+    var hs = section.querySelectorAll('h2[id]');
+    idxTtl.hidden = hs.length === 0;
+    if (obs) { obs.disconnect(); obs = null; }
+    if (!hs.length) return;
+
+    Array.prototype.forEach.call(hs, function (h) {
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent.replace(/^(Artículo|Documento)\s+/, '');
+      index.appendChild(a);
+    });
+
+    obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var links = index.querySelectorAll('a');
+        Array.prototype.forEach.call(links, function (l) {
+          l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id);
+        });
+      });
+    }, { rootMargin: '-70px 0px -72% 0px' });
+
+    Array.prototype.forEach.call(hs, function (h) { obs.observe(h); });
+  }
+
+  function show(name) {
+    docs.forEach(function (d) { d.classList.toggle('on', d.dataset.doc === name); });
+    navBtns.forEach(function (b) { b.setAttribute('aria-current', String(b.dataset.doc === name)); });
+    var active = docs.filter(function (d) { return d.dataset.doc === name; })[0];
+    if (active) buildIndex(active);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
+
+  navBtns.forEach(function (b) {
+    b.addEventListener('click', function () { show(b.dataset.doc); });
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-goto]'), function (c) {
+    c.addEventListener('click', function () { show(c.dataset.goto); });
+  });
+
+  buildIndex(docs[0]);
+
+  /* Maqueta del gate de aceptación */
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('.check input[data-req]'));
+  var btn   = document.getElementById('gateBtn');
+  var st    = document.getElementById('gateSt');
+  var rc    = document.getElementById('gateRc');
+  var labels = ['tyc', 'privacidad', 'verificacion'];
+
+  function sync() {
+    var pend = boxes.filter(function (b) { return !b.checked; }).length;
+    btn.disabled = pend > 0;
+    st.classList.toggle('ok', pend === 0);
+    if (pend === 0)      st.textContent = 'Listo para registrar la aceptación';
+    else if (pend === 1) st.textContent = 'Falta 1 documento por aceptar';
+    else                 st.textContent = 'Faltan ' + pend + ' documentos por aceptar';
+    rc.hidden = true;
+  }
+
+  boxes.forEach(function (b) { b.addEventListener('change', sync); });
+
+  btn.addEventListener('click', function () {
+    var now = new Date().toISOString().replace('.000', '');
+    var lines = labels.map(function (d) {
+      var fake = Array.from({ length: 64 }, function () {
+        return '0123456789abcdef'[Math.floor(Math.random() * 16)];
+      }).join('');
+      return 'documento=' + d.padEnd(13) + ' version=1.0  hash=' + fake.slice(0, 24) + '…';
+    });
+    rc.innerHTML = '<b>Constancia registrada</b> (simulada — no se envió ningún dato)\n\n'
+      + lines.join('\n')
+      + '\naceptado_en=' + now
+      + '\nestado=<b>verificado</b>';
+    rc.hidden = false;
+    st.textContent = 'Aceptación registrada';
+  });
+
+  sync();
+})();
+</script>

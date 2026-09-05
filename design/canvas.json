@@ -1,0 +1,27 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Home · Buscador", "x": 0, "y": 0, "w": 1440, "h": 1820 },
+    { "file": "Resultados.dc.html", "title": "Resultados + Mapa", "x": 1560, "y": 0, "w": 1440, "h": 1120, "is_interactive": true },
+    { "file": "Perfil.dc.html", "title": "Perfil del restaurante", "x": 3120, "y": 0, "w": 1440, "h": 2860 },
+    { "file": "GateLegal.dc.html", "title": "Gate legal · 3 documentos", "x": 0, "y": 3060, "w": 980, "h": 1560, "is_interactive": true },
+    { "file": "Resena.dc.html", "title": "Reseña · alta y publicada", "x": 1100, "y": 3060, "w": 980, "h": 1440, "is_interactive": true },
+    { "file": "Carta.dc.html", "title": "Carta con fotos", "x": 2200, "y": 3060, "w": 1200, "h": 2650 }
+  ],
+  "annotations": [
+    {
+      "id": "nota-flujo",
+      "x": 0,
+      "y": -170,
+      "w": 560,
+      "text": "Fase A — recorrido del comensal (CU-01).\nBuscar por tipo de comida → comparar por cercanía y puntaje → entrar al perfil, abrir la carta y reservar."
+    },
+    {
+      "id": "nota-controles",
+      "x": 0,
+      "y": 2880,
+      "w": 620,
+      "text": "El gate legal y la reseña tienen controles que andan de verdad. El mapa también: tocá una ficha de la lista o un pin y se abre la ficha emergente centrada en ese local."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

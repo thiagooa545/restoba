@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FCFBF9; color: #1B1C21; font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 16px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #7C2239; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: #5E1A2C; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .serif { font-family: 'Petrona', Georgia, serif; }
+    .eyebrow { font-size: 10.5px; letter-spacing: .17em; text-transform: uppercase; font-weight: 700; }
+    .chip { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 4px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; font-family: 'IBM Plex Mono', ui-monospace, monospace; border: 1px solid #D3CEC4; color: #4C5160; background: #F4F2ED; white-space: nowrap; }
+    .chip.v { color: #1C6350; background: #E3EFEB; border-color: rgba(28,99,80,.35); }
+    .chip.a { color: #815214; background: #F7EEDF; border-color: rgba(129,82,20,.35); }
+    .star { border: 0; background: transparent; padding: 2px; cursor: pointer; line-height: 0; }
+    .panel { border: 1px solid #E3DFD8; border-radius: 14px; background: #FFFFFF; overflow: hidden; }
+    .phead { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 13px 22px; background: #F4F2ED; border-bottom: 1px solid #E3DFD8; }
+    .ta { width: 100%; min-height: 118px; resize: vertical; border: 1px solid #D3CEC4; border-radius: 12px; background: #FFFFFF; padding: 15px 17px; font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 15px; line-height: 1.6; color: #1B1C21; }
+    .ta::placeholder { color: #7A7F8C; }
+    .ta:focus { outline: 2px solid #7C2239; outline-offset: 1px; border-color: #7C2239; }
+  </style>
+</helmet>
+
+<div style="width: 980px; background: #FCFBF9; padding: 36px 40px 44px;">
+
+  <div style="display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px;">
+    <b class="serif" style="font-size: 20px; font-weight: 600; letter-spacing: -.01em;">RestoBA</b>
+    <span class="eyebrow" style="color: #7A7F8C;">Reseñas</span>
+  </div>
+  <h1 class="serif" style="font-size: 36px; font-weight: 600; line-height: 1.08; letter-spacing: -.024em; margin: 0 0 28px;">Contá cómo te fue</h1>
+
+  <!-- Composer -->
+  <div class="panel" style="box-shadow: 0 1px 2px rgba(27,28,33,.05), 0 8px 24px -12px rgba(27,28,33,.12); margin-bottom: 34px;">
+    <div class="phead">
+      <b class="serif" style="font-size: 18px; font-weight: 600; margin-right: auto;">Cantina San Telmo</b>
+      <span class="chip">PASTAS</span>
+      <span class="chip v">VISITA VERIFICADA</span>
+    </div>
+
+    <div style="padding: 22px;">
+
+      <!-- Vínculo con la visita, art. 7.5 -->
+      <div style="display: flex; align-items: center; gap: 13px; padding: 13px 16px; background: #E3EFEB; border-left: 3px solid #1C6350; border-radius: 0 12px 12px 0; margin-bottom: 24px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C6350" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+        <p style="margin: 0; font-size: 13.5px; line-height: 1.5; color: #4C5160;">Esta reseña queda ligada a tu <strong style="color: #1B1C21; font-weight: 600;">reserva del 12 de agosto, mesa de 4</strong>. Por eso se publica como verificada.</p>
+      </div>
+
+      <!-- Puntuación -->
+      <p class="eyebrow" style="color: #7A7F8C; margin: 0 0 10px;">Tu puntuación</p>
+      <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 26px;">
+        <div style="display: flex; gap: 2px;" onMouseLeave="{{ salir }}">
+          <sc-for list="{{ estrellas }}" as="e" hint-placeholder-count="5">
+            <button class="star" onClick="{{ e.elegir }}" onMouseEnter="{{ e.entrar }}">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="{{ e.fill }}" stroke="{{ e.stroke }}" stroke-width="1.3" stroke-linejoin="round"><path d="M12 3.2l2.6 5.5 5.9.8-4.3 4.2 1 6-5.2-2.9-5.2 2.9 1-6-4.3-4.2 5.9-.8Z"></path></svg>
+            </button>
+          </sc-for>
+        </div>
+        <span style="{{ estiloEtiqueta }}">{{ etiqueta }}</span>
+      </div>
+
+      <!-- Comentario -->
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 10px;">
+        <p class="eyebrow" style="color: #7A7F8C; margin: 0;">Tu comentario <span style="text-transform: none; letter-spacing: 0; font-weight: 400; color: #7A7F8C;">(opcional)</span></p>
+        <span class="mono" style="font-size: 11.5px; color: #7A7F8C;">{{ contador }}</span>
+      </div>
+      <textarea class="ta" value="{{ texto }}" onChange="{{ escribir }}" maxLength="{{ 1500 }}" placeholder="¿Qué pediste? ¿Cómo estuvo la atención? Contale a otro comensal lo que te hubiera gustado saber antes de ir."></textarea>
+
+      <p style="margin: 12px 0 0; font-size: 12.5px; color: #7A7F8C; line-height: 1.5;">No publiques datos personales de terceros ni contenido ofensivo. El local puede responder públicamente, pero no puede pedir que borremos tu reseña por resultarle desfavorable.</p>
+
+      <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 22px; padding-top: 20px; border-top: 1px solid #E3DFD8;">
+        <button disabled="{{ bloqueado }}" onClick="{{ publicar }}" style="{{ estiloBoton }}">Publicar reseña</button>
+        <span class="chip a">+120 PUNTOS</span>
+        <span style="font-size: 13px; color: #7A7F8C; line-height: 1.45;">{{ pie }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cómo se publica -->
+  <p class="eyebrow" style="color: #7C2239; margin: 0 0 14px;">Así se va a ver publicada</p>
+
+  <div class="panel" style="margin-bottom: 34px;">
+    <div style="padding: 22px;">
+      <div style="display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+        <span class="serif" style="font-size: 19px; font-weight: 600;">Martina G.</span>
+        <span class="chip v">VISITA VERIFICADA</span>
+        <span class="mono" style="font-size: 11.5px; color: #7A7F8C;">14 RESEÑAS</span>
+        <span class="mono" style="font-size: 11.5px; color: #7A7F8C; margin-left: auto;">28 AGO 2026</span>
+        <span class="mono" style="font-size: 17px; color: #7C2239; font-weight: 500;">{{ puntajeMuestra }}</span>
+      </div>
+
+      <p style="margin: 0 0 16px; font-size: 15.5px; line-height: 1.62; color: #4C5160;">{{ textoMuestra }}</p>
+
+      <div style="display: flex; align-items: center; gap: 18px; flex-wrap: wrap; padding-top: 14px; border-top: 1px solid #E3DFD8;">
+        <button style="display: inline-flex; align-items: center; gap: 8px; font-family: inherit; font-size: 13.5px; font-weight: 600; padding: 8px 16px; border-radius: 10px; border: 1px solid #D3CEC4; background: #FFFFFF; color: #4C5160; cursor: pointer;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4C5160" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21V10l5-7 1 1v5h6l-1.6 12H7Z"></path></svg>
+          Me sirvió · 12
+        </button>
+        <a href="#" style="font-size: 13px;">Reportar</a>
+        <span style="font-size: 12.5px; color: #7A7F8C; margin-left: auto;">Si das de baja tu cuenta, esta reseña se anonimiza y el texto queda publicado.</span>
+      </div>
+
+      <!-- Derecho a réplica, art. 7.7 -->
+      <div style="margin: 18px 0 0 22px; padding: 15px 18px; background: #F4F2ED; border-left: 3px solid #D3CEC4; border-radius: 0 12px 12px 0;">
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px;">
+          <p class="eyebrow" style="color: #7A7F8C; margin: 0;">Respuesta de Cantina San Telmo</p>
+          <span class="mono" style="font-size: 11px; color: #7A7F8C; margin-left: auto;">29 AGO 2026</span>
+        </div>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4C5160;">Gracias Martina. Tomamos nota del ruido: estamos colocando paneles acústicos en el salón principal este mes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estado bloqueado -->
+  <p class="eyebrow" style="color: #7C2239; margin: 0 0 14px;">Si la cuenta todavía no está verificada</p>
+
+  <div class="panel" style="border-style: dashed;">
+    <div style="padding: 26px 24px; display: flex; align-items: center; gap: 20px;">
+      <div style="width: 46px; height: 46px; border-radius: 50%; background: #F4F2ED; border: 1px solid #E3DFD8; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7A7F8C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="1.5"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+      </div>
+      <div style="flex-grow: 1;">
+        <h3 class="serif" style="font-size: 20px; font-weight: 600; margin: 0 0 5px; letter-spacing: -.014em;">Necesitás ser Usuario Verificado para reseñar</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #4C5160;">Te faltan dos cosas: confirmar tu teléfono y aceptar los tres documentos. Seguís pudiendo leer todas las reseñas mientras tanto.</p>
+      </div>
+      <button style="font-family: inherit; font-size: 14.5px; font-weight: 600; padding: 12px 22px; border-radius: 12px; border: 1px solid transparent; background: #7C2239; color: #FFFFFF; cursor: pointer; white-space: nowrap;">Verificar mi cuenta</button>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { punt: 0, hov: 0, texto: '', publicado: false };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const activo = s.hov || s.punt;
+    const nombres = ['', 'Mala', 'Regular', 'Buena', 'Muy buena', 'Excelente'];
+
+    const estrellas = [1, 2, 3, 4, 5].map((n) => ({
+      fill: n <= activo ? '#7C2239' : '#FFFFFF',
+      stroke: n <= activo ? '#7C2239' : '#D3CEC4',
+      elegir: () => this.setState({ punt: n, publicado: false }),
+      entrar: () => this.setState({ hov: n })
+    }));
+
+    const listo = s.punt > 0;
+
+    const muestra = 'Fuimos con reserva un miércoles y nos sentaron enseguida en la mesa del fondo, que es la más tranquila. Los ravioles de verdura y ricota son caseros de verdad, se nota en la masa. La provoleta alcanzó justo para los cuatro. Volvería, aunque avisaría que el salón levanta ruido cuando se llena.';
+
+    return {
+      estrellas: estrellas,
+      salir: () => this.setState({ hov: 0 }),
+      texto: s.texto,
+      escribir: (ev) => this.setState({ texto: ev.target.value, publicado: false }),
+      contador: s.texto.length.toLocaleString('es-AR') + ' / 1.500',
+      textoMuestra: s.texto.trim() ? s.texto : muestra,
+      etiqueta: activo ? nombres[activo] + ' · ' + activo + ' de 5' : 'Elegí de 1 a 5',
+      estiloEtiqueta: 'font-size: 15px; font-weight: ' + (activo ? '600' : '400') + '; color: ' + (activo ? '#1B1C21' : '#7A7F8C') + ';',
+      bloqueado: !listo,
+      publicar: () => { if (listo) this.setState({ publicado: true }); },
+      estiloBoton: 'font-family: inherit; font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: 1px solid transparent; background: #7C2239; color: #FFFFFF; opacity: ' +
+        (listo ? '1' : '.38') + '; cursor: ' + (listo ? 'pointer' : 'not-allowed') + ';',
+      pie: s.publicado ? 'Reseña publicada. Se sumó al promedio del restaurante.' : (listo ? 'Podés editarla dentro de las 24 horas.' : 'Elegí una puntuación para poder publicar.'),
+      puntajeMuestra: s.punt > 0 ? String(s.punt) + ',0' : '4,0'
+    };
+  }
+}
+</script>
+</body>
+</html>

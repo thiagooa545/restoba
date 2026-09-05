@@ -1,0 +1,19 @@
+{
+  "name": "@restoba/shared",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Tipos y esquemas de validación compartidos entre la API y la web",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}

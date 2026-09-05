@@ -1,0 +1,30 @@
+# Dependencias
+node_modules/
+
+# Compilados
+dist/
+build/
+*.tsbuildinfo
+
+# Variables de entorno — los secretos viven solo acá y nunca se versionan
+.env
+.env.local
+.env.*.local
+
+# Credenciales
+credentials.json
+token.json
+
+# Temporales y procesamiento
+.tmp/
+*.log
+npm-debug.log*
+
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+
+# Canvas de diseño generado: se rearma con seed-canvas desde los .dc.html
+design/restoba-fase-a.html

@@ -1,0 +1,416 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <style>
+    body { margin: 0; background: #FCFBF9; color: #1B1C21; font-family: 'Archivo', 'Segoe UI', system-ui, sans-serif; font-size: 16px; line-height: 1.62; -webkit-font-smoothing: antialiased; }
+    * { box-sizing: border-box; }
+    a { color: #7C2239; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+    a:hover { color: #5E1A2C; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+    .serif { font-family: 'Petrona', Georgia, serif; }
+    .eyebrow { font-size: 10.5px; letter-spacing: .17em; text-transform: uppercase; font-weight: 700; }
+    .chip { display: inline-flex; align-items: center; padding: 3px 9px; border-radius: 4px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; font-family: 'IBM Plex Mono', ui-monospace, monospace; border: 1px solid #D3CEC4; color: #4C5160; background: #F4F2ED; white-space: nowrap; }
+    .chip.v { color: #1C6350; background: #E3EFEB; border-color: rgba(28,99,80,.35); }
+    .chip.a { color: #815214; background: #F7EEDF; border-color: rgba(129,82,20,.35); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 15px; font-weight: 600; padding: 12px 24px; border-radius: 12px; border: 1px solid transparent; cursor: pointer; transition: transform .14s ease, box-shadow .14s ease; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn.wine { background: #7C2239; color: #FFFFFF; box-shadow: 0 2px 8px -2px rgba(124,34,57,.45); }
+    .btn.ink { background: #1B1C21; color: #FFFFFF; }
+    .btn.ghost { background: #FFFFFF; color: #4C5160; border-color: #D3CEC4; }
+    .btn.ghost:hover { border-color: #7C2239; color: #7C2239; }
+    .btn.sm { font-size: 13.5px; padding: 9px 16px; border-radius: 10px; }
+
+    .navlink { color: #4C5160; text-decoration: none; font-size: 14px; font-weight: 500; padding: 7px 2px; border-bottom: 2px solid transparent; }
+    .navlink:hover { color: #1B1C21; border-bottom-color: #7C2239; }
+
+    .card { background: #FFFFFF; border: 1px solid #E3DFD8; border-radius: 14px; box-shadow: 0 1px 2px rgba(27,28,33,.05), 0 10px 28px -18px rgba(27,28,33,.3); }
+    .ph { background: #EDEAE3; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .ph svg.gl { position: relative; z-index: 1; }
+
+    .seg { font-family: inherit; font-size: 13px; font-weight: 600; padding: 8px 15px; border: 0; border-radius: 999px; background: transparent; color: #4C5160; cursor: pointer; }
+    .seg.on { background: #FFFFFF; color: #7C2239; box-shadow: 0 1px 3px rgba(27,28,33,.14); }
+    .vw { display: inline-flex; align-items: center; gap: 7px; font-family: inherit; font-size: 13px; font-weight: 600; padding: 8px 14px; border: 0; border-radius: 999px; background: transparent; color: #4C5160; cursor: pointer; }
+    .vw.on { background: #1B1C21; color: #FFFFFF; }
+
+    .lc { border: 1px solid #E3DFD8; border-radius: 14px; background: #FFFFFF; padding: 12px; margin-bottom: 12px; cursor: pointer; transition: border-color .15s ease, box-shadow .15s ease; }
+    .lc:hover { border-color: #D3CEC4; box-shadow: 0 8px 22px -14px rgba(27,28,33,.4); }
+    .lc.on { border-color: #7C2239; box-shadow: 0 8px 22px -12px rgba(124,34,57,.45); }
+    .ib { width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255,255,255,.94); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px -2px rgba(27,28,33,.35); }
+
+    .pin { position: absolute; display: flex; flex-direction: column; align-items: center; padding: 5px 11px 6px; border-radius: 10px; cursor: pointer; line-height: 1.1; box-shadow: 0 3px 10px -3px rgba(27,28,33,.55); transition: transform .14s ease, background .14s ease; }
+    .pin .pp { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 13px; font-weight: 500; color: #FFFFFF; }
+    .pin .pm { font-family: 'IBM Plex Mono', ui-monospace, monospace; font-size: 9.5px; color: rgba(255,255,255,.72); margin-top: 1px; white-space: nowrap; }
+    .zb { width: 32px; height: 32px; border: 0; background: #FFFFFF; color: #4C5160; font-family: inherit; font-size: 17px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .zb:hover { background: #F4F2ED; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; background: #FCFBF9;">
+
+  <svg width="0" height="0" style="position: absolute;" aria-hidden="true">
+    <defs>
+      <pattern id="rayasL" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line x1="0" y1="0" x2="0" y2="12" stroke="#E3DFD8" stroke-width="4"></line>
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- Banda con el header flotante -->
+  <div style="position: relative; height: 104px; background: #F4F2ED; border-bottom: 1px solid #E3DFD8;">
+    <div style="position: absolute; top: 18px; left: 40px; right: 40px; z-index: 3; display: flex; align-items: center; gap: 22px; padding: 11px 12px 11px 26px; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border: 1px solid #E3DFD8; border-radius: 16px; box-shadow: 0 1px 2px rgba(27,28,33,.05), 0 12px 32px -20px rgba(27,28,33,.45);">
+      <b class="serif" style="font-size: 22px; font-weight: 600; letter-spacing: -.012em;">RestoBA</b>
+
+      <div style="display: flex; align-items: center; border: 1px solid #D3CEC4; border-radius: 999px; background: #FCFBF9; overflow: hidden; margin-left: 6px;">
+        <div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7A7F8C" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21"></path></svg>
+          <span style="font-size: 14px; color: #1B1C21;">Pastas</span>
+        </div>
+        <div style="width: 1px; height: 20px; background: #E3DFD8;"></div>
+        <div style="display: flex; align-items: center; gap: 7px; padding: 8px 16px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1C6350" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>
+          <span style="font-size: 14px; color: #1C6350; font-weight: 600;">Cerca mío</span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 22px; margin-left: auto;">
+        <a class="navlink" href="#">Cómo funciona</a>
+        <a class="navlink" href="#">Para restaurantes</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 9px;">
+        <button class="btn ghost sm" style="border-color: transparent;">Ingresar</button>
+        <button class="btn wine sm">Crear cuenta</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding: 26px 40px 40px;">
+
+    <!-- Título + filtro -->
+    <div class="card" style="display: flex; align-items: center; gap: 20px; padding: 18px 22px; margin-bottom: 18px;">
+      <div style="margin-right: auto;">
+        <h1 class="serif" style="font-size: 27px; font-weight: 600; margin: 0; letter-spacing: -.02em;">Pastas cerca tuyo</h1>
+        <p class="mono" style="font-size: 11.5px; color: #7A7F8C; margin: 4px 0 0; letter-spacing: .05em;">{{ resumen }}</p>
+      </div>
+      <button class="btn ghost">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h10"></path><path d="M18 7h2"></path><path d="M4 17h4"></path><path d="M12 17h8"></path><circle cx="16" cy="7" r="2.2"></circle><circle cx="10" cy="17" r="2.2"></circle></svg>
+        Filtrar restaurantes
+      </button>
+    </div>
+
+    <!-- Barra de orden y vista -->
+    <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;">
+      <span style="font-size: 13.5px; color: #4C5160;">6 restaurantes encontrados</span>
+      <div style="display: flex; align-items: center; gap: 10px; margin-left: auto;">
+        <span class="eyebrow" style="color: #7A7F8C;">Ordenar por</span>
+        <div style="display: flex; gap: 2px; padding: 3px; background: #EDEAE3; border-radius: 999px;">
+          <button class="{{ segCercania }}" onClick="{{ verCercania }}">Cercanía</button>
+          <button class="{{ segPuntaje }}" onClick="{{ verPuntaje }}">Puntaje</button>
+          <button class="{{ segMixto }}" onClick="{{ verMixto }}">Mixto</button>
+        </div>
+      </div>
+      <div style="display: flex; gap: 2px; padding: 3px; background: #EDEAE3; border-radius: 999px;">
+        <button class="vw">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="1"></rect><rect x="13" y="4" width="7" height="7" rx="1"></rect><rect x="4" y="13" width="7" height="7" rx="1"></rect><rect x="13" y="13" width="7" height="7" rx="1"></rect></svg>
+          Grilla
+        </button>
+        <button class="vw">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+          Lista
+        </button>
+        <button class="vw on">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>
+          Mapa
+        </button>
+      </div>
+    </div>
+
+    <!-- Aviso de radio, flujo alternativo del CU-01 -->
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px; padding: 13px 18px; background: #F7EEDF; border-left: 3px solid #815214; border-radius: 0 12px 12px 0;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#815214" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5"></path><path d="M12 16.2v.2"></path></svg>
+      <p style="margin: 0; font-size: 13.5px; color: #4C5160; line-height: 1.45; flex-grow: 1;">Dentro de 1 km había <strong style="color: #1B1C21; font-weight: 600;">un solo lugar</strong>, así que ampliamos la búsqueda a 3 km.</p>
+      <button class="btn ghost sm" style="border-color: #815214; color: #815214;">Volver a 1 km</button>
+    </div>
+
+    <!-- Lista + mapa -->
+    <div style="display: grid; grid-template-columns: 420px minmax(0, 1fr); gap: 16px; align-items: start;">
+
+      <!-- Panel de resultados -->
+      <div>
+        <div style="display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; padding: 0 2px;">
+          <b class="serif" style="font-size: 17px; font-weight: 600;">Restaurantes en la zona</b>
+          <span class="mono" style="font-size: 11px; color: #7A7F8C; margin-left: auto;">{{ conteo }}</span>
+        </div>
+
+        <div style="height: 620px; overflow-y: auto; padding-right: 4px;">
+          <sc-for list="{{ items }}" as="r" hint-placeholder-count="3">
+            <div class="{{ r.clase }}" onClick="{{ r.abrir }}" onMouseEnter="{{ r.entrar }}" onMouseLeave="{{ r.salir }}">
+
+              <div class="ph" style="height: 208px; border-radius: 10px;">
+                <svg width="100%" height="208" style="position: absolute; inset: 0;">
+                  <rect width="100%" height="208" fill="#EDEAE3"></rect>
+                  <rect width="100%" height="208" fill="url(#rayasL)" opacity=".5"></rect>
+                </svg>
+                <svg class="gl" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+                <button class="ib" style="position: absolute; top: 10px; right: 10px; z-index: 2;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C2239" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.6-7-9.5A3.9 3.9 0 0 1 12 7.6a3.9 3.9 0 0 1 7 2.9C19 15.4 12 20 12 20Z"></path></svg>
+                </button>
+                <span class="mono" style="position: absolute; left: 10px; top: 10px; z-index: 2; padding: 4px 9px; border-radius: 8px; background: rgba(27,28,33,.82); color: #FFFFFF; font-size: 11px;">{{ r.nn }}</span>
+              </div>
+
+              <div style="display: flex; gap: 6px; margin: 8px 0 10px;">
+                <div class="ph" style="width: 52px; height: 40px; border-radius: 6px; border: 1px solid #E3DFD8;"></div>
+                <div class="ph" style="width: 52px; height: 40px; border-radius: 6px; border: 1px solid #E3DFD8;"></div>
+                <div class="ph" style="width: 52px; height: 40px; border-radius: 6px; border: 1px solid #E3DFD8;"></div>
+                <div class="ph" style="width: 52px; height: 40px; border-radius: 6px; border: 1px solid #E3DFD8; display: flex; align-items: center; justify-content: center;">
+                  <span class="mono" style="font-size: 11px; color: #7A7F8C;">+9</span>
+                </div>
+              </div>
+
+              <div style="padding: 0 4px 4px;">
+                <p class="eyebrow" style="color: #7A7F8C; margin: 0 0 7px;">{{ r.cocinas }}</p>
+                <span class="{{ r.claseEstado }}">{{ r.estado }}</span>
+                <h3 class="serif" style="font-size: 20px; font-weight: 600; margin: 8px 0 4px; letter-spacing: -.014em; line-height: 1.2;">{{ r.nombre }}</h3>
+                <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 10px;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A7F8C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11Z"></path><circle cx="12" cy="10" r="2.4"></circle></svg>
+                  <span style="font-size: 12.5px; color: #7A7F8C;">{{ r.meta }}</span>
+                </div>
+                <div style="display: flex; align-items: baseline; gap: 12px;">
+                  <span class="serif" style="font-size: 22px; font-weight: 600; color: #7C2239; line-height: 1;">{{ r.puntaje }}</span>
+                  <span style="font-size: 12.5px; color: #7A7F8C;">{{ r.resenas }}</span>
+                  <span class="mono" style="font-size: 13.5px; color: #1B1C21; margin-left: auto;">{{ r.dist }}</span>
+                </div>
+                <p style="margin: 8px 0 0; font-size: 12px; color: #7A7F8C;">{{ r.pista }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- Mapa -->
+      <div style="position: relative; height: 664px; border: 1px solid #D3CEC4; border-radius: 14px; overflow: hidden; background: #F4F2ED;">
+
+        <svg width="924" height="664" viewBox="0 0 924 664" style="display: block;">
+          <rect width="924" height="664" fill="#F4F2ED"></rect>
+
+          <!-- Verde y agua -->
+          <rect x="96" y="392" width="188" height="132" rx="6" fill="#E3EFEB"></rect>
+          <rect x="646" y="86" width="150" height="104" rx="6" fill="#E3EFEB"></rect>
+          <path d="M924 0 L924 130 Q840 190 812 300 Q790 400 820 664 L924 664 Z" fill="#E3EFEB"></path>
+
+          <!-- Trazado de calles: contorno -->
+          <g stroke="#E3DFD8" stroke-width="8" stroke-linecap="round" fill="none">
+            <path d="M0 120 H924 M0 236 H924 M0 352 H924 M0 468 H924 M0 584 H924"></path>
+            <path d="M110 0 V664 M232 0 V664 M354 0 V664 M476 0 V664 M598 0 V664 M720 0 V664 M842 0 V664"></path>
+          </g>
+          <g stroke="#D3CEC4" stroke-width="15" stroke-linecap="round" fill="none">
+            <path d="M0 352 H924"></path>
+            <path d="M476 0 V664"></path>
+            <path d="M-40 664 L700 -20"></path>
+          </g>
+
+          <!-- Trazado de calles: asfalto -->
+          <g stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" fill="none">
+            <path d="M0 120 H924 M0 236 H924 M0 468 H924 M0 584 H924"></path>
+            <path d="M110 0 V664 M232 0 V664 M354 0 V664 M598 0 V664 M720 0 V664 M842 0 V664"></path>
+          </g>
+          <g stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" fill="none">
+            <path d="M0 352 H924"></path>
+            <path d="M476 0 V664"></path>
+            <path d="M-40 664 L700 -20"></path>
+          </g>
+
+          <!-- Rótulos -->
+          <g font-family="'Archivo', sans-serif" fill="#A9A296">
+            <text x="42" y="346" font-size="9.5" letter-spacing=".4">Avenida Independencia</text>
+            <text x="560" y="346" font-size="9.5" letter-spacing=".4">Avenida Independencia</text>
+            <text x="482" y="86" font-size="9.5" letter-spacing=".4" transform="rotate(90 482 86)">Avenida Paseo Colón</text>
+            <text x="482" y="470" font-size="9.5" letter-spacing=".4" transform="rotate(90 482 470)">Avenida Paseo Colón</text>
+            <text x="120" y="232" font-size="9.5" letter-spacing=".4">Defensa</text>
+            <text x="612" y="580" font-size="9.5" letter-spacing=".4">Chacabuco</text>
+            <text x="150" y="464" font-size="9.5" letter-spacing=".4">Balcarce</text>
+          </g>
+          <g font-family="'Archivo', sans-serif" fill="#A9A296" font-weight="600">
+            <text x="150" y="380" font-size="11" letter-spacing="1.6">SAN TELMO</text>
+            <text x="600" y="200" font-size="11" letter-spacing="1.6">MONSERRAT</text>
+            <text x="128" y="470" font-size="10" letter-spacing="1.2" fill="#9BB5AC">PARQUE LEZAMA</text>
+          </g>
+
+          <!-- Radio de búsqueda -->
+          <circle cx="430" cy="330" r="72" fill="none" stroke="#D3CEC4" stroke-width="1" stroke-dasharray="3 4"></circle>
+          <circle cx="430" cy="330" r="216" fill="#7C2239" fill-opacity="0.04" stroke="#7C2239" stroke-width="1" stroke-dasharray="5 5"></circle>
+          <text x="430" y="106" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#7C2239" letter-spacing="1.4">RADIO 3 KM</text>
+        </svg>
+
+        <!-- Tu ubicación -->
+        <div style="position: absolute; left: 420px; top: 320px; width: 20px; height: 20px; border-radius: 50%; background: #1C6350; border: 3px solid #FFFFFF; box-shadow: 0 0 0 7px rgba(28,99,80,.16);"></div>
+
+        <!-- Marcadores -->
+        <sc-for list="{{ pines }}" as="p" hint-placeholder-count="4">
+          <div class="pin" style="{{ p.estilo }}" onClick="{{ p.abrir }}" onMouseEnter="{{ p.entrar }}" onMouseLeave="{{ p.salir }}">
+            <span class="pp">{{ p.puntaje }}</span>
+            <span class="pm">{{ p.meta }}</span>
+          </div>
+        </sc-for>
+
+        <!-- Ficha emergente -->
+        <div style="{{ estiloPopup }}">
+          <div class="ph" style="height: 104px; border-radius: 12px 12px 0 0;">
+            <svg width="100%" height="104" style="position: absolute; inset: 0;">
+              <rect width="100%" height="104" fill="#EDEAE3"></rect>
+              <rect width="100%" height="104" fill="url(#rayasL)" opacity=".5"></rect>
+            </svg>
+            <svg class="gl" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A9A296" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8a2.5 2.5 0 0 0 5 0V3"></path><path d="M9.5 11v10"></path><path d="M17 3c-1.5 1.5-2 3.5-2 6s.7 3 2 3 2-.6 2-3-.5-4.5-2-6Z"></path><path d="M17 12v9"></path></svg>
+            <button class="ib" onClick="{{ cerrar }}" style="position: absolute; top: 8px; right: 8px; z-index: 2; width: 26px; height: 26px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4C5160" stroke-width="2.2" stroke-linecap="round"><path d="M6 6 18 18"></path><path d="M18 6 6 18"></path></svg>
+            </button>
+          </div>
+          <div style="padding: 12px 14px 14px;">
+            <p class="eyebrow" style="color: #7A7F8C; margin: 0 0 5px;">{{ popCocinas }}</p>
+            <h4 class="serif" style="font-size: 17px; font-weight: 600; margin: 0 0 3px; line-height: 1.2; letter-spacing: -.012em;">{{ popNombre }}</h4>
+            <p style="margin: 0 0 8px; font-size: 12px; color: #7A7F8C;">{{ popMeta }}</p>
+            <div style="display: flex; align-items: baseline; gap: 8px; margin-bottom: 12px;">
+              <span class="serif" style="font-size: 20px; font-weight: 600; color: #7C2239; line-height: 1;">{{ popPuntaje }}</span>
+              <span style="font-size: 11.5px; color: #7A7F8C;">{{ popResenas }}</span>
+            </div>
+            <button class="btn ink" style="width: 100%; font-size: 13.5px; padding: 10px 0; border-radius: 10px;">Ver restaurante</button>
+          </div>
+        </div>
+
+        <!-- Zoom -->
+        <div style="position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; border: 1px solid #D3CEC4; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px -3px rgba(27,28,33,.35);">
+          <button class="zb">+</button>
+          <div style="height: 1px; background: #E3DFD8;"></div>
+          <button class="zb">−</button>
+        </div>
+
+        <!-- Escala -->
+        <div style="position: absolute; left: 14px; bottom: 14px; display: flex; align-items: center; gap: 8px; padding: 6px 11px; background: rgba(255,255,255,.94); border: 1px solid #E3DFD8; border-radius: 8px;">
+          <div style="width: 72px; height: 3px; background: #4C5160;"></div>
+          <span class="mono" style="font-size: 11px; color: #4C5160;">1 km</span>
+        </div>
+
+        <!-- Atribución -->
+        <div style="position: absolute; right: 0; bottom: 0; padding: 3px 8px; background: rgba(255,255,255,.86); border-top-left-radius: 6px;">
+          <span style="font-size: 9.5px; color: #7A7F8C;">Leaflet | © OpenStreetMap contributors © CARTO</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { orden: 'cercania', hov: null, sel: 'cantina' };
+  }
+
+  base() {
+    return [
+      { k: 'cantina',    nombre: 'Cantina San Telmo',      cocinas: 'Pastas · Bodegón',  barrio: 'San Telmo',  estado: 'Abierto',        cierra: false, m: 480,  p: 4.8, r: '312 reseñas', precio: '$$',  x: 388, y: 288 },
+      { k: 'gattopardo', nombre: 'Il Gattopardo',          cocinas: 'Pastas · Italiana', barrio: 'Monserrat',  estado: 'Abierto',        cierra: false, m: 1600, p: 4.6, r: '204 reseñas', precio: '$$$', x: 604, y: 208 },
+      { k: 'rambla',     nombre: 'La Rambla de Chacarita', cocinas: 'Pastas · Parrilla', barrio: 'Chacarita',  estado: 'Abierto',        cierra: false, m: 1200, p: 4.7, r: '486 reseñas', precio: '$$',  x: 258, y: 452 },
+      { k: 'petrona',    nombre: 'Doña Petrona',           cocinas: 'Pastas · Casero',   barrio: 'Boedo',      estado: 'Cierra pronto',  cierra: true,  m: 2100, p: 4.5, r: '158 reseñas', precio: '$',   x: 700, y: 494 }
+    ];
+  }
+
+  ordenados() {
+    const xs = this.base().slice();
+    const o = this.state.orden;
+    if (o === 'cercania') xs.sort((a, b) => a.m - b.m);
+    else if (o === 'puntaje') xs.sort((a, b) => b.p - a.p);
+    else xs.sort((a, b) => (b.p - b.m / 3000) - (a.p - a.m / 3000));
+    return xs;
+  }
+
+  fmtDist(m) {
+    return m < 1000 ? m + ' m' : String((m / 1000).toFixed(1)).replace('.', ',') + ' km';
+  }
+
+  fmtP(p) {
+    return String(p.toFixed(1)).replace('.', ',');
+  }
+
+  renderVals() {
+    const s = this.state;
+    const xs = this.ordenados();
+    const rank = {};
+    xs.forEach((r, i) => { rank[r.k] = i + 1; });
+    const sel = this.base().filter((r) => r.k === s.sel)[0] || null;
+
+    const vals = {
+      resumen: '6 RESULTADOS · RADIO 3 KM · ACTUALIZADO HACE 2 MIN',
+      conteo: '6 RESULTADOS',
+      segCercania: s.orden === 'cercania' ? 'seg on' : 'seg',
+      segPuntaje:  s.orden === 'puntaje'  ? 'seg on' : 'seg',
+      segMixto:    s.orden === 'mixto'    ? 'seg on' : 'seg',
+      verCercania: () => this.setState({ orden: 'cercania' }),
+      verPuntaje:  () => this.setState({ orden: 'puntaje' }),
+      verMixto:    () => this.setState({ orden: 'mixto' }),
+      cerrar: () => this.setState({ sel: null }),
+
+      items: xs.map((r, i) => ({
+        nn: 'Nº ' + String(i + 1).padStart(2, '0'),
+        nombre: r.nombre,
+        cocinas: r.cocinas,
+        estado: r.estado,
+        claseEstado: r.cierra ? 'chip a' : 'chip v',
+        meta: r.barrio + ' · ' + r.precio + ' · a ' + this.fmtDist(r.m),
+        puntaje: this.fmtP(r.p),
+        resenas: r.r,
+        dist: this.fmtDist(r.m),
+        pista: s.sel === r.k ? 'Abierto en el mapa.' : 'Tocá la ficha para ubicarlo en el mapa.',
+        clase: (s.sel === r.k || s.hov === r.k) ? 'lc on' : 'lc',
+        abrir: () => this.setState({ sel: r.k }),
+        entrar: () => this.setState({ hov: r.k }),
+        salir: () => this.setState({ hov: null })
+      })),
+
+      pines: this.base().map((r) => {
+        const on = s.sel === r.k || s.hov === r.k;
+        return {
+          puntaje: this.fmtP(r.p),
+          meta: r.precio + ' · ' + this.fmtDist(r.m),
+          estilo: 'left: ' + (r.x - 36) + 'px; top: ' + (r.y - 20) + 'px; background: ' +
+            (on ? '#7C2239' : '#1B1C21') + '; transform: scale(' + (on ? '1.12' : '1') + '); z-index: ' + (on ? '6' : '4') + ';',
+          abrir: () => this.setState({ sel: r.k }),
+          entrar: () => this.setState({ hov: r.k }),
+          salir: () => this.setState({ hov: null })
+        };
+      })
+    };
+
+    if (sel) {
+      vals.popNombre = sel.nombre;
+      vals.popCocinas = sel.cocinas;
+      vals.popMeta = sel.barrio + ' · ' + sel.precio + ' · a ' + this.fmtDist(sel.m);
+      vals.popPuntaje = this.fmtP(sel.p);
+      vals.popResenas = sel.r;
+      const px = Math.min(Math.max(sel.x - 92, 12), 924 - 196);
+      const py = Math.max(sel.y - 254, 12);
+      vals.estiloPopup = 'position: absolute; z-index: 8; width: 184px; left: ' + px + 'px; top: ' + py +
+        'px; background: #FFFFFF; border: 1px solid #E3DFD8; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 10px -4px rgba(27,28,33,.3), 0 18px 40px -18px rgba(27,28,33,.55);';
+    } else {
+      vals.popNombre = '';
+      vals.popCocinas = '';
+      vals.popMeta = '';
+      vals.popPuntaje = '';
+      vals.popResenas = '';
+      vals.estiloPopup = 'display: none;';
+    }
+
+    return vals;
+  }
+}
+</script>
+</body>
+</html>
