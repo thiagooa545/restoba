@@ -63,10 +63,20 @@ hash del archivo. **Una migración ya aplicada no se edita**: se crea una nueva.
 Los tokens viven en [`apps/web/src/estilos/tokens.css`](apps/web/src/estilos/tokens.css) y salen del
 marco legal ya publicado. Papel cálido `#FCFBF9`, tinta `#1B1C21`, y tres acentos: vino `#7C2239`,
 verde `#1C6350` y ámbar `#815214`. Tipografías: **Petrona** para títulos, **Archivo** para interfaz,
-**IBM Plex Mono** para datos. Modo oscuro completo, por sistema o forzado con `data-theme`.
+**IBM Plex Mono** para datos.
 
 Radios: 12 px en botones, 14 px en paneles, 4 px en chips de dato. Separación por reglas de 1 px, no
 por sombras. Sin neón, glassmorphism ni degradés multicolor.
+
+El papel cálido es la identidad, así que se ve por defecto sin importar cómo tenga el sistema el
+usuario. El modo oscuro existe pero es una elección explícita:
+`document.documentElement.dataset.theme = 'dark'`.
+
+## Mapas
+
+**No hace falta ninguna clave de API.** Se usa Leaflet con teselas de CARTO (claras, las que combinan
+con el diseño) y, como alternativa, las de OpenStreetMap. Se cambia con `VITE_MAPA_PROVEEDOR=osm` en
+el `.env`. Ninguno de los dos pide registro ni tarjeta: por eso se descartó Google Maps.
 
 La maqueta navegable de las pantallas está en `design/` y publicada como canvas de diseño.
 
@@ -93,8 +103,8 @@ almacenan datos de tarjeta, CBU o CVU.
 ## Estado
 
 - [x] **A0 · Fundaciones** — repo, workspaces, Docker con PostGIS, tokens del sistema de diseño
+- [x] **A2** — Buscador, cercanía con PostGIS, mapa y perfil del restaurante
 - [ ] **A1** — Autenticación, roles y pantalla de aceptación del marco legal
-- [ ] **A2** — Buscador, cercanía con PostGIS, mapa y perfil del restaurante
 - [ ] **A3** — Reseñas, favoritos, puntos y cupones
 - [ ] **A4** — Reservas
 - [ ] **Fase B** — Panel del restaurante, cocina en tiempo real, inventario, dashboard y suscripción

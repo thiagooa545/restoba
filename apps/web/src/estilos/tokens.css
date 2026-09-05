@@ -47,41 +47,10 @@
   color-scheme: light;
 }
 
-/* El modo oscuro sigue al sistema, salvo que el usuario elija explícitamente. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --rb-papel: #131419;
-    --rb-superficie: #191b21;
-    --rb-superficie-2: #20232b;
-    --rb-superficie-3: #272b34;
-
-    --rb-tinta: #eceae5;
-    --rb-tinta-2: #aeb4c1;
-    --rb-tinta-3: #7b818f;
-
-    --rb-regla: #2b2f38;
-    --rb-regla-2: #3a3f4a;
-
-    --rb-vino: #e28fa3;
-    --rb-vino-suave: #331f27;
-    --rb-vino-hover: #f0b3c1;
-    --rb-sobre-vino: #16171c;
-
-    --rb-verde: #6fc4aa;
-    --rb-verde-suave: #17302b;
-
-    --rb-ambar: #d6a55c;
-    --rb-ambar-suave: #2e2718;
-
-    --rb-marca: #4d5460;
-
-    --rb-sombra: 0 1px 2px rgb(0 0 0 / 0.4), 0 10px 28px -18px rgb(0 0 0 / 0.7);
-    --rb-sombra-alta: 0 2px 4px rgb(0 0 0 / 0.5), 0 18px 40px -22px rgb(0 0 0 / 0.8);
-
-    color-scheme: dark;
-  }
-}
-
+/* El papel cálido es la identidad de la marca, así que es lo que se ve por
+   defecto en todos lados, sin importar cómo tenga el sistema el usuario.
+   El modo oscuro queda disponible, pero como elección explícita:
+   document.documentElement.dataset.theme = 'dark'. */
 :root[data-theme='dark'] {
   --rb-papel: #131419;
   --rb-superficie: #191b21;
@@ -444,15 +413,20 @@
   transform: scale(1.12);
 }
 
-/* Ficha emergente del mapa: se le saca todo el estilo propio de Leaflet. */
+/* Ficha emergente del mapa.
+   Se le saca todo el estilo propio de Leaflet: más ancha, esquinas bien
+   redondeadas y una sombra en capas que la despega del mapa. */
 .leaflet-popup-content-wrapper {
   padding: 0;
-  border-radius: 12px;
+  border-radius: 18px;
   background: var(--rb-superficie);
   color: var(--rb-tinta);
+  border: 1px solid color-mix(in srgb, var(--rb-regla) 60%, transparent);
+  /* Tres capas: contacto, cuerpo y difusa. Es lo que da el relieve. */
   box-shadow:
-    0 4px 10px -4px rgb(27 28 33 / 0.3),
-    0 18px 40px -18px rgb(27 28 33 / 0.55);
+    0 1px 2px rgb(27 28 33 / 0.06),
+    0 8px 18px -6px rgb(27 28 33 / 0.18),
+    0 28px 56px -20px rgb(27 28 33 / 0.42);
 }
 
 .leaflet-popup-content {
@@ -461,23 +435,39 @@
   line-height: 1.5;
 }
 
-.leaflet-popup-tip {
-  background: var(--rb-superficie);
+.leaflet-popup-tip-container {
+  width: 26px;
+  height: 13px;
 }
 
+.leaflet-popup-tip {
+  background: var(--rb-superficie);
+  box-shadow: 0 8px 18px -6px rgb(27 28 33 / 0.25);
+}
+
+/* La X va sobre la foto, en un botón circular blanco. */
 .leaflet-popup-close-button {
-  width: 26px !important;
-  height: 26px !important;
-  inset: 8px 8px auto auto;
+  width: 30px !important;
+  height: 30px !important;
+  inset: 12px 12px auto auto !important;
   display: flex !important;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--rb-superficie) 94%, transparent) !important;
+  background: var(--rb-superficie) !important;
   color: var(--rb-tinta-2) !important;
-  box-shadow: 0 2px 8px -2px rgb(27 28 33 / 0.35);
-  font-size: 17px !important;
+  box-shadow:
+    0 1px 2px rgb(27 28 33 / 0.1),
+    0 4px 12px -3px rgb(27 28 33 / 0.35);
+  font-size: 18px !important;
+  font-weight: 400 !important;
   padding: 0 !important;
+  transition: background 0.15s ease;
+}
+
+.leaflet-popup-close-button:hover {
+  background: var(--rb-superficie-2) !important;
+  color: var(--rb-tinta) !important;
 }
 
 /* Tu ubicación */

@@ -296,7 +296,44 @@ export function Inicio() {
         </section>
       )}
 
-      <footer className="mx-auto mt-12 flex max-w-[1400px] flex-wrap items-baseline gap-6 border-t border-regla px-4 py-8 sm:px-10">
+      {/* ── Cómo funciona ──────────────────────────────────── */}
+      <section className="mx-auto max-w-[1400px] px-4 pt-11 pb-4 sm:px-10">
+        <div className="panel overflow-hidden rounded-flotante">
+          <div className="flex flex-wrap items-baseline gap-3 border-b border-regla bg-superficie-2 px-6 py-4">
+            <span className="volanta text-vino">Cómo funciona</span>
+            <span className="text-[13.5px] text-tinta-3">Buscar es gratis. Siempre.</span>
+          </div>
+
+          <div className="grid gap-px bg-regla sm:grid-cols-3">
+            <Paso
+              numero="01"
+              titulo="Decinos qué se te antoja"
+              texto="Escribís el tipo de comida. Si nos dejás usar el GPS, filtramos por lo que tenés a mano; si no, elegís el barrio."
+              fondo="bg-vino-suave"
+              color="text-vino"
+              icono={<Lupa tam={19} />}
+            />
+            <Paso
+              numero="02"
+              titulo="Comparás en el mapa"
+              texto="Ves distancia, puntaje y rango de precio en la misma pantalla. Ordenás por cercanía o por reseñas cuando quieras."
+              fondo="bg-verde-suave"
+              color="text-verde"
+              icono={<Pin tam={19} />}
+            />
+            <Paso
+              numero="03"
+              titulo="Reservás y contás cómo te fue"
+              texto="Reservás mesa desde el perfil. Después de la visita dejás tu reseña y sumás puntos para canjear."
+              fondo="bg-ambar-suave"
+              color="text-ambar"
+              icono={<Estrella tam={19} />}
+            />
+          </div>
+        </div>
+      </section>
+
+      <footer className="mx-auto mt-8 flex max-w-[1400px] flex-wrap items-baseline gap-6 border-t border-regla px-4 py-8 sm:px-10">
         <b className="font-display text-lg font-semibold">RestoBA</b>
         <span className="mr-auto text-[13px] text-tinta-3">
           Buscar restaurantes es gratis. Los locales adheridos pagan la suscripción por
@@ -308,8 +345,40 @@ export function Inicio() {
         <a href="#" className="text-[13px]">
           Política de Privacidad
         </a>
+        <a href="#" className="text-[13px]">
+          Acuerdo de Verificación
+        </a>
         <span className="chip">v1.0</span>
       </footer>
+    </div>
+  )
+}
+
+function Paso({
+  numero,
+  titulo,
+  texto,
+  icono,
+  fondo,
+  color,
+}: {
+  numero: string
+  titulo: string
+  texto: string
+  icono: React.ReactNode
+  fondo: string
+  color: string
+}) {
+  return (
+    <div className="bg-superficie px-7 py-7">
+      <div
+        className={`mb-3.5 flex h-10 w-10 items-center justify-center rounded-[12px] ${fondo} ${color}`}
+      >
+        {icono}
+      </div>
+      <span className="font-mono text-[11.5px] tracking-[0.07em] text-ambar">PASO {numero}</span>
+      <h3 className="mt-1.5 mb-2 text-xl">{titulo}</h3>
+      <p className="m-0 text-sm leading-relaxed text-tinta-2">{texto}</p>
     </div>
   )
 }

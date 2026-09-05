@@ -16,6 +16,34 @@ import { Foto } from './Foto'
 const CENTRO_CABA: [number, number] = [-34.6037, -58.3816]
 
 /**
+ * Proveedores de teselas. Ninguno de los dos pide clave de API ni tarjeta:
+ * por eso se eligió Leaflet y no Google Maps.
+ *
+ * · carto — mapa claro, casi sin color. Es el que combina con el sistema de
+ *   diseño y el que está por defecto.
+ * · osm   — el mapa clásico de OpenStreetMap, más colorido. Sirve de respaldo
+ *   si CARTO llegara a limitar el uso.
+ *
+ * Se cambia con VITE_MAPA_PROVEEDOR=osm en el .env de la raíz.
+ */
+const PROVEEDORES = {
+  carto: {
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    atribucion:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    maxZoom: 20,
+  },
+  osm: {
+    url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    atribucion: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  },
+} as const
+
+const elegido = import.meta.env.VITE_MAPA_PROVEEDOR
+const TESELAS = elegido === 'osm' ? PROVEEDORES.osm : PROVEEDORES.carto
+
+/**
  * Marcador con burbuja de puntaje, al estilo de los mapas inmobiliarios:
  * el dato importante se lee sin abrir nada.
  */
@@ -96,11 +124,12 @@ export function Mapa({
       scrollWheelZoom
       className={`h-full w-full ${className}`}
     >
-      {/* Teselas claras de CARTO: no compiten con la interfaz ni con las fotos. */}
+      {/* Teselas claras: no compiten con la interfaz ni con las fotos.
+          Sin clave de API — ver PROVEEDORES arriba. */}
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        maxZoom={20}
+        url={TESELAS.url}
+        attribution={TESELAS.atribucion}
+        maxZoom={TESELAS.maxZoom}
       />
 
       <Encuadrar puntos={puntos} seleccionado={activo} />
@@ -119,30 +148,42 @@ export function Mapa({
             popupclose: () => onSeleccionar(null),
           }}
         >
-          <Popup closeButton autoPan>
-            <article className="w-[196px]">
-              <Foto className="h-24 rounded-t-[11px]" tamIcono={26} />
-              <div className="px-3.5 pt-3 pb-3.5">
-                <p className="volanta m-0 mb-1.5 text-tinta-3">
+          <Popup closeButton autoPan minWidth={252} maxWidth={252} offset={[0, -6]}>
+            <article className="w-[252px]">
+              <Foto className="h-[132px] rounded-t-[17px]" tamIcono={30} />
+
+              <div className="px-4 pt-3.5 pb-4">
+                <p className="volanta m-0 mb-2 text-tinta-3">
                   {r.cocinas.map((c) => c.nombre).join(' · ')}
                 </p>
-                <h3 className="m-0 mb-1 font-display text-[17px] leading-tight">{r.nombre}</h3>
-                <p className="m-0 mb-2 text-xs text-tinta-3">
+
+                <h3 className="m-0 mb-1 font-display text-[19px] leading-tight tracking-[-0.014em]">
+                  {r.nombre}
+                </h3>
+
+                <p className="m-0 mb-3 text-[12.5px] text-tinta-3">
                   {[r.barrio, simbolosPrecio(r.rangoPrecio), formatearDistancia(r.distancia)]
                     .filter(Boolean)
                     .join(' · ')}
                 </p>
-                <div className="mb-3 flex items-baseline gap-2">
-                  <span className="font-display text-xl leading-none font-semibold text-vino">
+
+                <div className="mb-3.5 flex items-baseline gap-2">
+                  <span className="font-display text-[22px] leading-none font-semibold text-vino">
                     {formatearPuntaje(r.calificacion) ?? 'Sin reseñas'}
                   </span>
                   {r.resenas > 0 && (
-                    <span className="text-[11.5px] text-tinta-3">{r.resenas} reseñas</span>
+                    <span className="text-xs text-tinta-3">{r.resenas} reseñas</span>
+                  )}
+                  {r.abierto !== null && (
+                    <span className={`ml-auto ${r.abierto ? 'chip chip-verde' : 'chip'}`}>
+                      {r.abierto ? 'ABIERTO' : 'CERRADO'}
+                    </span>
                   )}
                 </div>
+
                 <Link
                   to={`/restaurante/${r.id}`}
-                  className="boton boton-chico w-full !bg-tinta !text-papel no-underline"
+                  className="boton w-full rounded-[12px] !bg-tinta py-2.5 text-sm !text-papel no-underline"
                 >
                   Ver restaurante
                 </Link>
