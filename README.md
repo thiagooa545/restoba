@@ -15,22 +15,22 @@ PostgreSQL: corre en un contenedor.
 
 ```bash
 npm install
-cp .env.example .env      # en Windows: copy .env.example .env
-npm run db:up             # levanta PostgreSQL 16 + PostGIS 3.4
-npm run db:migrate        # aplica las migraciones
-npm run dev               # API en :4000 y web en :5173
+npm start
 ```
 
-Abrí <http://localhost:5173>. La pantalla de arranque muestra si la API y PostGIS responden.
+`npm start` se encarga del resto: chequea que estén Node y Docker, crea el `.env` si falta, levanta
+la base, aplica las migraciones, carga los datos de ejemplo y deja corriendo la API y la web.
+Después abrís <http://localhost:5173>.
 
-> La primera vez, `db:migrate` puede fallar con *Connection terminated unexpectedly*: PostgreSQL se
-> reinicia una vez al terminar de inicializarse. Volvé a correrlo y anda.
+Para llevarlo a otra computadora —un pendrive, la máquina del colegio— está
+[`docs/como-mostrarlo.md`](docs/como-mostrarlo.md).
 
 ### Comandos
 
 | Comando | Qué hace |
 |---|---|
-| `npm run dev` | Levanta la API y la web juntas |
+| `npm start` | Hace todo: base, migraciones, datos de ejemplo y servidores |
+| `npm run dev` | Levanta solo la API y la web (la base ya tiene que estar arriba) |
 | `npm run dev:api` / `npm run dev:web` | Una sola de las dos |
 | `npm run build` | Compila ambas para producción |
 | `npm run typecheck` | Verifica tipos en los tres paquetes |
@@ -38,6 +38,7 @@ Abrí <http://localhost:5173>. La pantalla de arranque muestra si la API y PostG
 | `npm run db:migrate` | Aplica las migraciones pendientes |
 | `npm run db:reset` | Borra el esquema y reaplica todo **(se pierden los datos)** |
 | `npm run db:logs` | Sigue el log de PostgreSQL |
+| `npm run pack:offline` | Exporta la imagen de PostGIS para llevarla sin internet |
 
 ---
 
@@ -74,9 +75,12 @@ usuario. El modo oscuro existe pero es una elección explícita:
 
 ## Mapas
 
-**No hace falta ninguna clave de API.** Se usa Leaflet con teselas de CARTO (claras, las que combinan
-con el diseño) y, como alternativa, las de OpenStreetMap. Se cambia con `VITE_MAPA_PROVEEDOR=osm` en
-el `.env`. Ninguno de los dos pide registro ni tarjeta: por eso se descartó Google Maps.
+**No hace falta ninguna clave de API.** Se usa Leaflet con el canvas gris claro de Esri (dos capas:
+el dibujo y las etiquetas encima) y, como alternativa, las teselas de OpenStreetMap. Se cambia con
+`VITE_MAPA_PROVEEDOR=osm` en el `.env`. Ninguno pide registro ni tarjeta: por eso se descartó Google
+Maps, que exige tarjeta de crédito.
+
+> CARTO quedó descartado: desde 2025 estampa «API KEY REQUIRED» sobre sus teselas gratuitas.
 
 La maqueta navegable de las pantallas está en `design/` y publicada como canvas de diseño.
 

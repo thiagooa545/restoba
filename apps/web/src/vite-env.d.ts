@@ -2,8 +2,8 @@
 
 interface ImportMetaEnv {
   readonly VITE_API_URL?: string
-  /** Proveedor de teselas del mapa: 'carto' (por defecto) u 'osm'. Ninguno pide clave. */
-  readonly VITE_MAPA_PROVEEDOR?: 'carto' | 'osm'
+  /** Proveedor de teselas del mapa: 'esri' (por defecto) u 'osm'. Ninguno pide clave. */
+  readonly VITE_MAPA_PROVEEDOR?: 'esri' | 'osm'
 }
 
 interface ImportMeta {

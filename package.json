@@ -12,6 +12,7 @@
     "node": ">=22"
   },
   "scripts": {
+    "start": "node scripts/arrancar.mjs",
     "dev": "concurrently -n api,web -c magenta,cyan \"npm:dev:api\" \"npm:dev:web\"",
     "dev:api": "npm run dev -w @restoba/api",
     "dev:web": "npm run dev -w @restoba/web",
@@ -23,7 +24,8 @@
     "db:logs": "docker compose -f infra/docker-compose.yml logs -f postgres",
     "db:migrate": "npm run migrate -w @restoba/api",
     "db:seed": "npm run seed -w @restoba/api",
-    "db:reset": "npm run migrate -w @restoba/api -- --reset"
+    "db:reset": "npm run migrate -w @restoba/api -- --reset",
+    "pack:offline": "node scripts/pack-offline.mjs"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

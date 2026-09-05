@@ -16,32 +16,37 @@ import { Foto } from './Foto'
 const CENTRO_CABA: [number, number] = [-34.6037, -58.3816]
 
 /**
- * Proveedores de teselas. Ninguno de los dos pide clave de API ni tarjeta:
- * por eso se eligió Leaflet y no Google Maps.
+ * Proveedores de teselas. Ninguno pide clave de API ni tarjeta: por eso se
+ * eligió Leaflet y no Google Maps.
  *
- * · carto — mapa claro, casi sin color. Es el que combina con el sistema de
- *   diseño y el que está por defecto.
- * · osm   — el mapa clásico de OpenStreetMap, más colorido. Sirve de respaldo
- *   si CARTO llegara a limitar el uso.
+ * · esri — canvas gris claro, en dos capas: el dibujo y las etiquetas encima.
+ *   Es el que combina con el sistema de diseño y el que está por defecto.
+ * · osm  — el mapa clásico de OpenStreetMap, más colorido. Respaldo.
  *
  * Se cambia con VITE_MAPA_PROVEEDOR=osm en el .env de la raíz.
+ *
+ * CARTO quedó descartado: desde 2025 estampa «API KEY REQUIRED» sobre las
+ * teselas gratuitas.
  */
 const PROVEEDORES = {
-  carto: {
-    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-    atribucion:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    maxZoom: 20,
+  esri: {
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+    // Capa transparente con los nombres de calles y barrios.
+    etiquetas:
+      'https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+    atribucion: 'Esri, HERE, Garmin, &copy; OpenStreetMap contributors',
+    maxZoom: 16,
   },
   osm: {
     url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    etiquetas: null,
     atribucion: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxZoom: 19,
   },
 } as const
 
-const elegido = import.meta.env.VITE_MAPA_PROVEEDOR
-const TESELAS = elegido === 'osm' ? PROVEEDORES.osm : PROVEEDORES.carto
+const TESELAS =
+  import.meta.env.VITE_MAPA_PROVEEDOR === 'osm' ? PROVEEDORES.osm : PROVEEDORES.esri
 
 /**
  * Marcador con burbuja de puntaje, al estilo de los mapas inmobiliarios:
@@ -126,11 +131,10 @@ export function Mapa({
     >
       {/* Teselas claras: no compiten con la interfaz ni con las fotos.
           Sin clave de API — ver PROVEEDORES arriba. */}
-      <TileLayer
-        url={TESELAS.url}
-        attribution={TESELAS.atribucion}
-        maxZoom={TESELAS.maxZoom}
-      />
+      <TileLayer url={TESELAS.url} attribution={TESELAS.atribucion} maxZoom={TESELAS.maxZoom} />
+      {TESELAS.etiquetas && (
+        <TileLayer url={TESELAS.etiquetas} maxZoom={TESELAS.maxZoom} zIndex={2} />
+      )}
 
       <Encuadrar puntos={puntos} seleccionado={activo} />
 

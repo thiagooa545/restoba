@@ -28,3 +28,6 @@ Thumbs.db
 
 # Canvas de diseño generado: se rearma con seed-canvas desde los .dc.html
 design/restoba-fase-a.html
+
+# Imagen de Docker exportada para llevar en pendrive (400 MB, se regenera con npm run pack:offline)
+infra/*.tar
