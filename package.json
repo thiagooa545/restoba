@@ -22,6 +22,7 @@
     "db:down": "docker compose -f infra/docker-compose.yml down",
     "db:logs": "docker compose -f infra/docker-compose.yml logs -f postgres",
     "db:migrate": "npm run migrate -w @restoba/api",
+    "db:seed": "npm run seed -w @restoba/api",
     "db:reset": "npm run migrate -w @restoba/api -- --reset"
   },
   "devDependencies": {

@@ -3,6 +3,7 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import { config } from './config.js'
+import { rutasRestaurantes } from './rutas/restaurantes.js'
 import { rutasSalud } from './rutas/salud.js'
 
 export function crearApp(): express.Express {
@@ -20,6 +21,7 @@ export function crearApp(): express.Express {
   app.use(cookieParser())
 
   app.use('/api', rutasSalud)
+  app.use('/api', rutasRestaurantes)
 
   // 404 en JSON, para que el frontend nunca reciba HTML donde espera datos.
   app.use((_req, res) => {

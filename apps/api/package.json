@@ -9,7 +9,8 @@
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
-    "migrate": "tsx src/db/migrar.ts"
+    "migrate": "tsx src/db/migrar.ts",
+    "seed": "tsx src/db/sembrar.ts"
   },
   "dependencies": {
     "@restoba/shared": "*",
