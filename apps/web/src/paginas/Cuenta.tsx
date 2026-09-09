@@ -1,5 +1,5 @@
 import type { ComensalPublico } from '@restoba/shared'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate } from 'react-router'
 import * as api from '../api/cliente'
 import { ErrorApi } from '../api/cliente'
@@ -84,10 +84,30 @@ function VerificarEmail({
   email: string
   onListo: (c: ComensalPublico) => void
 }) {
+  const [codigoDemo, setCodigoDemo] = useState<string | undefined>()
+  const yaPedido = useRef(false)
+
+  // En desarrollo no hay servidor de correo, así que el código se pide apenas
+  // se abre el paso y se muestra en pantalla. En producción no se pide solo:
+  // el correo ya salió al registrarse y reenviarlo es decisión del usuario.
+  useEffect(() => {
+    if (!import.meta.env.DEV || yaPedido.current) return
+    yaPedido.current = true
+    api
+      .reenviarCodigoEmail()
+      .then((r) => setCodigoDemo(r.codigoDemo))
+      .catch(() => undefined)
+  }, [])
+
   return (
     <VerificarCodigo
       titulo="Confirmá tu correo"
-      bajada={`Te mandamos un código de 6 dígitos a ${email}.`}
+      bajada={
+        import.meta.env.DEV
+          ? `El código de 6 dígitos de ${email} es este:`
+          : `Te mandamos un código de 6 dígitos a ${email}.`
+      }
+      codigoDemo={codigoDemo}
       accionVerificar={api.verificarEmail}
       accionReenviar={api.reenviarCodigoEmail}
       onListo={onListo}
@@ -190,7 +210,10 @@ function VerificarCodigo({
   onListo: (c: ComensalPublico) => void
 }) {
   const [codigo, setCodigo] = useState('')
-  const [codigoDemo, setCodigoDemo] = useState(codigoInicial)
+  // El reenvío pisa al código inicial, pero mientras no haya reenvío se usa el
+  // que llega por prop, que puede aparecer después del primer render.
+  const [reenviado, setReenviado] = useState<string | undefined>()
+  const codigoDemo = reenviado ?? codigoInicial
   const [error, setError] = useState<string | null>(null)
   const [enviando, setEnviando] = useState(false)
 
@@ -213,7 +236,8 @@ function VerificarCodigo({
     setError(null)
     try {
       const r = await accionReenviar()
-      setCodigoDemo(r.codigoDemo)
+      setReenviado(r.codigoDemo)
+      setCodigo('')
     } catch {
       setError('No pudimos reenviar el código.')
     }
@@ -230,6 +254,12 @@ function VerificarCodigo({
 
         {/* En desarrollo no hay servidor de correo ni de SMS: el código se
             muestra acá para poder recorrer el flujo completo. */}
+        {!codigoDemo && import.meta.env.DEV && (
+          <p className="mb-4 rounded-r-[10px] border-l-[3px] border-regla-2 bg-superficie-2 px-4 py-3 text-[13px] text-tinta-3">
+            Generando el código…
+          </p>
+        )}
+
         {codigoDemo && (
           <div className="mb-4 flex flex-wrap items-center gap-3 rounded-r-[10px] border-l-[3px] border-ambar bg-ambar-suave px-4 py-3">
             <Aviso tam={17} className="shrink-0 text-ambar" />
