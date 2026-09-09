@@ -5,6 +5,7 @@ import * as api from '../lib/cliente'
 import { ErrorApi } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { GateLegal } from '../componentes/GateLegal'
+import { MisReservas } from '../componentes/MisReservas'
 import { Aviso, Telefono } from '../componentes/Iconos'
 import { useSesion } from '../lib/Sesion'
 
@@ -61,6 +62,11 @@ export function Cuenta() {
         {pasoLegal && <GateLegal comensal={comensal} onActualizar={actualizar} />}
 
         {legal.verificado && <Verificada comensal={comensal} onActualizar={actualizar} />}
+
+        <section className="mt-10 border-t border-regla pt-8">
+          <h2 className="mb-5 text-2xl">Mis reservas</h2>
+          <MisReservas />
+        </section>
 
         <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-regla pt-6">
           <span className="text-sm text-tinta-3">

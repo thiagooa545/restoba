@@ -12,6 +12,7 @@ import { verRestaurante } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { Foto } from '../componentes/Foto'
 import { Aviso, Hoja, Pin, Reloj, Telefono, Volver } from '../componentes/Iconos'
+import { Reservar } from '../componentes/Reservar'
 
 export function Perfil() {
   const { id } = useParams()
@@ -129,9 +130,9 @@ export function Perfil() {
           )}
 
           <div className="flex flex-wrap gap-2.5 border-b border-regla pb-8">
-            <button type="button" className="boton boton-vino">
+            <a href="#reservar" className="boton boton-vino no-underline">
               Reservar mesa
-            </button>
+            </a>
             <Link
               to={`/buscar?sel=${resto.id}${lat !== undefined ? `&lat=${lat}&lng=${lng}` : ''}`}
               className="boton boton-fantasma no-underline"
@@ -231,21 +232,8 @@ export function Perfil() {
         <div className="hidden self-stretch bg-regla lg:block" />
 
         {/* Columna lateral */}
-        <aside className="flex flex-col gap-6">
-          <div className="panel overflow-hidden">
-            <div className="border-b border-regla bg-superficie-2 px-5 py-3.5">
-              <b className="font-display text-lg font-semibold">Reservar mesa</b>
-            </div>
-            <div className="px-5 py-5">
-              <p className="m-0 mb-4 text-[13.5px] leading-relaxed text-tinta-2">
-                Las reservas se habilitan con la cuenta verificada. Es lo que sigue en el plan de
-                trabajo.
-              </p>
-              <button type="button" className="boton boton-vino w-full" disabled>
-                Confirmar reserva
-              </button>
-            </div>
-          </div>
+        <aside id="reservar" className="flex flex-col gap-6 scroll-mt-24">
+          <Reservar restauranteId={resto.id} nombre={resto.nombre} />
 
           <div>
             <p className="volanta mb-2.5 text-tinta-3">

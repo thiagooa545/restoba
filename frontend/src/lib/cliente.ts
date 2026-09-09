@@ -1,5 +1,7 @@
 import type {
   ComensalPublico,
+  Disponibilidad,
+  Reserva,
   DocumentoLegal,
   DocumentoLegalRespuesta,
   RespuestaBusqueda,
@@ -192,6 +194,42 @@ export function aceptarDocumento(datos: {
 
 export function revocarAceptaciones(): Promise<ConComensal> {
   return pedir<ConComensal>('/legal/revocar', { metodo: 'POST', conToken: true })
+}
+
+// ── Reservas ────────────────────────────────────────────────
+
+export function disponibilidad(
+  restauranteId: number,
+  fecha: string,
+  personas: number,
+  senal?: AbortSignal,
+): Promise<Disponibilidad> {
+  return pedir<Disponibilidad>(
+    `/restaurantes/${restauranteId}/disponibilidad?fecha=${fecha}&personas=${personas}`,
+    { senal },
+  )
+}
+
+export function reservar(datos: {
+  restauranteId: number
+  fecha: string
+  hora: string
+  personas: number
+  notas?: string
+}): Promise<{ reserva: Reserva }> {
+  return pedir('/reservas', { metodo: 'POST', cuerpo: datos, conToken: true })
+}
+
+export async function misReservas(senal?: AbortSignal): Promise<Reserva[]> {
+  const { reservas } = await pedir<{ reservas: Reserva[] }>('/reservas/mias', {
+    conToken: true,
+    senal,
+  })
+  return reservas
+}
+
+export function cancelarReserva(id: number): Promise<{ reserva: Reserva }> {
+  return pedir(`/reservas/${id}/cancelar`, { metodo: 'POST', conToken: true })
 }
 
 export { ErrorApi }

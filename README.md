@@ -123,8 +123,8 @@ almacenan datos de tarjeta, CBU o CVU.
 - [x] **A0 · Fundaciones** — repo, workspaces, Docker con PostGIS, tokens del sistema de diseño
 - [x] **A1** — Autenticación, verificación de cuenta y pantalla de aceptación del marco legal
 - [x] **A2** — Buscador, cercanía con PostGIS, mapa y perfil del restaurante
+- [x] **A4** — Reservas con disponibilidad real por horario y mesa
 - [ ] **A3** — Reseñas, favoritos, puntos y cupones
-- [ ] **A4** — Reservas
 - [ ] **Fase B** — Panel del restaurante, cocina en tiempo real, inventario, dashboard y suscripción
 
 Los desvíos respecto del documento de análisis están registrados en

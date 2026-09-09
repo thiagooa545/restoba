@@ -22,6 +22,7 @@ async function main(): Promise<void> {
     }
 
     let productos = 0
+    let mesas = 0
 
     for (const r of RESTAURANTES) {
       const { rows } = await cliente.query<{ id: number }>(
@@ -45,6 +46,22 @@ async function main(): Promise<void> {
           'INSERT INTO restaurante_tipo_cocina (restaurante_id, tipo_cocina_id) VALUES ($1, $2)',
           [restauranteId, cocinaId],
         )
+      }
+
+      // Salón: más mesas chicas que grandes, que es como son los salones.
+      const plantilla: [number, number][] = r.rangoPrecio === 3
+        ? [[2, 6], [4, 4], [6, 2]]
+        : [[2, 5], [4, 6], [6, 3], [8, 1]]
+      let numero = 1
+      for (const [capacidad, cuantas] of plantilla) {
+        for (let k = 0; k < cuantas; k += 1) {
+          await cliente.query(
+            'INSERT INTO mesa (restaurante_id, numero, capacidad) VALUES ($1, $2, $3)',
+            [restauranteId, String(numero), capacidad],
+          )
+          numero += 1
+          mesas += 1
+        }
       }
 
       for (const [dia, abre, cierra] of r.horarios) {
@@ -82,13 +99,13 @@ async function main(): Promise<void> {
     }
 
     const activos = RESTAURANTES.filter((r) => r.estado === 'activa').length
-    return { cocinas: TIPOS_COCINA.length, restaurantes: RESTAURANTES.length, activos, productos }
+    return { cocinas: TIPOS_COCINA.length, restaurantes: RESTAURANTES.length, activos, productos, mesas }
   })
 
   console.log(
     `Sembrado listo: ${resumen.restaurantes} restaurantes ` +
       `(${resumen.activos} con suscripción activa), ` +
-      `${resumen.cocinas} tipos de cocina y ${resumen.productos} productos.`,
+      `${resumen.cocinas} tipos de cocina, ${resumen.productos} productos y ${resumen.mesas} mesas.`,
   )
 }
 
