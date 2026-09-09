@@ -3,7 +3,7 @@ import {
   documentoLegalSchema,
   DOCUMENTOS_LEGALES,
   VERSION_LEGAL_VIGENTE,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { Router } from 'express'
 import { aPublico, estadoLegal, porId, registrarAceptacion, revocarAceptaciones } from '../db/comensales.js'
 import { leerDocumento } from '../documentos-legales.js'

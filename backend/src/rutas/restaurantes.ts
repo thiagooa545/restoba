@@ -1,4 +1,4 @@
-import { busquedaSchema, RADIOS, type RespuestaBusqueda } from '@restoba/shared'
+import { busquedaSchema, RADIOS, type RespuestaBusqueda } from '@restoba/compartido'
 import { Router } from 'express'
 import { z } from 'zod'
 import {

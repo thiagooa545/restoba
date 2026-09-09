@@ -3,7 +3,7 @@ import {
   type ComensalPublico,
   type DocumentoLegal,
   type DocumentoLegalRespuesta,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { useEffect, useMemo, useState } from 'react'
 import Markdown from 'react-markdown'
 import { Link } from 'react-router'

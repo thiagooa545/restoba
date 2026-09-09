@@ -5,7 +5,7 @@ import {
   formatearPuntaje,
   simbolosPrecio,
   type RestauranteDetalle,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { useEffect, useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router'
 import { verRestaurante } from '../lib/cliente'

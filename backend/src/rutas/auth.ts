@@ -4,7 +4,7 @@ import {
   registroSchema,
   telefonoSchema,
   type RespuestaSesion,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { Router, type Request, type Response } from 'express'
 import { enDesarrollo } from '../config.js'
 import {

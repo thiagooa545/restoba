@@ -5,8 +5,9 @@
   "description": "Plataforma web para descubrir y gestionar restaurantes (SaaS B2B)",
   "type": "module",
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "compartido",
+    "backend",
+    "frontend"
   ],
   "engines": {
     "node": ">=22"
@@ -14,17 +15,17 @@
   "scripts": {
     "start": "node scripts/arrancar.mjs",
     "dev": "concurrently -n api,web -c magenta,cyan \"npm:dev:api\" \"npm:dev:web\"",
-    "dev:api": "npm run dev -w @restoba/api",
-    "dev:web": "npm run dev -w @restoba/web",
-    "build": "npm run build -w @restoba/api && npm run build -w @restoba/web",
+    "dev:api": "npm run dev -w @restoba/backend",
+    "dev:web": "npm run dev -w @restoba/frontend",
+    "build": "npm run build -w @restoba/backend && npm run build -w @restoba/frontend",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "db:up": "docker compose -f infra/docker-compose.yml up -d",
     "db:down": "docker compose -f infra/docker-compose.yml down",
     "db:logs": "docker compose -f infra/docker-compose.yml logs -f postgres",
-    "db:migrate": "npm run migrate -w @restoba/api",
-    "db:seed": "npm run seed -w @restoba/api",
-    "db:reset": "npm run migrate -w @restoba/api -- --reset",
+    "db:migrate": "npm run migrate -w @restoba/backend",
+    "db:seed": "npm run seed -w @restoba/backend",
+    "db:reset": "npm run migrate -w @restoba/backend -- --reset",
     "pack:offline": "node scripts/pack-offline.mjs"
   },
   "devDependencies": {

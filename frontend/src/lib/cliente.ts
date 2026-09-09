@@ -5,7 +5,7 @@ import type {
   RespuestaBusqueda,
   RespuestaSesion,
   RestauranteDetalle,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 
 /** En desarrollo, Vite redirige /api a la API: un solo origen para el navegador. */
 const BASE = '/api'

@@ -3,7 +3,7 @@ import {
   formatearPuntaje,
   simbolosPrecio,
   type RestauranteResultado,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { buscar, tiposDeCocina, type TipoCocina } from '../lib/cliente'

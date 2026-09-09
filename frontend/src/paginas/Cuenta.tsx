@@ -1,4 +1,4 @@
-import type { ComensalPublico } from '@restoba/shared'
+import type { ComensalPublico } from '@restoba/compartido'
 import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate } from 'react-router'
 import * as api from '../lib/cliente'

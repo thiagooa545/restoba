@@ -5,7 +5,7 @@ import {
   simbolosPrecio,
   type Orden,
   type RespuestaBusqueda,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { buscar } from '../lib/cliente'

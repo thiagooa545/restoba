@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv } from 'vite'
 import { resolve } from 'node:path'
 
-// El .env vive en la raíz del repo, no en apps/web.
-const RAIZ = resolve(import.meta.dirname, '../..')
+// El .env vive en la raíz del repo, no acá.
+const RAIZ = resolve(import.meta.dirname, '..')
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, RAIZ, 'VITE_')

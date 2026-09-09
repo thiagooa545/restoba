@@ -1,0 +1,20 @@
+{
+  // Los artboards de la maqueta (docs/maqueta/*.dc.html) usan el formato del
+  // canvas de diseño: interpolaciones {{ asi }} dentro de atributos y etiquetas
+  // propias como <x-dc> o <sc-for>. El validador de HTML de VS Code no las
+  // conoce y las marca como error, pero no son errores: esos archivos no se
+  // ejecutan en la aplicación. Se apaga la validación de estilos y scripts
+  // dentro de HTML, que es de donde salen todos esos subrayados.
+  "html.validate.styles": false,
+  "html.validate.scripts": false,
+
+  // Que no aparezcan en la búsqueda de archivos ni en "buscar en todos lados".
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "package-lock.json": true
+  },
+
+  "editor.formatOnSave": false,
+  "files.eol": "\n"
+}

@@ -1,4 +1,4 @@
-import type { ComensalPublico } from '@restoba/shared'
+import type { ComensalPublico } from '@restoba/compartido'
 import { createContext, use, useCallback, useEffect, useMemo, useState } from 'react'
 import * as api from './cliente'
 

@@ -5,7 +5,7 @@ import {
   type DocumentoLegal,
   type EstadoLegal,
   type NivelAcceso,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { telefonoEnmascarado } from '../seguridad.js'
 import { consultar, consultarUna } from './pool.js'
 

@@ -86,16 +86,18 @@ documento sí exige— no aportaría nada.
 
 El documento no elige proveedor de mapas.
 
-Se usa **Leaflet con teselas de OpenStreetMap**: no requiere clave de API, tarjeta de crédito ni
-contrato, lo que es coherente con la factibilidad económica del proyecto y evita sumar un proveedor
-más a la lista de terceros de la Política de Privacidad.
+Se usa **Leaflet** con el canvas gris claro de **Esri**, y OpenStreetMap como alternativa. Ninguno
+de los dos requiere clave de API, tarjeta de crédito ni contrato, lo que es coherente con la
+factibilidad económica del proyecto y evita sumar un proveedor más a la lista de terceros de la
+Política de Privacidad. Se descartó CARTO porque desde 2025 estampa «API KEY REQUIRED» sobre sus
+teselas gratuitas, y Google Maps porque exige tarjeta de crédito.
 
 ---
 
 ## 8. Lenguaje
 
 El documento nombra JavaScript. Se usa **TypeScript** en el frontend y en el backend, con tipos y
-esquemas de validación compartidos en `packages/shared`. Es el mismo ecosistema y las mismas
+esquemas de validación compartidos en `compartido`. Es el mismo ecosistema y las mismas
 herramientas: solo agrega verificación en tiempo de compilación.
 
 ---

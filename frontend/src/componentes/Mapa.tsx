@@ -3,7 +3,7 @@ import {
   formatearPuntaje,
   simbolosPrecio,
   type RestauranteResultado,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { useEffect, useMemo } from 'react'

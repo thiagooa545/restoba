@@ -3,7 +3,7 @@ import {
   VERSION_LEGAL_VIGENTE,
   type DocumentoLegal,
   type DocumentoLegalRespuesta,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { readFile, stat } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { DIR_LEGAL } from './config.js'

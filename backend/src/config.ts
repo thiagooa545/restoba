@@ -5,8 +5,8 @@ import { z } from 'zod'
 
 const aca = dirname(fileURLToPath(import.meta.url))
 
-/** Raíz del repositorio: apps/api/src → apps/api → apps → raíz */
-export const RAIZ = resolve(aca, '../../..')
+/** Raíz del repositorio: backend/src → backend → raíz */
+export const RAIZ = resolve(aca, '../..')
 
 /** Carpeta con los documentos legales. Son la fuente de verdad: se leen, no se copian. */
 export const DIR_LEGAL = resolve(RAIZ, 'legal')

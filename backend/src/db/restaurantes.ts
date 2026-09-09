@@ -5,7 +5,7 @@ import type {
   HorarioDia,
   RestauranteDetalle,
   RestauranteResultado,
-} from '@restoba/shared'
+} from '@restoba/compartido'
 import { consultar, consultarUna } from './pool.js'
 
 /** Zona horaria del proyecto. Los horarios se evalúan siempre en hora local. */

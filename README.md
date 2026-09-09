@@ -45,24 +45,23 @@ Para llevarlo a otra computadora —un pendrive, la máquina del colegio— est�
 ## Estructura
 
 ```
-apps/api/src/
-  rutas/           Un archivo por familia de endpoints
-  db/              Consultas SQL, migraciones y datos de ejemplo
-  middleware/      Sesión y gate de verificación
-  seguridad.ts     bcrypt, JWT, AES-256-GCM y hashes
+backend/           API REST — Node + Express + PostgreSQL/PostGIS
+  src/rutas/         un archivo por familia de endpoints
+  src/db/            consultas SQL y datos de ejemplo
+  src/middleware/    sesión y gate de verificación
+  src/seguridad.ts   bcrypt, JWT, AES-256-GCM y hashes
 
-apps/web/src/
-  paginas/         Una por ruta del navegador
-  componentes/     Piezas reutilizables
-  lib/             Cliente de la API, sesión y geolocalización
-  estilos/         Tokens del sistema de diseño
+frontend/          Web responsiva — React + Vite + Tailwind
+  src/paginas/       una por ruta del navegador
+  src/componentes/   piezas reutilizables
+  src/lib/           cliente de la API, sesión y geolocalización
+  src/estilos/       tokens del sistema de diseño
 
-packages/shared/   Tipos y esquemas Zod que usan las dos puntas
+compartido/        Tipos y esquemas Zod que usan las dos puntas
 infra/             docker-compose y migraciones SQL numeradas
 scripts/           Arranque en un comando y empaquetado offline
-legal/             Marco legal. Fuente de verdad: la app lo renderiza, no lo copia
-design/            Maqueta de la Fase A (artboards del canvas de diseño)
-docs/              Anexos y la guía para mostrarlo en otra computadora
+legal/             Marco legal. La app lo renderiza desde acá, no lo copia
+docs/              Anexos, guía para mostrarlo, y la maqueta en docs/maqueta/
 ```
 
 **No borres `package-lock.json`.** Tiene ~6.000 líneas porque lista la versión exacta
@@ -76,7 +75,7 @@ hash del archivo. **Una migración ya aplicada no se edita**: se crea una nueva.
 
 ## Sistema de diseño
 
-Los tokens viven en [`apps/web/src/estilos/tokens.css`](apps/web/src/estilos/tokens.css) y salen del
+Los tokens viven en [`frontend/src/estilos/tokens.css`](frontend/src/estilos/tokens.css) y salen del
 marco legal ya publicado. Papel cálido `#FCFBF9`, tinta `#1B1C21`, y tres acentos: vino `#7C2239`,
 verde `#1C6350` y ámbar `#815214`. Tipografías: **Petrona** para títulos, **Archivo** para interfaz,
 **IBM Plex Mono** para datos.
@@ -97,7 +96,7 @@ Maps, que exige tarjeta de crédito.
 
 > CARTO quedó descartado: desde 2025 estampa «API KEY REQUIRED» sobre sus teselas gratuitas.
 
-La maqueta navegable de las pantallas está en `design/` y publicada como canvas de diseño.
+La maqueta navegable de las pantallas está en `docs/maqueta/` y publicada como canvas de diseño.
 
 ---
 
