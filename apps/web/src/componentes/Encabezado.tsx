@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { useSesion } from '../contextos/Sesion'
+import { useSesion } from '../lib/Sesion'
 
 /**
  * Barra superior flotante: se apoya sobre el contenido en lugar de empujarlo.

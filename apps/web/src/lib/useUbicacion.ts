@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react'
 
 export type Coordenadas = { lat: number; lng: number }
 
-export type EstadoUbicacion =
+type EstadoUbicacion =
   | { estado: 'inicial' }
   | { estado: 'pidiendo' }
   | { estado: 'lista'; coords: Coordenadas }

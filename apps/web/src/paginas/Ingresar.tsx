@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { ErrorApi } from '../api/cliente'
+import { ErrorApi } from '../lib/cliente'
 import { Campo, ErrorForm, MarcoAuth } from '../componentes/MarcoAuth'
-import { useSesion } from '../contextos/Sesion'
+import { useSesion } from '../lib/Sesion'
 
 export function Ingresar() {
   const { entrar } = useSesion()

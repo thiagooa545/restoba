@@ -45,14 +45,29 @@ Para llevarlo a otra computadora —un pendrive, la máquina del colegio— est�
 ## Estructura
 
 ```
-apps/api/          Capa de lógica — Node + Express + PostgreSQL/PostGIS
-apps/web/          Capa de presentación — React + Vite + Tailwind
-packages/shared/   Tipos y esquemas Zod compartidos entre las dos
+apps/api/src/
+  rutas/           Un archivo por familia de endpoints
+  db/              Consultas SQL, migraciones y datos de ejemplo
+  middleware/      Sesión y gate de verificación
+  seguridad.ts     bcrypt, JWT, AES-256-GCM y hashes
+
+apps/web/src/
+  paginas/         Una por ruta del navegador
+  componentes/     Piezas reutilizables
+  lib/             Cliente de la API, sesión y geolocalización
+  estilos/         Tokens del sistema de diseño
+
+packages/shared/   Tipos y esquemas Zod que usan las dos puntas
 infra/             docker-compose y migraciones SQL numeradas
+scripts/           Arranque en un comando y empaquetado offline
 legal/             Marco legal. Fuente de verdad: la app lo renderiza, no lo copia
 design/            Maqueta de la Fase A (artboards del canvas de diseño)
-docs/              Anexos, incluido el registro de desvíos respecto del análisis
+docs/              Anexos y la guía para mostrarlo en otra computadora
 ```
+
+**No borres `package-lock.json`.** Tiene ~6.000 líneas porque lista la versión exacta
+de cada dependencia y de sus dependencias. Es lo que hace que el proyecto se instale
+igual en las cinco máquinas del equipo. Lo genera npm; no se edita a mano.
 
 Las migraciones se aplican en orden alfabético y quedan registradas en la tabla `_migracion` con el
 hash del archivo. **Una migración ya aplicada no se edita**: se crea una nueva.

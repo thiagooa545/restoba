@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css'
 import { useEffect, useMemo } from 'react'
 import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
 import { Link } from 'react-router'
-import type { Coordenadas } from '../hooks/useUbicacion'
+import type { Coordenadas } from '../lib/useUbicacion'
 import { Foto } from './Foto'
 
 /** Obelisco: centro por defecto cuando no hay ubicación ni resultados. */

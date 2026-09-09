@@ -6,7 +6,7 @@
  * búsqueda por cercanía y el mapa se prueben con distancias verdaderas.
  */
 
-export type SemillaProducto = {
+type SemillaProducto = {
   categoria: string
   nombre: string
   descripcion: string
@@ -18,9 +18,9 @@ export type SemillaProducto = {
 }
 
 /** [día de la semana (0 = domingo), abre, cierra] */
-export type SemillaHorario = [number, string, string]
+type SemillaHorario = [number, string, string]
 
-export type SemillaRestaurante = {
+type SemillaRestaurante = {
   nombre: string
   descripcion: string
   plan: string

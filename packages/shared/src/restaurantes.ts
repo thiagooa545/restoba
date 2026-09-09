@@ -62,7 +62,7 @@ export type RespuestaBusqueda = {
   conUbicacion: boolean
 }
 
-export type ProductoCarta = {
+type ProductoCarta = {
   id: number
   nombre: string
   descripcion: string | null

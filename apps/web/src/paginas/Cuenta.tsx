@@ -1,12 +1,12 @@
 import type { ComensalPublico } from '@restoba/shared'
 import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate } from 'react-router'
-import * as api from '../api/cliente'
-import { ErrorApi } from '../api/cliente'
+import * as api from '../lib/cliente'
+import { ErrorApi } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { GateLegal } from '../componentes/GateLegal'
 import { Aviso, Telefono } from '../componentes/Iconos'
-import { useSesion } from '../contextos/Sesion'
+import { useSesion } from '../lib/Sesion'
 
 export function Cuenta() {
   const { comensal, cargando, actualizar, cerrar } = useSesion()

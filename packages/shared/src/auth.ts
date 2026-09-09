@@ -1,13 +1,15 @@
 import { z } from 'zod'
 import type { EstadoLegal } from './legal.js'
-import type { NivelAcceso } from './roles.js'
+
+/** Niveles de acceso del comensal (Términos y Condiciones, art. 5). */
+export type NivelAcceso = 'visitante' | 'registrado' | 'verificado'
 
 /**
- * La contraseña mínima es de 10 caracteres. Los T&C exigen que sea personal e
- * intransferible, y el Anexo Técnico declara bcrypt costo 12; un mínimo corto
+ * Mínimo de 10 caracteres: los T&C exigen que la contraseña sea personal e
+ * intransferible y el Anexo Técnico declara bcrypt costo 12; un mínimo corto
  * dejaría sin efecto las dos cosas.
  */
-export const contrasenaSchema = z
+const contrasenaSchema = z
   .string()
   .min(10, 'La contraseña necesita al menos 10 caracteres')
   .max(200, 'Demasiado larga')
@@ -27,7 +29,6 @@ export const loginSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(180),
   password: z.string().min(1).max(200),
 })
-export type Login = z.infer<typeof loginSchema>
 
 export const telefonoSchema = z.object({
   telefono: z

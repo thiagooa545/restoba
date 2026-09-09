@@ -8,7 +8,7 @@ import {
 } from '@restoba/shared'
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router'
-import { buscar } from '../api/cliente'
+import { buscar } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { Foto } from '../componentes/Foto'
 import { Aviso, Lupa, Pin } from '../componentes/Iconos'

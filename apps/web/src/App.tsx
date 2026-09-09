@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
-import { ProveedorSesion } from './contextos/Sesion'
+import { ProveedorSesion } from './lib/Sesion'
 import { Cuenta } from './paginas/Cuenta'
 import { Ingresar } from './paginas/Ingresar'
 import { Inicio } from './paginas/Inicio'

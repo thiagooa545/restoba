@@ -93,7 +93,7 @@ function aResultado(fila: FilaRestaurante): RestauranteResultado {
   }
 }
 
-export type ResultadoBusqueda = {
+type ResultadoBusqueda = {
   filas: RestauranteResultado[]
   total: number
 }

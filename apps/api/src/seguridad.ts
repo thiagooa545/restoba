@@ -49,7 +49,7 @@ export function cifrarTelefono(telefono: string): string {
   return [iv.toString('hex'), cifrador.getAuthTag().toString('hex'), cifrado.toString('hex')].join(':')
 }
 
-export function descifrarTelefono(guardado: string): string {
+function descifrarTelefono(guardado: string): string {
   const [ivHex, tagHex, datoHex] = guardado.split(':')
   if (!ivHex || !tagHex || !datoHex) throw new Error('Teléfono cifrado con formato inválido')
 
@@ -69,8 +69,8 @@ export function telefonoEnmascarado(guardado: string): string {
 
 // ── Tokens (Anexo Técnico, secc. 4) ─────────────────────────
 
-export type Acceso = { sub: number; email: string }
-export type Refresh = { sub: number; sid: string }
+type Acceso = { sub: number; email: string }
+type Refresh = { sub: number; sid: string }
 
 export function firmarAcceso(datos: Acceso): string {
   return jwt.sign(datos, config.JWT_ACCESS_SECRET, {

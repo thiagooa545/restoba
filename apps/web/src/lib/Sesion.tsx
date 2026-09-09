@@ -1,6 +1,6 @@
 import type { ComensalPublico } from '@restoba/shared'
 import { createContext, use, useCallback, useEffect, useMemo, useState } from 'react'
-import * as api from '../api/cliente'
+import * as api from './cliente'
 
 type Estado = {
   comensal: ComensalPublico | null

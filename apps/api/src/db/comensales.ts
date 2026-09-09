@@ -170,7 +170,7 @@ export async function revocarAceptaciones(comensalId: number): Promise<void> {
 
 // ── Vista pública ───────────────────────────────────────────
 
-export function nivelDe(legal: EstadoLegal): NivelAcceso {
+function nivelDe(legal: EstadoLegal): NivelAcceso {
   return legal.verificado ? 'verificado' : 'registrado'
 }
 

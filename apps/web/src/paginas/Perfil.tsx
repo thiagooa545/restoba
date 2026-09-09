@@ -8,7 +8,7 @@ import {
 } from '@restoba/shared'
 import { useEffect, useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router'
-import { verRestaurante } from '../api/cliente'
+import { verRestaurante } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { Foto } from '../componentes/Foto'
 import { Aviso, Hoja, Pin, Reloj, Telefono, Volver } from '../componentes/Iconos'

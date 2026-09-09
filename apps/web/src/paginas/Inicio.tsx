@@ -6,11 +6,11 @@ import {
 } from '@restoba/shared'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
-import { buscar, tiposDeCocina, type TipoCocina } from '../api/cliente'
+import { buscar, tiposDeCocina, type TipoCocina } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { Foto } from '../componentes/Foto'
 import { Aviso, Estrella, Lupa, Pin } from '../componentes/Iconos'
-import { useUbicacion } from '../hooks/useUbicacion'
+import { useUbicacion } from '../lib/useUbicacion'
 
 export function Inicio() {
   const navegar = useNavigate()

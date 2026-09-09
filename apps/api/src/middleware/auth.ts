@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import { aPublico, estadoLegal, porId, type FilaComensal } from '../db/comensales.js'
+import { estadoLegal, porId, type FilaComensal } from '../db/comensales.js'
 import { leerAcceso } from '../seguridad.js'
 
 declare module 'express-serve-static-core' {
@@ -12,21 +12,6 @@ function tokenDe(req: Request): string | null {
   const cabecera = req.headers.authorization
   if (!cabecera?.startsWith('Bearer ')) return null
   return cabecera.slice(7).trim() || null
-}
-
-/** Deja pasar sin sesión, pero si hay token válido carga el comensal. */
-export async function conSesionOpcional(
-  req: Request,
-  _res: Response,
-  next: NextFunction,
-): Promise<void> {
-  const token = tokenDe(req)
-  const datos = token ? leerAcceso(token) : null
-  if (datos) {
-    const fila = await porId(datos.sub)
-    if (fila) req.comensal = fila
-  }
-  next()
 }
 
 /** Exige sesión iniciada. */
@@ -84,9 +69,4 @@ export async function requiereVerificado(
   }
 
   next()
-}
-
-/** Respuesta estándar con los datos del comensal en sesión. */
-export function conComensal(fila: FilaComensal) {
-  return aPublico(fila)
 }

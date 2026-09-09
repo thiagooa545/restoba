@@ -72,7 +72,7 @@ async function pedir<T>(ruta: string, opciones: Opciones = {}): Promise<T> {
   return (await respuesta.json()) as T
 }
 
-export type FiltrosBusqueda = {
+type FiltrosBusqueda = {
   cocina?: string
   q?: string
   lat?: number
@@ -83,7 +83,7 @@ export type FiltrosBusqueda = {
   puntajeMinimo?: number
 }
 
-export function aQueryString(filtros: FiltrosBusqueda): string {
+function aQueryString(filtros: FiltrosBusqueda): string {
   const params = new URLSearchParams()
   if (filtros.cocina) params.set('cocina', filtros.cocina)
   if (filtros.q) params.set('q', filtros.q)
