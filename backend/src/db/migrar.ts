@@ -1,13 +1,4 @@
-/**
- * Corredor de migraciones.
- *
- * Aplica en orden los archivos `infra/db/migrations/NNN_*.sql` que todavía no
- * se hayan aplicado, cada uno dentro de su propia transacción, y deja
- * constancia en la tabla `_migracion`.
- *
- *   npm run db:migrate            aplica lo pendiente
- *   npm run db:reset              borra el esquema y vuelve a aplicar todo
- */
+/** Corredor de migraciones. */
 import { createHash } from 'node:crypto'
 import { readdir, readFile } from 'node:fs/promises'
 import { basename, resolve } from 'node:path'
@@ -95,7 +86,6 @@ async function main(): Promise<void> {
 }
 
 main().catch((error: unknown) => {
-  // Un fallo de conexión llega con message vacío, que no le sirve a nadie.
   const codigo = (error as { code?: string } | null)?.code
   if (codigo === 'ECONNREFUSED' || codigo === 'ENOTFOUND') {
     console.error(

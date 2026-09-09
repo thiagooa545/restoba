@@ -8,13 +8,10 @@ import type {
 } from '@restoba/compartido'
 import { consultar, consultarUna } from './pool.js'
 
-/** Zona horaria del proyecto. Los horarios se evalúan siempre en hora local. */
+/** Zona horaria del proyecto. */
 const TZ = 'America/Argentina/Buenos_Aires'
 
-/**
- * Momento actual en Buenos Aires, disponible como `ahora.dow` y `ahora.hora`.
- * Se calcula en la base para que no dependa del reloj del servidor de la API.
- */
+/** Momento actual en Buenos Aires, disponible como `ahora.dow` y `ahora.hora`. */
 const CTE_AHORA = `
   WITH ahora AS (
     SELECT EXTRACT(DOW FROM (now() AT TIME ZONE '${TZ}'))::int AS dow,
@@ -82,13 +79,11 @@ function aResultado(fila: FilaRestaurante): RestauranteResultado {
     lat: fila.lat,
     lng: fila.lng,
     rangoPrecio: fila.rango_precio,
-    // NUMERIC llega como string desde pg: se convierte una sola vez, acá.
     calificacion: fila.calificacion_prom === null ? null : Number(fila.calificacion_prom),
     resenas: fila.cantidad_resenas,
     cocinas: fila.cocinas,
     distancia: fila.distancia === null ? null : Math.round(Number(fila.distancia)),
     abierto: fila.tiene_horarios ? fila.cierra_a !== null : null,
-    // TIME llega como '00:30:00'; a la interfaz le alcanza con hora y minutos.
     cierraA: fila.cierra_a === null ? null : fila.cierra_a.slice(0, 5),
   }
 }
@@ -131,10 +126,6 @@ export async function buscarRestaurantes(
   }
 
   if (q) {
-    // El buscador de la portada es «por tipo de comida», así que el texto libre
-    // también tiene que pegarle a la cocina: quien escribe «bodegon» espera los
-    // bodegones, no solo los locales que tengan esa palabra en el nombre.
-    // normalizar() saca acentos y mayúsculas.
     const patron = p(`%${q}%`)
     condiciones.push(
       `(normalizar(r.nombre) LIKE normalizar(${patron})
@@ -162,7 +153,6 @@ export async function buscarRestaurantes(
 
   const distancia = punto ? `ST_Distance(r.ubicacion, ${punto})` : 'NULL::float8'
 
-  // Lista blanca: `orden` viene de un enum de Zod, nunca del texto crudo del usuario.
   // NULLS LAST es lo que evita que un local sin reseñas rompa el orden.
   const ordenSql =
     orden === 'cercania' && punto

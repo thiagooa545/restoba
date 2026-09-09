@@ -1,10 +1,4 @@
-/**
- * Datos de ejemplo para el prototipo (documento de análisis, apartado 7.3).
- *
- * Los restaurantes son ficticios: los nombres no corresponden a locales reales.
- * Los barrios y las coordenadas sí son de la Ciudad de Buenos Aires, para que la
- * búsqueda por cercanía y el mapa se prueben con distancias verdaderas.
- */
+/** Datos de ejemplo para el prototipo (documento de análisis, apartado 7.3). */
 
 type SemillaProducto = {
   categoria: string
@@ -53,7 +47,7 @@ export const TIPOS_COCINA: { nombre: string; slug: string }[] = [
   { nombre: 'Café de especialidad', slug: 'cafe' },
 ]
 
-/** Martes a domingo, dos turnos. Los lunes cierran. */
+/** Martes a domingo, dos turnos. */
 const clasico: SemillaHorario[] = [
   [2, '12:00', '15:30'], [2, '20:00', '00:30'],
   [3, '12:00', '15:30'], [3, '20:00', '00:30'],
@@ -289,8 +283,6 @@ export const RESTAURANTES: SemillaRestaurante[] = [
     ],
   },
   {
-    // Existe en la base pero NO debe aparecer en el buscador: la suscripción venció.
-    // Es el caso de prueba del modelo de negocio (documento de análisis, 1.1).
     nombre: 'Trattoria Fantasma',
     descripcion: 'Local dado de alta con la suscripción vencida. No debería figurar en los resultados.',
     plan: 'basico',
@@ -308,8 +300,6 @@ export const RESTAURANTES: SemillaRestaurante[] = [
     carta: [],
   },
   {
-    // Recién dado de alta: activo pero sin ninguna reseña.
-    // Caso de prueba del documento de análisis (5.2): no debe romper el orden.
     nombre: 'Sin Nombre Todavía',
     descripcion: 'Abrió hace dos semanas. Todavía no tiene ninguna reseña publicada.',
     plan: 'basico',

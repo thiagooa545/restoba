@@ -18,7 +18,7 @@ pool.on('error', (error) => {
   console.error('Error inesperado en el pool de PostgreSQL:', error)
 })
 
-/** Consulta simple con parámetros. Nunca concatenar valores en el SQL. */
+/** Consulta simple con parámetros. */
 export async function consultar<T extends pg.QueryResultRow = pg.QueryResultRow>(
   sql: string,
   parametros: readonly unknown[] = [],

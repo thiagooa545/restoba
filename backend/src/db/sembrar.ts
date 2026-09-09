@@ -1,11 +1,4 @@
-/**
- * Carga los datos de ejemplo del prototipo.
- *
- * Es destructivo a propósito: vacía las tablas del lado público y las vuelve a
- * escribir, para que correrlo dos veces dé el mismo resultado. Solo desarrollo.
- *
- *   npm run db:seed
- */
+/** Carga los datos de ejemplo del prototipo. */
 import { config } from '../config.js'
 import { cerrarPool, enTransaccion } from './pool.js'
 import { RESTAURANTES, TIPOS_COCINA } from './semilla-datos.js'
@@ -17,7 +10,6 @@ if (config.NODE_ENV === 'production') {
 
 async function main(): Promise<void> {
   const resumen = await enTransaccion(async (cliente) => {
-    // CASCADE arrastra restaurante_tipo_cocina, horario, categoria y producto.
     await cliente.query('TRUNCATE restaurante, tipo_cocina RESTART IDENTITY CASCADE')
 
     const idCocina = new Map<string, number>()
@@ -62,7 +54,6 @@ async function main(): Promise<void> {
         )
       }
 
-      // Las categorías se crean en el orden en que aparecen en la carta.
       const idCategoria = new Map<string, number>()
       for (const p of r.carta) {
         let categoriaId = idCategoria.get(p.categoria)

@@ -100,8 +100,6 @@ export async function marcarTelefonoVerificado(id: number): Promise<void> {
   )
 }
 
-// ── Constancias legales ─────────────────────────────────────
-
 /**
  * Resuelve el estado del gate de verificación.
  *
@@ -145,8 +143,6 @@ export async function registrarAceptacion(datos: {
   ip: string | null
   userAgent: string | null
 }): Promise<void> {
-  // Si ya existe la constancia para esa versión, se reactiva en lugar de
-  // duplicarla: la restricción una_aceptacion_por_version lo impide.
   await consultar(
     `INSERT INTO aceptacion_legal (usuario_id, documento, version, hash_texto, ip, user_agent)
      VALUES ($1, $2, $3, $4, $5, $6)
@@ -158,7 +154,7 @@ export async function registrarAceptacion(datos: {
   )
 }
 
-/** Revocar no borra: completa revocado_en y conserva la prueba del consentimiento. */
+/** Revocar no borra: */
 export async function revocarAceptaciones(comensalId: number): Promise<void> {
   await consultar(
     `UPDATE aceptacion_legal
@@ -167,8 +163,6 @@ export async function revocarAceptaciones(comensalId: number): Promise<void> {
     [comensalId],
   )
 }
-
-// ── Vista pública ───────────────────────────────────────────
 
 function nivelDe(legal: EstadoLegal): NivelAcceso {
   return legal.verificado ? 'verificado' : 'registrado'
@@ -182,15 +176,12 @@ export async function aPublico(fila: FilaComensal): Promise<ComensalPublico> {
     nombre: fila.nombre,
     email: fila.email,
     emailVerificado: fila.email_verificado,
-    // Nunca sale el número completo del servidor.
     telefono: fila.telefono_cifrado ? telefonoEnmascarado(fila.telefono_cifrado) : null,
     telefonoVerificado: fila.telefono_verificado,
     nivel: nivelDe(legal),
     legal,
   }
 }
-
-// ── Sesiones ────────────────────────────────────────────────
 
 export async function abrirSesion(datos: {
   comensalId: number
