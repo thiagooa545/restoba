@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { useSesion } from '../contextos/Sesion'
 
 /**
  * Barra superior flotante: se apoya sobre el contenido en lugar de empujarlo.
@@ -37,14 +38,56 @@ export function Encabezado({
         {children}
 
         <div className="ml-auto flex items-center gap-2">
-          <button type="button" className="boton boton-fantasma boton-chico border-transparent">
-            Ingresar
-          </button>
-          <button type="button" className="boton boton-vino boton-chico">
-            Crear cuenta
-          </button>
+          <Sesion />
         </div>
       </div>
     </div>
+  )
+}
+
+/** Estado de la sesión en la barra: visitante, registrado o verificado. */
+function Sesion() {
+  const { comensal, cargando } = useSesion()
+
+  if (cargando) return null
+
+  if (!comensal) {
+    return (
+      <>
+        <Link to="/ingresar" className="boton boton-fantasma boton-chico border-transparent no-underline">
+          Ingresar
+        </Link>
+        <Link to="/registro" className="boton boton-vino boton-chico no-underline">
+          Crear cuenta
+        </Link>
+      </>
+    )
+  }
+
+  const verificado = comensal.legal.verificado
+
+  return (
+    <Link
+      to="/cuenta"
+      className="flex items-center gap-2.5 rounded-full border border-regla-2 bg-superficie py-1.5 pr-3.5 pl-1.5 no-underline transition-colors hover:border-vino"
+    >
+      <span
+        className={`flex h-7 w-7 items-center justify-center rounded-full font-display text-sm font-semibold ${
+          verificado ? 'bg-verde text-papel' : 'bg-superficie-3 text-tinta-2'
+        }`}
+      >
+        {comensal.nombre.trim().charAt(0).toUpperCase()}
+      </span>
+      <span className="hidden leading-tight sm:block">
+        <span className="block text-[13px] font-semibold text-tinta">
+          {comensal.nombre.split(' ')[0]}
+        </span>
+        <span
+          className={`block font-mono text-[10px] tracking-wider ${verificado ? 'text-verde' : 'text-tinta-3'}`}
+        >
+          {verificado ? 'VERIFICADA' : 'SIN VERIFICAR'}
+        </span>
+      </span>
+    </Link>
   )
 }

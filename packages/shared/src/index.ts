@@ -8,3 +8,4 @@
 export * from './legal.js'
 export * from './roles.js'
 export * from './restaurantes.js'
+export * from './auth.js'

@@ -95,6 +95,18 @@ async function main(): Promise<void> {
 }
 
 main().catch((error: unknown) => {
-  console.error('\nLa migración falló:\n', error instanceof Error ? error.message : error)
+  // Un fallo de conexión llega con message vacío, que no le sirve a nadie.
+  const codigo = (error as { code?: string } | null)?.code
+  if (codigo === 'ECONNREFUSED' || codigo === 'ENOTFOUND') {
+    console.error(
+      '\nLa base no responde en la dirección de DATABASE_URL.' +
+        '\nLevantala con:  npm run db:up' +
+        '\n(y revisá que Docker Desktop esté abierto)\n',
+    )
+    process.exit(1)
+  }
+
+  const detalle = error instanceof Error && error.message ? error.message : String(error)
+  console.error(`\nLa migración falló:\n  ${detalle}\n`)
   process.exit(1)
 })

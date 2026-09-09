@@ -1,4 +1,11 @@
-import type { RespuestaBusqueda, RestauranteDetalle } from '@restoba/shared'
+import type {
+  ComensalPublico,
+  DocumentoLegal,
+  DocumentoLegalRespuesta,
+  RespuestaBusqueda,
+  RespuestaSesion,
+  RestauranteDetalle,
+} from '@restoba/shared'
 
 /** En desarrollo, Vite redirige /api a la API: un solo origen para el navegador. */
 const BASE = '/api'
@@ -7,22 +14,59 @@ class ErrorApi extends Error {
   constructor(
     message: string,
     readonly estado: number,
+    /** Texto para mostrarle al usuario, cuando la API lo manda. */
+    readonly detalle?: string,
   ) {
     super(message)
     this.name = 'ErrorApi'
   }
 }
 
-async function pedir<T>(ruta: string, senal?: AbortSignal): Promise<T> {
-  const respuesta = await fetch(`${BASE}${ruta}`, { signal: senal })
+/**
+ * El token de acceso vive solo en memoria, nunca en localStorage: si lo
+ * guardáramos ahí, cualquier script de la página podría leerlo. La sesión se
+ * recupera al cargar con la cookie httpOnly, que sí es inaccesible desde JS.
+ */
+let tokenEnMemoria: string | null = null
+
+export function guardarToken(token: string | null): void {
+  tokenEnMemoria = token
+}
+
+type Opciones = {
+  metodo?: 'GET' | 'POST'
+  cuerpo?: unknown
+  senal?: AbortSignal
+  conToken?: boolean
+}
+
+async function pedir<T>(ruta: string, opciones: Opciones = {}): Promise<T> {
+  const { metodo = 'GET', cuerpo, senal, conToken = false } = opciones
+  const cabeceras: Record<string, string> = {}
+
+  if (cuerpo !== undefined) cabeceras['Content-Type'] = 'application/json'
+  if (conToken && tokenEnMemoria) cabeceras['Authorization'] = `Bearer ${tokenEnMemoria}`
+
+  const respuesta = await fetch(`${BASE}${ruta}`, {
+    method: metodo,
+    headers: cabeceras,
+    body: cuerpo === undefined ? undefined : JSON.stringify(cuerpo),
+    credentials: 'include',
+    signal: senal,
+  })
 
   if (!respuesta.ok) {
-    const cuerpo: unknown = await respuesta.json().catch(() => null)
-    const codigo =
-      cuerpo && typeof cuerpo === 'object' && 'error' in cuerpo
-        ? String((cuerpo as { error: unknown }).error)
-        : `http_${respuesta.status}`
-    throw new ErrorApi(codigo, respuesta.status)
+    const datos = (await respuesta.json().catch(() => null)) as {
+      error?: string
+      mensaje?: string
+      detalle?: { campo: string; mensaje: string }[]
+    } | null
+
+    throw new ErrorApi(
+      datos?.error ?? `http_${respuesta.status}`,
+      respuesta.status,
+      datos?.mensaje ?? datos?.detalle?.map((d) => d.mensaje).join('. '),
+    )
   }
 
   return (await respuesta.json()) as T
@@ -53,7 +97,7 @@ export function aQueryString(filtros: FiltrosBusqueda): string {
 }
 
 export function buscar(filtros: FiltrosBusqueda, senal?: AbortSignal): Promise<RespuestaBusqueda> {
-  return pedir<RespuestaBusqueda>(`/restaurantes?${aQueryString(filtros)}`, senal)
+  return pedir<RespuestaBusqueda>(`/restaurantes?${aQueryString(filtros)}`, { senal })
 }
 
 export function verRestaurante(
@@ -62,14 +106,92 @@ export function verRestaurante(
   senal?: AbortSignal,
 ): Promise<RestauranteDetalle> {
   const cola = ubicacion ? `?lat=${ubicacion.lat}&lng=${ubicacion.lng}` : ''
-  return pedir<RestauranteDetalle>(`/restaurantes/${id}${cola}`, senal)
+  return pedir<RestauranteDetalle>(`/restaurantes/${id}${cola}`, { senal })
 }
 
 export type TipoCocina = { nombre: string; slug: string; cantidad: number }
 
 export async function tiposDeCocina(senal?: AbortSignal): Promise<TipoCocina[]> {
-  const { tipos } = await pedir<{ tipos: TipoCocina[] }>('/tipos-cocina', senal)
+  const { tipos } = await pedir<{ tipos: TipoCocina[] }>('/tipos-cocina', { senal })
   return tipos
+}
+
+// ── Sesión ──────────────────────────────────────────────────
+
+export function registrarse(datos: {
+  nombre: string
+  email: string
+  password: string
+  mayorDeEdad: true
+}): Promise<RespuestaSesion> {
+  return pedir<RespuestaSesion>('/auth/registro', { metodo: 'POST', cuerpo: datos })
+}
+
+export function ingresar(datos: { email: string; password: string }): Promise<RespuestaSesion> {
+  return pedir<RespuestaSesion>('/auth/login', { metodo: 'POST', cuerpo: datos })
+}
+
+/** Recupera la sesión con la cookie httpOnly. Se llama al cargar la página. */
+export function renovarSesion(senal?: AbortSignal): Promise<RespuestaSesion> {
+  return pedir<RespuestaSesion>('/auth/refresh', { metodo: 'POST', senal })
+}
+
+export function salir(): Promise<{ ok: boolean }> {
+  return pedir<{ ok: boolean }>('/auth/logout', { metodo: 'POST' })
+}
+
+// ── Verificación de la cuenta ───────────────────────────────
+
+type ConComensal = { comensal: ComensalPublico; codigoDemo?: string }
+
+export function reenviarCodigoEmail(): Promise<{ ok: boolean; codigoDemo?: string }> {
+  return pedir('/cuenta/email/reenviar', { metodo: 'POST', conToken: true })
+}
+
+export function verificarEmail(codigo: string): Promise<ConComensal> {
+  return pedir<ConComensal>('/cuenta/email/verificar', {
+    metodo: 'POST',
+    cuerpo: { codigo },
+    conToken: true,
+  })
+}
+
+export function guardarTelefono(telefono: string): Promise<ConComensal> {
+  return pedir<ConComensal>('/cuenta/telefono', {
+    metodo: 'POST',
+    cuerpo: { telefono },
+    conToken: true,
+  })
+}
+
+export function verificarTelefono(codigo: string): Promise<ConComensal> {
+  return pedir<ConComensal>('/cuenta/telefono/verificar', {
+    metodo: 'POST',
+    cuerpo: { codigo },
+    conToken: true,
+  })
+}
+
+// ── Marco legal ─────────────────────────────────────────────
+
+export function documentoLegal(
+  clave: DocumentoLegal,
+  senal?: AbortSignal,
+): Promise<DocumentoLegalRespuesta> {
+  return pedir<DocumentoLegalRespuesta>(`/legal/${clave}`, { senal })
+}
+
+/** El hash viaja de vuelta: la API lo revalida contra el archivo del disco. */
+export function aceptarDocumento(datos: {
+  documento: DocumentoLegal
+  version: string
+  hash: string
+}): Promise<ConComensal> {
+  return pedir<ConComensal>('/legal/aceptacion', { metodo: 'POST', cuerpo: datos, conToken: true })
+}
+
+export function revocarAceptaciones(): Promise<ConComensal> {
+  return pedir<ConComensal>('/legal/revocar', { metodo: 'POST', conToken: true })
 }
 
 export { ErrorApi }

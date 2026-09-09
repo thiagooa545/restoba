@@ -335,6 +335,133 @@
   }
 }
 
+/* ── Documentos legales ──────────────────────────────────────
+   Estilo del markdown que se renderiza desde legal/*.md. Es el
+   texto que el usuario acepta: tiene que leerse como un documento,
+   no como una pantalla de aplicación.
+   ───────────────────────────────────────────────────────────── */
+
+.md {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--rb-tinta-2);
+}
+
+.md > *:first-child {
+  margin-top: 0;
+}
+
+.md h1 {
+  font-size: 26px;
+  margin: 0 0 0.6rem;
+  color: var(--rb-tinta);
+}
+
+.md h2 {
+  font-size: 19px;
+  margin: 2rem 0 0.6rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rb-regla);
+  color: var(--rb-tinta);
+}
+
+.md h2:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.md h3 {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 1.4rem 0 0.4rem;
+  color: var(--rb-tinta);
+}
+
+.md p,
+.md li {
+  margin: 0 0 0.7rem;
+}
+
+.md ul,
+.md ol {
+  margin: 0 0 1rem;
+  padding-left: 1.3rem;
+}
+
+.md strong {
+  color: var(--rb-tinta);
+  font-weight: 600;
+}
+
+.md hr {
+  border: 0;
+  border-top: 1px solid var(--rb-regla);
+  margin: 1.6rem 0;
+}
+
+.md code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--rb-superficie-2);
+  border: 1px solid var(--rb-regla);
+  border-radius: 3px;
+  padding: 0.08em 0.35em;
+  color: var(--rb-tinta);
+}
+
+.md pre {
+  background: var(--rb-superficie-2);
+  border: 1px solid var(--rb-regla);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  margin: 0 0 1rem;
+}
+
+.md pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 12.5px;
+}
+
+.md table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13.5px;
+  margin: 0 0 1.2rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.md th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--rb-tinta-3);
+  background: var(--rb-superficie-2);
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--rb-regla-2);
+  white-space: nowrap;
+}
+
+.md td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--rb-regla);
+  vertical-align: top;
+}
+
+.md blockquote {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--rb-regla-2);
+  background: var(--rb-superficie-2);
+  border-radius: 0 8px 8px 0;
+}
+
 /* ── Leaflet ─────────────────────────────────────────────────
    El mapa trae su propia hoja de estilos; acá se lo acomoda al
    sistema para que no meta sus grises ni sus esquinas cuadradas.
