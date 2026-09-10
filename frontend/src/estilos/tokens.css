@@ -243,6 +243,111 @@
     border-radius: 10px;
   }
 
+  /* ── Botón con reflejo especular ──────────────────────────
+     El ángulo de la luz y su intensidad los escribe lib/specular.ts
+     como --sp-angulo y --sp-cerca. Acá solo se dibuja.
+     ──────────────────────────────────────────────────────── */
+
+  .boton-specular {
+    --sp-angulo: 40;
+    --sp-cerca: 0;
+
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.78rem 1.6rem;
+    border: 0;
+    border-radius: var(--sp-radio, 12px);
+    background: var(--sp-fondo, var(--rb-vino));
+    color: var(--sp-texto, var(--rb-sobre-vino));
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow:
+      0 1px 2px rgb(27 28 33 / 0.12),
+      0 8px 22px -10px color-mix(in srgb, var(--sp-fondo, var(--rb-vino)) 60%, transparent);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .boton-specular:hover:not(:disabled) {
+    transform: translateY(-1px);
+  }
+
+  .boton-specular:active:not(:disabled) {
+    transform: scale(0.985);
+  }
+
+  .boton-specular:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* La luz del borde. Dos arcos opuestos, como el reflejo real sobre un
+     canto biselado: se encienden los dos lados que miran a la fuente. */
+  .boton-specular::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: conic-gradient(
+      from calc(var(--sp-angulo) * 1deg),
+      transparent 0deg,
+      var(--sp-brillo, #ffd9e2) 12deg,
+      transparent 40deg,
+      transparent 160deg,
+      var(--sp-brillo, #ffd9e2) 192deg,
+      transparent 220deg,
+      transparent 360deg
+    );
+    /* El recorte deja solo el marco: relleno menos contenido. */
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: calc(0.34 + var(--sp-cerca) * 0.66);
+    pointer-events: none;
+  }
+
+  /* Un lustre suave sobre la cara del botón, del mismo lado que la luz. */
+  .boton-specular::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    background: conic-gradient(
+      from calc(var(--sp-angulo) * 1deg),
+      transparent 0deg,
+      color-mix(in srgb, var(--sp-brillo, #ffd9e2) 26%, transparent) 16deg,
+      transparent 62deg,
+      transparent 360deg
+    );
+    opacity: var(--sp-cerca);
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .boton-specular:disabled::before,
+  .boton-specular:disabled::after {
+    opacity: 0.15;
+  }
+
   /* Dato, no acción: por eso el radio chico y la tipografía monoespaciada. */
   .chip {
     display: inline-flex;
