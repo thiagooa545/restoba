@@ -85,6 +85,8 @@ export type HorarioDia = {
 }
 
 export type RestauranteDetalle = RestauranteResultado & {
+  /** true si el comensal en sesión lo tiene guardado. */
+  favorito: boolean
   telefono: string | null
   ciudad: string
   horarios: HorarioDia[]

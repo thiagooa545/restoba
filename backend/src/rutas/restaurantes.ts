@@ -1,5 +1,7 @@
 import { busquedaSchema, RADIOS, type RespuestaBusqueda } from '@restoba/compartido'
 import { Router } from 'express'
+import { esFavorito } from '../db/cuenta.js'
+import { conSesionOpcional } from '../middleware/auth.js'
 import { z } from 'zod'
 import {
   buscarRestaurantes,
@@ -96,7 +98,7 @@ const ubicacionSchema = z.object({
 })
 
 /** Perfil del restaurante con horarios y carta (RF-05). */
-rutasRestaurantes.get('/restaurantes/:id', async (req, res) => {
+rutasRestaurantes.get('/restaurantes/:id', conSesionOpcional, async (req, res) => {
   const id = idSchema.safeParse(req.params.id)
   if (!id.success) {
     res.status(400).json({ error: 'id_invalido' })
@@ -116,7 +118,8 @@ rutasRestaurantes.get('/restaurantes/:id', async (req, res) => {
       return
     }
 
-    res.json(restaurante)
+    const favorito = req.comensal ? await esFavorito(req.comensal.id, id.data) : false
+    res.json({ ...restaurante, favorito })
   } catch (error) {
     console.error('Error obteniendo el restaurante:', error)
     res.status(500).json({ error: 'error_interno' })

@@ -196,7 +196,7 @@ export async function buscarRestaurantes(
 export async function obtenerRestaurante(
   id: number,
   ubicacion?: { lat: number; lng: number },
-): Promise<RestauranteDetalle | null> {
+): Promise<Omit<RestauranteDetalle, 'favorito'> | null> {
   const parametros: unknown[] = [id]
   const punto = ubicacion
     ? `ST_MakePoint($${parametros.push(ubicacion.lng)}, $${parametros.push(ubicacion.lat)})::geography`

@@ -14,6 +14,25 @@ function tokenDe(req: Request): string | null {
   return cabecera.slice(7).trim() || null
 }
 
+/**
+ * Deja pasar sin sesión, pero si hay un token válido carga el comensal.
+ * Lo usan las pantallas públicas que cambian algo cuando hay alguien detrás:
+ * las reseñas marcan cuál es la tuya, el perfil marca si está en favoritos.
+ */
+export async function conSesionOpcional(
+  req: Request,
+  _res: Response,
+  next: NextFunction,
+): Promise<void> {
+  const token = tokenDe(req)
+  const datos = token ? leerAcceso(token) : null
+  if (datos) {
+    const fila = await porId(datos.sub)
+    if (fila) req.comensal = fila
+  }
+  next()
+}
+
 /** Exige sesión iniciada. */
 export async function requiereSesion(
   req: Request,

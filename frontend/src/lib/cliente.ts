@@ -1,7 +1,12 @@
 import type {
   ComensalPublico,
   Disponibilidad,
+  EstadoPuntos,
+  Resena,
   Reserva,
+  RestauranteResultado,
+  ResumenResenas,
+  VisitaSinResenar,
   DocumentoLegal,
   DocumentoLegalRespuesta,
   RespuestaBusqueda,
@@ -230,6 +235,55 @@ export async function misReservas(senal?: AbortSignal): Promise<Reserva[]> {
 
 export function cancelarReserva(id: number): Promise<{ reserva: Reserva }> {
   return pedir(`/reservas/${id}/cancelar`, { metodo: 'POST', conToken: true })
+}
+
+// ── Reseñas ─────────────────────────────────────────────────
+
+export function resenasDe(
+  restauranteId: number,
+  senal?: AbortSignal,
+): Promise<{ resenas: Resena[]; resumen: ResumenResenas }> {
+  return pedir(`/restaurantes/${restauranteId}/resenas`, { conToken: true, senal })
+}
+
+export async function visitasSinResenar(
+  restauranteId?: number,
+  senal?: AbortSignal,
+): Promise<VisitaSinResenar[]> {
+  const cola = restauranteId ? `?restaurante=${restauranteId}` : ''
+  const { visitas } = await pedir<{ visitas: VisitaSinResenar[] }>(`/resenas/pendientes${cola}`, {
+    conToken: true,
+    senal,
+  })
+  return visitas
+}
+
+export function publicarResena(datos: {
+  reservaId: number
+  puntuacion: number
+  comentario?: string
+}): Promise<{ id: number; puntosGanados: number }> {
+  return pedir('/resenas', { metodo: 'POST', cuerpo: datos, conToken: true })
+}
+
+// ── Favoritos y puntos ──────────────────────────────────────
+
+export function alternarFavorito(restauranteId: number): Promise<{ favorito: boolean }> {
+  return pedir(`/favoritos/${restauranteId}`, { metodo: 'POST', conToken: true })
+}
+
+export function misFavoritos(
+  senal?: AbortSignal,
+): Promise<{ ids: number[]; restaurantes: RestauranteResultado[] }> {
+  return pedir('/favoritos', { conToken: true, senal })
+}
+
+export function misPuntos(senal?: AbortSignal): Promise<EstadoPuntos> {
+  return pedir('/puntos', { conToken: true, senal })
+}
+
+export function canjearPuntos(cupon: string): Promise<{ estado: EstadoPuntos }> {
+  return pedir('/puntos/canjear', { metodo: 'POST', cuerpo: { cupon }, conToken: true })
 }
 
 export { ErrorApi }

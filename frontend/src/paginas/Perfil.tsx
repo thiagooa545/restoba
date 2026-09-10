@@ -8,17 +8,22 @@ import {
 } from '@restoba/compartido'
 import { useEffect, useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router'
+import * as api from '../lib/cliente'
 import { verRestaurante } from '../lib/cliente'
+import { useSesion } from '../lib/Sesion'
 import { Encabezado } from '../componentes/Encabezado'
 import { Foto } from '../componentes/Foto'
 import { Aviso, Hoja, Pin, Reloj, Telefono, Volver } from '../componentes/Iconos'
 import { BotonSpecular } from '../componentes/BotonSpecular'
+import { Resenas } from '../componentes/Resenas'
 import { Reservar } from '../componentes/Reservar'
 
 export function Perfil() {
   const { id } = useParams()
   const [params] = useSearchParams()
+  const { comensal } = useSesion()
   const [resto, setResto] = useState<RestauranteDetalle | null>(null)
+  const [favorito, setFavorito] = useState(false)
   const [estado, setEstado] = useState<'cargando' | 'listo' | 'no_existe' | 'error'>('cargando')
 
   const lat = params.get('lat') ? Number(params.get('lat')) : undefined
@@ -40,6 +45,7 @@ export function Perfil() {
     )
       .then((r) => {
         setResto(r)
+        setFavorito(r.favorito)
         setEstado('listo')
       })
       .catch((e: unknown) => {
@@ -152,8 +158,27 @@ export function Perfil() {
               <Pin tam={16} />
               Ubicar
             </Link>
-            <button type="button" className="boton boton-fantasma">
-              Guardar
+            <button
+              type="button"
+              className={`boton boton-fantasma ${favorito ? 'border-vino text-vino' : ''}`}
+              disabled={!comensal}
+              title={comensal ? undefined : 'Ingresá para guardar restaurantes'}
+              onClick={() => {
+                void api
+                  .alternarFavorito(resto.id)
+                  .then((r) => setFavorito(r.favorito))
+                  .catch(() => undefined)
+              }}
+            >
+              <svg
+                width="16" height="16" viewBox="0 0 24 24"
+                fill={favorito ? 'currentColor' : 'none'}
+                stroke="currentColor" strokeWidth={1.7}
+                strokeLinecap="round" strokeLinejoin="round" aria-hidden
+              >
+                <path d="M6 4h12v17l-6-4-6 4V4Z" />
+              </svg>
+              {favorito ? 'Guardado' : 'Guardar'}
             </button>
           </div>
 
@@ -242,6 +267,8 @@ export function Perfil() {
               ))}
             </div>
           )}
+
+          <Resenas restauranteId={resto.id} nombre={resto.nombre} />
         </div>
 
         <div className="hidden self-stretch bg-regla lg:block" />

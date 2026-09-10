@@ -6,6 +6,7 @@ import { ErrorApi } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { GateLegal } from '../componentes/GateLegal'
 import { MisReservas } from '../componentes/MisReservas'
+import { Puntos } from '../componentes/Puntos'
 import { Aviso, Telefono } from '../componentes/Iconos'
 import { useSesion } from '../lib/Sesion'
 
@@ -66,6 +67,14 @@ export function Cuenta() {
         <section className="mt-10 border-t border-regla pt-8">
           <h2 className="mb-5 text-2xl">Mis reservas</h2>
           <MisReservas />
+        </section>
+
+        <section className="mt-10 border-t border-regla pt-8">
+          <h2 className="mb-1.5 text-2xl">Puntos y cupones</h2>
+          <p className="mb-6 text-sm text-tinta-2">
+            Sumás puntos por cada visita completada y por cada reseña que publicás.
+          </p>
+          <Puntos verificado={legal.verificado} />
         </section>
 
         <div className="mt-10 flex flex-wrap items-center gap-4 border-t border-regla pt-6">

@@ -83,11 +83,11 @@ verde `#1C6350` y ámbar `#815214`. Tipografías: **Petrona** para títulos, **A
 Radios: 12 px en botones, 14 px en paneles, 4 px en chips de dato. Separación por reglas de 1 px, no
 por sombras. Sin neón, glassmorphism ni degradés multicolor.
 
-Los botones principales usan `BotonSpecular`, adaptado del SpecularButton de
-[React Bits](https://reactbits.dev) (MIT + Commons Clause) a la paleta de la marca. Dibuja con
-WebGL, así que **va solo en los llamados a la acción**: cada instancia es un contexto de WebGL y los
-navegadores admiten unos pocos por página. Para el resto están las clases `.boton`. Si el sistema
-pide menos movimiento, no se monta el canvas y queda un botón común.
+Los botones principales usan `BotonSpecular`, inspirado en el SpecularButton de
+[React Bits](https://reactbits.dev) (MIT + Commons Clause). El reflejo se dibuja con CSS —un
+`conic-gradient` recortado sobre el borde— y un único `requestAnimationFrame` en
+[`frontend/src/lib/specular.ts`](frontend/src/lib/specular.ts) reparte a todos los botones el ángulo
+hacia el cursor. Con `prefers-reduced-motion` el reflejo queda fijo y quieto.
 
 El papel cálido es la identidad, así que se ve por defecto sin importar cómo tenga el sistema el
 usuario. El modo oscuro existe pero es una elección explícita:
@@ -130,7 +130,7 @@ almacenan datos de tarjeta, CBU o CVU.
 - [x] **A1** — Autenticación, verificación de cuenta y pantalla de aceptación del marco legal
 - [x] **A2** — Buscador, cercanía con PostGIS, mapa y perfil del restaurante
 - [x] **A4** — Reservas con disponibilidad real por horario y mesa
-- [ ] **A3** — Reseñas, favoritos, puntos y cupones
+- [x] **A3** — Reseñas ligadas a la visita, favoritos, puntos y cupones
 - [ ] **Fase B** — Panel del restaurante, cocina en tiempo real, inventario, dashboard y suscripción
 
 Los desvíos respecto del documento de análisis están registrados en
