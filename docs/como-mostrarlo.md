@@ -115,6 +115,17 @@ Si el colegio no tiene wifi, **compartí datos desde el celular**. Con eso alcan
 
 ---
 
+## La base de datos NO viaja en la carpeta
+
+Los restaurantes, las cuentas y las reservas viven en un **volumen de Docker**, no en el
+proyecto. En la otra computadora la base arranca vacía y `npm start` la vuelve a crear con los 12
+restaurantes de ejemplo.
+
+Eso significa que **la cuenta que creaste acá no va a existir allá**. No es un problema: registrate
+en vivo delante del curso, que es la mejor forma de mostrar el gate legal funcionando.
+
+---
+
 ## Qué mostrar (guion de tres minutos)
 
 1. **Portada.** Escribí *pastas* y tocá **Usar mi ubicación** → *Buscar*.
@@ -128,3 +139,10 @@ Si el colegio no tiene wifi, **compartí datos desde el celular**. Con eso alcan
 6. **Entrá a un perfil** y mostrá la carta con precios y las marcas de sin TACC y vegetariano.
 7. Si buscás algo lejano, aparece el aviso de que **se amplió el radio** automáticamente: es el flujo
    alternativo del caso de uso CU-01.
+8. **Ver la carta** en Café Recoleta 1890: desayunos, cafetería y bebidas, cada plato con su marco de
+   foto, descripción y precio.
+9. **Crear cuenta** en vivo y recorrer los tres pasos hasta el gate legal. Ahí está lo más fuerte:
+   los documentos se leen completos desde `legal/*.md`, el botón no se habilita hasta marcar las tres
+   casillas, y la constancia queda guardada con el SHA-256 del texto exhibido.
+10. Con la cuenta ya verificada, **reservar una mesa** y después cancelarla desde *Mi cuenta*. Probá
+    antes reservar sin verificar: la API lo rechaza y explica qué falta.
