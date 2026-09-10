@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { ProveedorSesion } from './lib/Sesion'
+import { Carta } from './paginas/Carta'
 import { Cuenta } from './paginas/Cuenta'
 import { Ingresar } from './paginas/Ingresar'
 import { Inicio } from './paginas/Inicio'
@@ -15,6 +16,7 @@ export function App() {
           <Route path="/" element={<Inicio />} />
           <Route path="/buscar" element={<Resultados />} />
           <Route path="/restaurante/:id" element={<Perfil />} />
+          <Route path="/restaurante/:id/carta" element={<Carta />} />
           <Route path="/ingresar" element={<Ingresar />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/cuenta" element={<Cuenta />} />

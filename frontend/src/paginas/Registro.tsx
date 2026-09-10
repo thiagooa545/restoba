@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BotonSpecular } from '../componentes/BotonSpecular'
 import { Link, useNavigate } from 'react-router'
 import { ErrorApi } from '../lib/cliente'
 import { Campo, ErrorForm, MarcoAuth } from '../componentes/MarcoAuth'
@@ -91,13 +92,9 @@ export function Registro() {
           </span>
         </label>
 
-        <button
-          type="submit"
-          className="boton boton-vino w-full"
-          disabled={enviando || !mayor}
-        >
+        <BotonSpecular type="submit" className="w-full" disabled={enviando || !mayor}>
           {enviando ? 'Creando…' : 'Crear cuenta'}
-        </button>
+        </BotonSpecular>
 
         <p className="mt-4 text-[12.5px] leading-snug text-tinta-3">
           Crear la cuenta te deja en el nivel de <strong>Usuario Registrado</strong>. Para reservar y

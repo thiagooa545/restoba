@@ -12,6 +12,7 @@ import { verRestaurante } from '../lib/cliente'
 import { Encabezado } from '../componentes/Encabezado'
 import { Foto } from '../componentes/Foto'
 import { Aviso, Hoja, Pin, Reloj, Telefono, Volver } from '../componentes/Iconos'
+import { BotonSpecular } from '../componentes/BotonSpecular'
 import { Reservar } from '../componentes/Reservar'
 
 export function Perfil() {
@@ -130,9 +131,20 @@ export function Perfil() {
           )}
 
           <div className="flex flex-wrap gap-2.5 border-b border-regla pb-8">
-            <a href="#reservar" className="boton boton-vino no-underline">
-              Reservar mesa
+            <a href="#reservar" className="no-underline">
+              <BotonSpecular>Reservar mesa</BotonSpecular>
             </a>
+            <Link to={`/restaurante/${resto.id}/carta`} className="no-underline">
+              <BotonSpecular fondo="#1B1C21" brillo="#FCFBF9">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.7} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <rect x="4" y="3" width="16" height="18" rx="2" />
+                  <path d="M8 8h8" />
+                  <path d="M8 12h8" />
+                  <path d="M8 16h5" />
+                </svg>
+                Ver la carta
+              </BotonSpecular>
+            </Link>
             <Link
               to={`/buscar?sel=${resto.id}${lat !== undefined ? `&lat=${lat}&lng=${lng}` : ''}`}
               className="boton boton-fantasma no-underline"
@@ -176,6 +188,9 @@ export function Perfil() {
                 {resto.carta.reduce((n, c) => n + c.productos.length, 0)} PLATOS · PRECIOS EN PESOS
               </p>
             </div>
+            <Link to={`/restaurante/${resto.id}/carta`} className="boton boton-fantasma no-underline">
+              Verla con fotos
+            </Link>
           </div>
 
           {resto.carta.length === 0 ? (

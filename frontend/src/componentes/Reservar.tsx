@@ -10,6 +10,7 @@ import { Link } from 'react-router'
 import * as api from '../lib/cliente'
 import { ErrorApi } from '../lib/cliente'
 import { useSesion } from '../lib/Sesion'
+import { BotonSpecular } from './BotonSpecular'
 import { Aviso, Reloj } from './Iconos'
 
 const PERSONAS = [2, 4, 6, 8]
@@ -207,14 +208,13 @@ export function Reservar({ restauranteId, nombre }: { restauranteId: number; nom
         </p>
       )}
 
-      <button
-        type="button"
-        className="boton boton-vino w-full"
+      <BotonSpecular
+        className="w-full"
         disabled={!hora || enviando}
         onClick={() => void confirmar()}
       >
         {enviando ? 'Confirmando…' : hora ? `Reservar a las ${hora}` : 'Elegí un horario'}
-      </button>
+      </BotonSpecular>
 
       <p className="mt-3 flex items-start gap-2 text-[12.5px] leading-snug text-tinta-3">
         <Reloj tam={13} className="mt-0.5 shrink-0" />

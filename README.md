@@ -83,6 +83,12 @@ verde `#1C6350` y ámbar `#815214`. Tipografías: **Petrona** para títulos, **A
 Radios: 12 px en botones, 14 px en paneles, 4 px en chips de dato. Separación por reglas de 1 px, no
 por sombras. Sin neón, glassmorphism ni degradés multicolor.
 
+Los botones principales usan `BotonSpecular`, adaptado del SpecularButton de
+[React Bits](https://reactbits.dev) (MIT + Commons Clause) a la paleta de la marca. Dibuja con
+WebGL, así que **va solo en los llamados a la acción**: cada instancia es un contexto de WebGL y los
+navegadores admiten unos pocos por página. Para el resto están las clases `.boton`. Si el sistema
+pide menos movimiento, no se monta el canvas y queda un botón común.
+
 El papel cálido es la identidad, así que se ve por defecto sin importar cómo tenga el sistema el
 usuario. El modo oscuro existe pero es una elección explícita:
 `document.documentElement.dataset.theme = 'dark'`.

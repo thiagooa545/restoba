@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BotonSpecular } from '../componentes/BotonSpecular'
 import { Link, useNavigate } from 'react-router'
 import { ErrorApi } from '../lib/cliente'
 import { Campo, ErrorForm, MarcoAuth } from '../componentes/MarcoAuth'
@@ -64,9 +65,9 @@ export function Ingresar() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit" className="boton boton-vino mt-2 w-full" disabled={enviando}>
+        <BotonSpecular type="submit" className="mt-2 w-full" disabled={enviando}>
           {enviando ? 'Entrando…' : 'Ingresar'}
-        </button>
+        </BotonSpecular>
       </form>
     </MarcoAuth>
   )

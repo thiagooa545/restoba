@@ -7,6 +7,7 @@ import {
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { buscar, tiposDeCocina, type TipoCocina } from '../lib/cliente'
+import { BotonSpecular } from '../componentes/BotonSpecular'
 import { Encabezado } from '../componentes/Encabezado'
 import { Foto } from '../componentes/Foto'
 import { Aviso, Estrella, Lupa, Pin } from '../componentes/Iconos'
@@ -125,9 +126,7 @@ export function Inicio() {
               </div>
 
               <div className="flex flex-wrap items-center gap-4 border-t border-regla bg-superficie-2 px-5 py-3.5">
-                <button type="submit" className="boton boton-vino">
-                  Buscar
-                </button>
+                <BotonSpecular type="submit">Buscar</BotonSpecular>
                 <span className="max-w-xs text-[12.5px] leading-snug text-tinta-3">
                   {ubicacion.estado === 'denegada'
                     ? 'No nos diste permiso para geolocalizar: vamos a ordenar por puntaje en lugar de por distancia.'
@@ -196,11 +195,8 @@ export function Inicio() {
                   </dl>
 
                   <div className="flex flex-wrap gap-2">
-                    <Link
-                      to={`/restaurante/${destacado.id}`}
-                      className="boton boton-vino grow no-underline"
-                    >
-                      Ver perfil
+                    <Link to={`/restaurante/${destacado.id}`} className="grow no-underline">
+                      <BotonSpecular className="w-full">Ver perfil</BotonSpecular>
                     </Link>
                     <button
                       type="button"

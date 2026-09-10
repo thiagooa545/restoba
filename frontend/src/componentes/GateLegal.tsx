@@ -9,6 +9,7 @@ import Markdown from 'react-markdown'
 import { Link } from 'react-router'
 import remarkGfm from 'remark-gfm'
 import { aceptarDocumento, documentoLegal, ErrorApi } from '../lib/cliente'
+import { BotonSpecular } from './BotonSpecular'
 
 const TITULOS: Record<DocumentoLegal, string> = {
   tyc: 'Términos y Condiciones',
@@ -226,14 +227,9 @@ export function GateLegal({
           )}
 
           <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-regla pt-5">
-            <button
-              type="button"
-              className="boton boton-vino"
-              disabled={!listo || enviando}
-              onClick={confirmar}
-            >
+            <BotonSpecular disabled={!listo || enviando} onClick={() => void confirmar()}>
               {enviando ? 'Registrando…' : 'Confirmar y verificar mi cuenta'}
-            </button>
+            </BotonSpecular>
             <span
               className={`text-[13.5px] leading-snug ${listo ? 'font-semibold text-verde' : 'text-tinta-3'}`}
             >
