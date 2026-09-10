@@ -57,8 +57,15 @@ Para cortar: `Ctrl+C`.
    > bastante pero es lo que hace que el proyecto arranque sin descargar nada. Copiá de Windows a
    > Windows; entre sistemas operativos distintos no sirve.
 
-3. Verificá que en el pendrive estén: `apps/`, `packages/`, `infra/`, `node_modules/`,
-   `package.json` y el `.env`. Si el `.env` no está, `npm start` lo crea solo desde el ejemplo.
+3. Verificá que en el pendrive estén estas carpetas y archivos:
+
+   ```
+   backend/  frontend/  compartido/  infra/  scripts/  legal/  docs/
+   node_modules/   package.json   package-lock.json   .env
+   ```
+
+   `.env` está oculto en el explorador de Windows: activá *Ver → Elementos ocultos* para
+   confirmarlo. Si igual no viaja, `npm start` lo crea solo desde `.env.example`.
 
 ### En el colegio
 
