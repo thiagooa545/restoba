@@ -1,3 +1,39 @@
+/* ════════════════════════════════════════════════════════════════════
+   LA CARPETA  backend/src/rutas/
+
+   Las direcciones que el navegador le puede pedir al servidor. Son 30 en total,
+   agrupadas por tema, un archivo por familia.
+
+   Cada ruta hace siempre lo mismo, en este orden: valida lo que llegó, aplica el
+   filtro de acceso que corresponde, le pide los datos a la capa de abajo y
+   responde. La lógica de negocio no vive acá: vive en backend/src/db/.
+
+   Qué hay en cada archivo:
+
+     auth.ts         ← este. Registro, inicio y cierre de sesión.
+     cuenta.ts       Confirmar correo y teléfono.
+     legal.ts        Sirve los documentos y registra la constancia de aceptación.
+     restaurantes.ts El buscador y el perfil. Acá está el caso de uso CU-01.
+     reservas.ts     Turnos disponibles, reservar y cancelar.
+     resenas.ts      Publicar reseñas, favoritos y canje de puntos.
+     salud.ts        Un chequeo que dice si la API y PostGIS responden.
+
+   ──────────────────────────────────────────────────────────────────────
+
+   Este archivo en particular: el ingreso al sistema.
+
+   Dos decisiones que conviene contar:
+
+     · La contraseña nunca viaja de vuelta ni se guarda como la escribió el
+       usuario. Se guarda un resultado del que no se puede volver atrás.
+
+     · Si el correo no existe, la respuesta es exactamente la misma que si la
+       contraseña está mal, y tarda lo mismo. Si fueran distintas, alguien podría
+       averiguar quién tiene cuenta en la plataforma probando correos.
+
+   Responde a: RF-01 y RNF-04.
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   codigoSchema,
   loginSchema,

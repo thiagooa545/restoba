@@ -1,4 +1,23 @@
 /* ════════════════════════════════════════════════════════════════════
+   LA CARPETA  compartido/
+
+   Las definiciones que usan el frontend y el backend a la vez.
+
+   ESTA CARPETA NO SE PUEDE SACAR: la importan 26 archivos, 13 de cada lado.
+
+   Qué hay en cada archivo:
+
+     index.ts        ← este. Reúne todo lo demás para que se importe de un lugar.
+     auth.ts         Las cuentas y los tres niveles de acceso.
+     legal.ts        Los tres documentos legales y su versión.
+     restaurantes.ts Lo que devuelve el buscador.
+     reservas.ts     Los turnos y los estados de una reserva.
+     resenas.ts      Las reseñas, los puntos y los cupones.
+
+   ──────────────────────────────────────────────────────────────────────
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ════════════════════════════════════════════════════════════════════
    PARA LA EXPOSICIÓN
 
    El punto de entrada de las definiciones que comparten las dos puntas.

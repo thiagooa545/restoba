@@ -1,3 +1,38 @@
+/* ════════════════════════════════════════════════════════════════════
+   LA CARPETA  backend/src/db/
+
+   Todo lo que habla con la base de datos. Ningún otro archivo del proyecto
+   escribe SQL: si una pantalla necesita un dato, pasa por acá.
+
+   Por qué separado de las rutas: si mañana cambiamos una consulta para que sea
+   más rápida, no se toca ni una línea de la API. Y al revés, si cambia una
+   dirección de la API, las consultas quedan iguales.
+
+   Qué hay en cada archivo:
+
+     comensales.ts   ← este. Las cuentas, las sesiones abiertas y las
+                       constancias de aceptación legal.
+     cuenta.ts       Lo mismo, pero para confirmar correo y teléfono.
+     restaurantes.ts El buscador. Es el más importante: acá trabaja PostGIS.
+     reservas.ts     Qué turnos hay libres y a qué mesa va cada reserva.
+     resenas.ts      Las reseñas y el libro mayor de puntos.
+     pool.ts         La conexión a PostgreSQL. Todos los demás la usan.
+     migrar.ts       Aplica los archivos SQL de infra/db/migrations en orden.
+     sembrar.ts      Carga los 12 restaurantes de ejemplo.
+     semilla-datos.ts y semilla-resenas.ts  Los datos de ejemplo en sí.
+
+   ──────────────────────────────────────────────────────────────────────
+
+   Este archivo en particular: las cuentas y el marco legal.
+
+   La función más importante es estadoLegal. Resuelve una sola pregunta, que es
+   la regla central del sistema: ¿esta persona es Usuario Verificado? Y la
+   respuesta exige tres cosas a la vez, no dos: correo confirmado, teléfono
+   confirmado, y los tres documentos aceptados en su versión vigente.
+
+   Responde a: RF-01 y Términos y Condiciones art. 5.
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   DOCUMENTOS_LEGALES,
   VERSION_LEGAL_VIGENTE,

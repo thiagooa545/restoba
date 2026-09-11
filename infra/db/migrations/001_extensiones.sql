@@ -1,4 +1,24 @@
 -- ════════════════════════════════════════════════════════════════════
+-- LA CARPETA  infra/db/migrations/
+--
+-- La base de datos completa, en seis archivos que se aplican en orden.
+--
+-- Juntos crean las 15 tablas del DER. El número del principio es el orden: no se
+-- puede crear la tabla de reservas antes que la de mesas.
+--
+-- Qué crea cada uno:
+--
+--   001_extensiones.sql          ← este. Las extensiones, entre ellas PostGIS.
+--   002_restaurantes.sql         Restaurantes, tipos de cocina y horarios.
+--   003_carta.sql                Categorías y platos.
+--   004_comensal_y_legal.sql     Cuentas, sesiones y constancias de aceptación.
+--   005_reservas.sql             Mesas y reservas.
+--   006_resenas_favoritos_puntos.sql  Reseñas, favoritos, cupones y puntos.
+--
+-- ──────────────────────────────────────────────────────────────────────
+-- ════════════════════════════════════════════════════════════════════
+
+-- ════════════════════════════════════════════════════════════════════
 -- PARA LA EXPOSICIÓN
 --
 -- Primera migración: las extensiones que necesita la base.

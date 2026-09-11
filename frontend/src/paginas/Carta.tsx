@@ -1,3 +1,37 @@
+/* ════════════════════════════════════════════════════════════════════
+   LA CARPETA  frontend/src/paginas/
+
+   Una pantalla por cada dirección del navegador. Son las siete del lado del
+   comensal.
+
+   Ninguna de estas pantallas calcula nada importante: le piden los datos ya
+   resueltos a la API y se ocupan de mostrarlos. Esa es la separación de capas en
+   la práctica.
+
+   Qué hay en cada archivo:
+
+     Carta.tsx      ← este. La carta del restaurante con fotos.
+     Inicio.tsx     La portada con el buscador.
+     Resultados.tsx La lista y el mapa, sincronizados.
+     Perfil.tsx     El perfil del restaurante con horarios y reseñas.
+     Registro.tsx   Crear cuenta.
+     Ingresar.tsx   Iniciar sesión.
+     Cuenta.tsx     Verificación, reservas, puntos y favoritos.
+
+   ──────────────────────────────────────────────────────────────────────
+
+   Este archivo en particular: la carta.
+
+   Las categorías no están escritas acá: salen de la base, así que cada local
+   muestra las suyas. Un bodegón tiene Entradas, Principales y Postres; un café
+   tiene Desayunos, Cafetería y Bebidas.
+
+   Un plato que el local marcó sin stock se muestra atenuado en vez de
+   desaparecer, para que el comensal sepa que existe pero hoy no está.
+
+   Responde a: RF-05.
+   ════════════════════════════════════════════════════════════════════ */
+
 import { formatearPrecio, type CategoriaCarta, type RestauranteDetalle } from '@restoba/compartido'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router'

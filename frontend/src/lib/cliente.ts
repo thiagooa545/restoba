@@ -1,3 +1,31 @@
+/* ════════════════════════════════════════════════════════════════════
+   LA CARPETA  frontend/src/lib/
+
+   Las herramientas que usan varias pantallas pero que no se ven: hablar con la
+   API, saber quién está logueado, pedir la ubicación.
+
+   Qué hay en cada archivo:
+
+     cliente.ts      ← este. Todas las llamadas a la API en un solo lugar.
+     Sesion.tsx      Guarda quién está logueado y en qué nivel.
+     useUbicacion.ts Le pide la ubicación al navegador.
+     specular.ts     El motor de la animación de los botones.
+
+   ──────────────────────────────────────────────────────────────────────
+
+   Este archivo en particular: el puente con la API.
+
+   Ninguna pantalla llama al servidor por su cuenta: todas pasan por acá. Así, si
+   cambia una dirección de la API, se corrige en un solo lugar.
+
+   La decisión de seguridad que conviene contar: el token de sesión se guarda en
+   memoria, no en el almacenamiento del navegador. Si lo guardáramos ahí,
+   cualquier script de la página podría leerlo. La sesión se recupera al recargar
+   con una cookie que el navegador no deja leer desde JavaScript.
+
+   Responde a: RNF-04 y Anexo Técnico de Seguridad, secc. 4.
+   ════════════════════════════════════════════════════════════════════ */
+
 import type {
   ComensalPublico,
   Disponibilidad,
