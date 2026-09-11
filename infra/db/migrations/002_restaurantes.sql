@@ -1,3 +1,20 @@
+-- ════════════════════════════════════════════════════════════════════
+-- PARA LA EXPOSICIÓN
+--
+-- El corazón del buscador: restaurante, tipos de cocina y horarios.
+--
+-- El cambio más importante respecto del DER original está acá abajo. El documento
+-- guardaba la posición en dos columnas sueltas, latitud y longitud. Las
+-- reemplazamos por una sola columna de tipo geográfico.
+--
+-- Por qué: con dos números sueltos, para saber qué restaurante está cerca habría
+-- que traerlos TODOS a la aplicación y calcular uno por uno. Con el tipo
+-- geográfico y su índice, la base devuelve solo los que están en el radio, ya
+-- ordenados por distancia. Sin este cambio PostGIS no aportaría nada.
+--
+-- Responde a: RF-03 (cercanía) y RNF-02 (rendimiento).
+-- ════════════════════════════════════════════════════════════════════
+
 -- ─────────────────────────────────────────────────────────────
 -- 002 · Restaurantes, tipos de cocina y horarios
 --

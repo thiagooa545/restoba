@@ -1,3 +1,23 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Sirve los documentos legales leyéndolos de la carpeta legal/.
+
+   Este archivo es chico pero es el que sostiene toda la validez del sistema de
+   aceptación. Dos ideas:
+
+   1. La aplicación LEE los archivos originales, no una copia. Si hubiera una
+      copia dentro del código, tarde o temprano el texto mostrado y el documento
+      publicado dejarían de coincidir, y la constancia de aceptación no valdría
+      nada.
+
+   2. Calcula la huella digital (SHA-256) de ese mismo texto. Es un número que
+      cambia por completo si se modifica una sola letra del documento. Sirve para
+      demostrar después qué versión exacta aceptó cada persona.
+
+   Responde a: factibilidad legal (apartado 8.4) y Ley 25.326.
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   ARCHIVO_LEGAL,
   VERSION_LEGAL_VIGENTE,

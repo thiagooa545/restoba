@@ -1,3 +1,20 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   La pantalla de resultados: lista y mapa sincronizados.
+
+   Los datos NO están en este archivo: se le piden a la API y se dibujan. Esa es
+   la separación de capas en la práctica. Si mañana cambia cómo se calcula la
+   distancia, esta pantalla no se entera.
+
+   Lo que sí decide esta pantalla es cómo se muestra: los avisos de que se amplió
+   el radio, el de que no hay ubicación compartida, y el resaltado del pin cuando
+   el usuario pasa por una ficha.
+
+   Responde a: RF-02 a RF-04 y RNF-01 (la misma pantalla se acomoda a celular y a
+   computadora).
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   formatearDistancia,
   formatearPuntaje,

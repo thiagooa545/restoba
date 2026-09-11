@@ -1,3 +1,18 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   El armado de la API: acá se ve la capa de lógica completa de un vistazo.
+
+   Cada app.use es una familia de endpoints. Juntas son las 30 direcciones que el
+   navegador puede pedirle al servidor.
+
+   El orden importa: primero las protecciones (cabeceras de seguridad, permisos de
+   origen), después las rutas, y al final la respuesta para lo que no existe. Cada
+   pedido atraviesa esa fila en ese orden.
+
+   Documento: apartado 15, capa de lógica.
+   ════════════════════════════════════════════════════════════════════ */
+
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'

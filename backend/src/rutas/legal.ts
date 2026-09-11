@@ -1,3 +1,21 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Los endpoints del marco legal, incluida la constancia de aceptación.
+
+   Lo más fino del proyecto está en la ruta que registra la aceptación: el
+   navegador manda la huella del texto que mostró, y el servidor la vuelve a
+   calcular sobre el archivo del disco. Si no coinciden, rechaza.
+
+   Por qué: si aceptáramos la huella que manda el navegador sin verificarla,
+   alguien podría decir que aceptó un texto que nunca existió. Al revalidarla, la
+   constancia queda atada al documento realmente publicado.
+
+   También se puede revocar. La constancia no se borra nunca: se marca como
+   revocada y la cuenta vuelve al nivel de Usuario Registrado, sin perder ningún
+   dato. Lo exige el Acuerdo de Verificación.
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   aceptacionLegalSchema,
   documentoLegalSchema,

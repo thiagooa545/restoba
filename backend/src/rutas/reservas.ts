@@ -1,3 +1,20 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Los endpoints de reservas. El primer lugar donde el gate del artículo 5 se usa.
+
+   Fijarse en la línea de la ruta que crea la reserva: pasa por requiereSesion Y
+   por requiereVerificado. Es la traducción literal del artículo 5, que dice que
+   reservar exige cuenta verificada.
+
+   Cuando no se puede reservar, la respuesta dice el motivo concreto: el local no
+   atiende ese día, ese horario no existe, se ocupó la última mesa, el grupo no
+   entra en ninguna mesa, o ya tenés una reserva ese día ahí. El usuario tiene
+   derecho a saber por qué no puede.
+
+   Responde a: RF-07.
+   ════════════════════════════════════════════════════════════════════ */
+
 import { consultaDisponibilidadSchema, nuevaReservaSchema } from '@restoba/compartido'
 import { Router } from 'express'
 import { z } from 'zod'

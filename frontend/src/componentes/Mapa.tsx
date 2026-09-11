@@ -1,3 +1,19 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   El mapa con Leaflet y los marcadores.
+
+   Por qué Leaflet y no Google Maps: Google exige tarjeta de crédito aunque el uso
+   inicial sea gratuito. Leaflet es una librería libre y las teselas que usamos no
+   piden clave ni registro. Es coherente con la factibilidad económica del
+   proyecto, que preveía un costo de arranque casi nulo.
+
+   Los marcadores muestran el puntaje directamente sobre el mapa, así se comparan
+   los locales sin tener que abrir cada uno.
+
+   Responde a: RF-03 y factibilidad económica (apartado 8.2).
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   formatearDistancia,
   formatearPuntaje,

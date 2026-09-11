@@ -1,3 +1,20 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   La única puerta de entrada a la base de datos.
+
+   Todo el acceso a datos pasa por estas tres funciones. Ningún otro archivo abre
+   conexiones por su cuenta.
+
+   Por qué un pool y no una conexión por consulta: abrir una conexión a PostgreSQL
+   es caro. El pool mantiene unas pocas abiertas y las presta, que es lo que hace
+   que la búsqueda responda rápido con varios usuarios a la vez (RNF-02).
+
+   Las consultas siempre llevan los valores como parámetros, separados del texto
+   SQL. Eso es lo que impide la inyección de SQL: lo que escribe el usuario nunca
+   se mezcla con la instrucción (RNF-04, seguridad).
+   ════════════════════════════════════════════════════════════════════ */
+
 import pg from 'pg'
 import { config } from '../config.js'
 

@@ -1,3 +1,23 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   La lógica de las reservas: qué turnos hay libres y cómo se asigna la mesa.
+
+   Los turnos no están escritos a mano: salen de la tabla de horarios de cada
+   local, cada media hora, y el último se ofrece una hora antes del cierre. No
+   tiene sentido sentar gente cuando el local está por cerrar.
+
+   Cada reserva ocupa la mesa dos horas, y se asigna la mesa más chica donde entre
+   el grupo, para no gastar una de ocho en una pareja.
+
+   El detalle que vale contar: la asignación corre dentro de una transacción y
+   bloquea las mesas mientras decide. Si dos personas confirman el mismo horario
+   al mismo tiempo, no pueden quedarse las dos con la misma mesa; la segunda
+   recibe el aviso de que se ocupó.
+
+   Responde a: RF-07.
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   DURACION_RESERVA_MIN,
   HORAS_PARA_CANCELAR,

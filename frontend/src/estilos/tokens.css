@@ -1,3 +1,22 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   El sistema de diseño: colores, tipografías y medidas en un solo lugar.
+
+   Por qué centralizarlo: si el color de marca estuviera escrito en cada pantalla,
+   cambiarlo significaría buscarlo en decenas de archivos y alguno quedaría
+   distinto. Acá se define una vez y todas las pantallas lo toman de acá.
+
+   La paleta salió del propio marco legal del proyecto: papel cálido, tinta y tres
+   acentos. Las tipografías Petrona y Archivo son de diseñadores argentinos, que
+   es una decisión de identidad para una plataforma porteña.
+
+   También está definido el modo oscuro completo, y todas las animaciones se
+   apagan si el sistema del usuario pide menos movimiento (accesibilidad).
+
+   Responde a: RNF-01 (usabilidad e interfaz responsiva).
+   ════════════════════════════════════════════════════════════════════ */
+
 @import 'tailwindcss';
 
 /* ─────────────────────────────────────────────────────────────

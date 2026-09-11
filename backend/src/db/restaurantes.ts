@@ -1,3 +1,34 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Las consultas del buscador. Es el archivo más técnico del proyecto.
+
+   Acá se ve PostGIS trabajando. Dos funciones hacen el trabajo pesado:
+
+   ST_DWithin filtra: devuelve solo los restaurantes dentro del radio pedido, y
+   usa el índice geográfico para descartar los lejanos sin revisarlos uno por uno.
+
+   ST_Distance ordena: calcula la distancia real en metros entre el usuario y cada
+   local. El número que se ve en pantalla sale de acá, no de una cuenta hecha en
+   el navegador.
+
+   Tres decisiones que conviene explicar:
+
+     · Solo se devuelven locales con la suscripción activa. Es el modelo de
+       negocio hecho consulta: como la regla vive en el SQL, no hay forma de
+       saltearla desde el navegador.
+
+     · El orden por puntaje deja al final a los que no tienen reseñas, en lugar de
+       tratarlos como un cero. Un local nuevo no merece quedar último por no haber
+       sido calificado todavía: era uno de los casos de prueba del apartado 5.2.
+
+     · El estado abierto/cerrado contempla los turnos que cruzan la medianoche. A
+       la 01:00 del sábado el local sigue abierto por el turno que empezó el
+       viernes, no por el del sábado.
+
+   Responde a: RF-02, RF-03, RF-04 y RF-05.
+   ════════════════════════════════════════════════════════════════════ */
+
 import type {
   Busqueda,
   CategoriaCarta,

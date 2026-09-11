@@ -1,3 +1,23 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   La pantalla de aceptación del marco legal. Es la más exigente del proyecto.
+
+   No es un «acepto los términos» con una casilla. Cumple cinco requisitos
+   obligatorios que exige el Acuerdo de Verificación:
+
+     1. Se exhibe el texto COMPLETO de cada documento, no un resumen.
+     2. Una casilla independiente por documento, y ninguna viene premarcada.
+     3. El botón de confirmar no se habilita hasta marcar las tres.
+     4. Se registra la constancia con la huella del texto exhibido.
+     5. Se puede salir sin aceptar y seguir usando la plataforma en modo lectura.
+
+   El quinto es el que suele olvidarse: aceptar tiene que ser una elección real,
+   no la única salida de la pantalla.
+
+   Responde a: factibilidad legal (apartado 8.4) y Ley 25.326.
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   DOCUMENTOS_LEGALES,
   type ComensalPublico,

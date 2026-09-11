@@ -1,3 +1,16 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Los tres documentos que el comensal acepta, con su versión vigente.
+
+   Las claves «tyc», «privacidad» y «verificacion» son exactamente los valores que
+   admite la columna documento de la tabla aceptacion_legal. No son nombres
+   elegidos al azar: si alguien agrega un cuarto documento tiene que tocar este
+   archivo Y la restricción de la base, y eso es a propósito.
+
+   El anexo técnico es informativo y NO se acepta: por eso no figura acá.
+   ════════════════════════════════════════════════════════════════════ */
+
 import { z } from 'zod'
 
 /**

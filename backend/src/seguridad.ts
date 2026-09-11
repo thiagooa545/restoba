@@ -1,3 +1,28 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Todo lo que protege los datos del usuario.
+
+   Lo importante de este archivo: estos valores NO los elegimos por gusto. Están
+   declarados en un documento legal, el Anexo Técnico de Seguridad, que forma
+   parte del marco legal del proyecto.
+
+     · Contraseñas con bcrypt de costo 12. Nunca se guarda la contraseña: se
+       guarda un resultado del que no se puede volver atrás. Aunque alguien robara
+       la base entera, no obtiene las contraseñas.
+
+     · Sesión de 15 minutos. Si a alguien le roban el token, le sirve poco tiempo.
+
+     · Teléfono cifrado con AES-256. Del servidor nunca sale el número completo:
+       solo los últimos cuatro dígitos.
+
+   Si mañana cambiamos uno de estos valores, hay que corregir el documento. No
+   puede haber contradicción entre lo que el anexo promete y lo que el sistema
+   hace: eso es aseguramiento de calidad aplicado.
+
+   Responde a: RNF-04 y Anexo Técnico de Seguridad, secciones 3, 4 y 5.
+   ════════════════════════════════════════════════════════════════════ */
+
 /**
  * Primitivas de seguridad.
  *

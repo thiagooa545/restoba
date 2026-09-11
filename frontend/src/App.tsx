@@ -1,3 +1,18 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   El mapa de la aplicación: cada ruta es una pantalla.
+
+   De un vistazo se ven las siete pantallas del lado del comensal y qué dirección
+   abre cada una. Es el índice de toda la capa de presentación.
+
+   ProveedorSesion las envuelve a todas: es lo que hace que cualquier pantalla
+   sepa si hay alguien logueado y en qué nivel está, sin tener que preguntarlo
+   cada una por su cuenta.
+
+   Documento: apartado 15, capa de presentación.
+   ════════════════════════════════════════════════════════════════════ */
+
 import { BrowserRouter, Route, Routes } from 'react-router'
 import { ProveedorSesion } from './lib/Sesion'
 import { Carta } from './paginas/Carta'

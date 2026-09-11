@@ -1,3 +1,16 @@
+-- ════════════════════════════════════════════════════════════════════
+-- PARA LA EXPOSICIÓN
+--
+-- Las cuentas y las constancias de aceptación legal.
+--
+-- La tabla aceptacion_legal es la que convierte la factibilidad legal del
+-- apartado 8.4 en algo que el sistema realmente hace. Guarda QUÉ documento aceptó
+-- cada persona, en QUÉ versión, y la huella del texto que tenía enfrente.
+--
+-- La constancia no se borra nunca: al revocar se completa revocado_en. Es la
+-- prueba del consentimiento que exige la Ley 25.326.
+-- ════════════════════════════════════════════════════════════════════
+
 -- ─────────────────────────────────────────────────────────────
 -- 004 · Comensales, sesiones y constancias de aceptación legal
 --

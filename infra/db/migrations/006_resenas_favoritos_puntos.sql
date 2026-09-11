@@ -1,3 +1,22 @@
+-- ════════════════════════════════════════════════════════════════════
+-- PARA LA EXPOSICIÓN
+--
+-- Reseñas, favoritos y el libro mayor de puntos.
+--
+-- Dos reglas del negocio que se vuelven restricciones de la base:
+--
+-- 1. Solo se puede reseñar un local donde exista una visita previa. No es una
+--    validación de pantalla que se pueda saltear: se comprueba antes de guardar.
+--
+-- 2. Los puntos se llevan como movimientos, no como un contador que se pisa.
+--    Positivo cuando acumula, negativo cuando canjea, y el saldo es la suma. El
+--    artículo 8 de los Términos dice que los Puntos no son dinero y que su
+--    movimiento tiene que poder auditarse: con un contador simple no se podría
+--    reconstruir de dónde salió cada punto.
+--
+-- Responde a: RF-06 y Términos y Condiciones arts. 7 y 8.
+-- ════════════════════════════════════════════════════════════════════
+
 -- ─────────────────────────────────────────────────────────────
 -- 006 · Reseñas, favoritos, puntos y cupones
 --   RF-06 y Términos y Condiciones arts. 7 y 8.

@@ -1,3 +1,23 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Las reseñas y los puntos.
+
+   La regla que define el proyecto está acá: antes de guardar una reseña se
+   verifica que exista una visita previa de esa persona en ese local. Es lo que
+   hace que las reseñas sean confiables, y es la diferencia frente a un sitio
+   donde cualquiera puntúa sin haber ido.
+
+   Por eso construimos las reservas ANTES que las reseñas, cambiando el orden del
+   plan: sin una visita registrada, la reseña no tiene contra qué validarse.
+
+   Al publicar también se recalcula el promedio del restaurante, dentro de la
+   misma transacción: o se guardan las dos cosas o no se guarda ninguna, para que
+   nunca quede un promedio que no coincida con sus reseñas.
+
+   Responde a: RF-06 y Términos y Condiciones art. 7.
+   ════════════════════════════════════════════════════════════════════ */
+
 import {
   PUNTOS_POR_RESENA,
   type Resena,

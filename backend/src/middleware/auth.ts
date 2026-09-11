@@ -1,3 +1,25 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Los tres niveles de acceso del artículo 5, hechos código.
+
+   Un middleware es un filtro por el que pasa el pedido ANTES de llegar a la ruta.
+   Cada función de este archivo es uno de esos filtros, y se aplican según cuánto
+   exija la acción:
+
+     · conSesionOpcional  → pantallas públicas que cambian un poco si hay alguien
+                            detrás, como marcar cuál reseña es tuya.
+     · requiereSesion     → hay que estar logueado, como para ver tus reservas.
+     · requiereVerificado → nivel completo: reservar, reseñar, sumar puntos.
+
+   Por qué separarlo en tres y no en uno solo: porque el artículo 5 de los
+   Términos define tres niveles distintos y cada acción exige uno. Tenerlo así
+   hace que el gate sea imposible de olvidar: la ruta declara qué nivel necesita y
+   el filtro se encarga del resto.
+
+   Responde a: RF-01 y Términos y Condiciones art. 5.
+   ════════════════════════════════════════════════════════════════════ */
+
 import type { NextFunction, Request, Response } from 'express'
 import { estadoLegal, porId, type FilaComensal } from '../db/comensales.js'
 import { leerAcceso } from '../seguridad.js'

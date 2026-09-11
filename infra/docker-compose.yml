@@ -1,3 +1,16 @@
+# ════════════════════════════════════════════════════════════════════
+# PARA LA EXPOSICIÓN
+#
+# Levanta PostgreSQL con PostGIS en un contenedor.
+#
+# Por qué en contenedor y no instalado en cada máquina: los seis trabajamos
+# contra exactamente la misma versión de PostgreSQL y de PostGIS. Nadie instala
+# nada a mano y desaparece el clásico «en mi máquina anda».
+#
+# El documento exigía PostgreSQL + PostGIS desde el análisis (apartado 16); lo
+# único que agregamos es la forma de instalarlo.
+# ════════════════════════════════════════════════════════════════════
+
 services:
   postgres:
     image: postgis/postgis:16-3.4

@@ -1,3 +1,22 @@
+/* ════════════════════════════════════════════════════════════════════
+   PARA LA EXPOSICIÓN
+
+   Los endpoints del buscador. Acá está el caso de uso CU-01 completo.
+
+   Lo que más conviene mostrar de este archivo es la escalera de radios. El
+   documento decía, como flujo alternativo del CU-01: «si no hay resultados
+   cercanos, ofrece ampliar el radio de búsqueda».
+
+   El sistema lo hace solo: prueba 1 km, si no encuentra nada prueba 3 y después
+   10, y le avisa al usuario que amplió. La interfaz no tiene que decidir nada.
+
+   El otro flujo alternativo era el GPS desactivado. Si el usuario no comparte la
+   ubicación, la búsqueda igual funciona: cambia el orden a puntaje y lo informa.
+   Nunca se rompe ni se queda sin responder.
+
+   Responde a: RF-02 a RF-05 y CU-01.
+   ════════════════════════════════════════════════════════════════════ */
+
 import { busquedaSchema, RADIOS, type RespuestaBusqueda } from '@restoba/compartido'
 import { Router } from 'express'
 import { esFavorito } from '../db/cuenta.js'
