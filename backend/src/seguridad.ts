@@ -94,36 +94,73 @@ export function telefonoEnmascarado(guardado: string): string {
 
 // ── Tokens (Anexo Técnico, secc. 4) ─────────────────────────
 
-type Acceso = { sub: number; email: string }
-type Refresh = { sub: number; sid: string }
+/**
+ * Hay dos mundos de sesión que no se pueden mezclar: el comensal que busca
+ * restaurantes y el personal que trabaja en uno. El campo `tipo` marca de cuál
+ * es cada token, y al leerlo se comprueba.
+ *
+ * Por qué importa: sin esa marca, el token de un mozo serviría para pasar por
+ * las rutas del comensal y al revés. Están firmados con la misma clave, así
+ * que la firma sola no alcanza para distinguirlos.
+ */
+type Acceso = { sub: number; email: string; tipo?: 'comensal' }
+type Refresh = { sub: number; sid: string; tipo?: 'comensal' }
+type AccesoStaff = { sub: number; rol: string; restauranteId: number; tipo: 'staff' }
+type RefreshStaff = { sub: number; sid: string; tipo: 'staff' }
 
-export function firmarAcceso(datos: Acceso): string {
-  return jwt.sign(datos, config.JWT_ACCESS_SECRET, {
+export function firmarAcceso(datos: Omit<Acceso, 'tipo'>): string {
+  return jwt.sign({ ...datos, tipo: 'comensal' }, config.JWT_ACCESS_SECRET, {
     expiresIn: config.JWT_ACCESS_TTL as jwt.SignOptions['expiresIn'],
   })
 }
 
-export function firmarRefresh(datos: Refresh): string {
-  return jwt.sign(datos, config.JWT_REFRESH_SECRET, {
+export function firmarRefresh(datos: Omit<Refresh, 'tipo'>): string {
+  return jwt.sign({ ...datos, tipo: 'comensal' }, config.JWT_REFRESH_SECRET, {
     expiresIn: config.JWT_REFRESH_TTL as jwt.SignOptions['expiresIn'],
   })
 }
 
-/** Devuelve null si el token está vencido, alterado o firmado con otra clave. */
-export function leerAcceso(token: string): Acceso | null {
+export function firmarAccesoStaff(datos: Omit<AccesoStaff, 'tipo'>): string {
+  return jwt.sign({ ...datos, tipo: 'staff' }, config.JWT_ACCESS_SECRET, {
+    expiresIn: config.JWT_ACCESS_TTL as jwt.SignOptions['expiresIn'],
+  })
+}
+
+export function firmarRefreshStaff(datos: Omit<RefreshStaff, 'tipo'>): string {
+  return jwt.sign({ ...datos, tipo: 'staff' }, config.JWT_REFRESH_SECRET, {
+    expiresIn: config.JWT_REFRESH_TTL as jwt.SignOptions['expiresIn'],
+  })
+}
+
+/** Lo que sale de verificar un token, antes de saber de qué mundo es. */
+type Contenido = { tipo?: 'comensal' | 'staff' } & Record<string, unknown>
+
+function abrir(token: string, clave: string, esperado: 'comensal' | 'staff'): Contenido | null {
   try {
-    return jwt.verify(token, config.JWT_ACCESS_SECRET) as unknown as Acceso
+    const datos = jwt.verify(token, clave) as unknown as Contenido
+    // Un token sin marca es de comensal: son los que se emitieron antes de que
+    // existiera el panel del restaurante.
+    return (datos.tipo ?? 'comensal') === esperado ? datos : null
   } catch {
     return null
   }
 }
 
+/** Devuelve null si el token está vencido, alterado, o es del otro mundo. */
+export function leerAcceso(token: string): Acceso | null {
+  return abrir(token, config.JWT_ACCESS_SECRET, 'comensal') as Acceso | null
+}
+
 export function leerRefresh(token: string): Refresh | null {
-  try {
-    return jwt.verify(token, config.JWT_REFRESH_SECRET) as unknown as Refresh
-  } catch {
-    return null
-  }
+  return abrir(token, config.JWT_REFRESH_SECRET, 'comensal') as Refresh | null
+}
+
+export function leerAccesoStaff(token: string): AccesoStaff | null {
+  return abrir(token, config.JWT_ACCESS_SECRET, 'staff') as AccesoStaff | null
+}
+
+export function leerRefreshStaff(token: string): RefreshStaff | null {
+  return abrir(token, config.JWT_REFRESH_SECRET, 'staff') as RefreshStaff | null
 }
 
 // ── Códigos de confirmación ─────────────────────────────────

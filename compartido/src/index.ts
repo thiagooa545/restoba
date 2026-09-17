@@ -13,6 +13,7 @@
      restaurantes.ts Lo que devuelve el buscador.
      reservas.ts     Los turnos y los estados de una reserva.
      resenas.ts      Las reseñas, los puntos y los cupones.
+     staff.ts        El personal del restaurante y su suscripción (Fase B).
 
    ──────────────────────────────────────────────────────────────────────
    ════════════════════════════════════════════════════════════════════ */
@@ -38,3 +39,4 @@ export * from './legal.js'
 export * from './restaurantes.js'
 export * from './reservas.js'
 export * from './resenas.js'
+export * from './staff.js'

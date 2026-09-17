@@ -16,6 +16,7 @@
      restaurantes.ts El buscador y el perfil. Acá está el caso de uso CU-01.
      reservas.ts     Turnos disponibles, reservar y cancelar.
      resenas.ts      Publicar reseñas, favoritos y canje de puntos.
+     staff.ts        Ingreso del personal del local y gestión de empleados.
      salud.ts        Un chequeo que dice si la API y PostGIS responden.
 
    ──────────────────────────────────────────────────────────────────────

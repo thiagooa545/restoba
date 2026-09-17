@@ -8,6 +8,12 @@ import { cerrarPool, enTransaccion } from './pool.js'
 import { RESTAURANTES, TIPOS_COCINA } from './semilla-datos.js'
 import { COMENSALES, PASSWORD_DEMO, RESENAS } from './semilla-resenas.js'
 
+/** Contraseña de las cuentas de personal sembradas. Solo para desarrollo. */
+const PASSWORD_STAFF = 'gestion2026'
+
+/** Palabras que no sirven para identificar un local en su dirección de correo. */
+const ARTICULOS = new Set(['el', 'la', 'los', 'las', 'il', 'lo', 'un', 'una', 'de', 'del', 'dona', 'don'])
+
 if (config.NODE_ENV === 'production') {
   console.error('El sembrado no corre en producción.')
   process.exit(1)
@@ -16,6 +22,7 @@ if (config.NODE_ENV === 'production') {
 async function main(): Promise<void> {
   const resumen = await enTransaccion(async (cliente) => {
     await cliente.query('TRUNCATE restaurante, tipo_cocina, comensal RESTART IDENTITY CASCADE')
+    // CASCADE arrastra usuario, sesion_staff y suscripcion, que cuelgan de restaurante.
 
     const idCocina = new Map<string, number>()
     for (const tipo of TIPOS_COCINA) {
@@ -28,6 +35,10 @@ async function main(): Promise<void> {
 
     let productos = 0
     let mesas = 0
+    let empleados = 0
+
+    // Una sola vez: bcrypt es lento a propósito, y son 33 cuentas.
+    const hashStaff = await hashearContrasena(PASSWORD_STAFF)
     const idRestaurante = new Map<string, number>()
 
     for (const r of RESTAURANTES) {
@@ -70,6 +81,56 @@ async function main(): Promise<void> {
           mesas += 1
         }
       }
+
+      // ── Personal del local y suscripción ──────────────────
+      // Tres cuentas por restaurante, una por rol. El correo se arma con la
+      // primera palabra del nombre para que sea fácil de recordar en la demo.
+      const palabras = r.nombre
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .split(/\s+/)
+        .map((palabra) => palabra.replace(/[^a-z]/g, ''))
+        .filter((palabra) => palabra.length > 0)
+
+      // Se saltean los artículos, así «La Rambla de Chacarita» da rambla y no la.
+      const slug = palabras.find((palabra) => !ARTICULOS.has(palabra)) ?? palabras[0]!
+
+      for (const rol of ['admin', 'mozo', 'cocina'] as const) {
+        await cliente.query(
+          `INSERT INTO usuario (restaurante_id, nombre, email, password_hash, rol)
+           VALUES ($1, $2, $3, $4, $5)`,
+          [
+            restauranteId,
+            `${rol === 'admin' ? 'Administración' : rol === 'mozo' ? 'Salón' : 'Cocina'} · ${r.nombre}`,
+            `${rol}@${slug}.ar`,
+            hashStaff,
+            rol,
+          ],
+        )
+        empleados += 1
+      }
+
+      // El período corriente. Si el local figura activo, la transferencia ya se
+      // acreditó; si no, queda pendiente, que es exactamente lo que le pasa a
+      // «Trattoria Fantasma» y por eso no aparece en el buscador.
+      const acreditada = r.estado === 'activa'
+      await cliente.query(
+        `INSERT INTO suscripcion
+           (restaurante_id, plan, periodo_desde, periodo_hasta, monto, estado,
+            comprobante, acreditada_en)
+         VALUES ($1, $2, date_trunc('month', current_date),
+                 date_trunc('month', current_date) + interval '1 month' - interval '1 day',
+                 $3, $4, $5, $6)`,
+        [
+          restauranteId,
+          r.plan,
+          r.plan === 'completo' ? 45000 : 28000,
+          acreditada ? 'activa' : 'pendiente_acreditacion',
+          acreditada ? `TRF-${String(restauranteId).padStart(6, '0')}` : null,
+          acreditada ? new Date() : null,
+        ],
+      )
 
       for (const [dia, abre, cierra] of r.horarios) {
         await cliente.query(
@@ -217,7 +278,7 @@ async function main(): Promise<void> {
     const activos = RESTAURANTES.filter((r) => r.estado === 'activa').length
     return {
       cocinas: TIPOS_COCINA.length, restaurantes: RESTAURANTES.length, activos,
-      productos, mesas, comensales: COMENSALES.length, resenas,
+      productos, mesas, empleados, comensales: COMENSALES.length, resenas,
     }
   })
 
@@ -225,7 +286,14 @@ async function main(): Promise<void> {
     `Sembrado listo: ${resumen.restaurantes} restaurantes ` +
       `(${resumen.activos} con suscripción activa), ` +
       `${resumen.cocinas} tipos de cocina, ${resumen.productos} productos, ${resumen.mesas} mesas, ` +
-      `${resumen.comensales} comensales y ${resumen.resenas} reseñas con su visita previa.`,
+      `${resumen.comensales} comensales, ${resumen.resenas} reseñas con su visita previa ` +
+      `y ${resumen.empleados} cuentas de personal.`,
+  )
+
+  console.log(
+    `\nPara entrar al panel de gestión: admin@cantina.ar / ${PASSWORD_STAFF}\n` +
+      `También hay mozo@cantina.ar y cocina@cantina.ar, y las mismas tres cuentas ` +
+      `para cada local (mozo@rambla.ar, admin@verde.ar, etcétera).`,
   )
 }
 
