@@ -16,10 +16,13 @@
      restaurantes.ts El buscador. Es el más importante: acá trabaja PostGIS.
      reservas.ts     Qué turnos hay libres y a qué mesa va cada reserva.
      resenas.ts      Las reseñas y el libro mayor de puntos.
+     usuarios.ts     El personal del local: ingreso, roles y empleados.
+     inventario.ts   Ingredientes, recetas y movimientos de stock.
      pool.ts         La conexión a PostgreSQL. Todos los demás la usan.
      migrar.ts       Aplica los archivos SQL de infra/db/migrations en orden.
      sembrar.ts      Carga los 12 restaurantes de ejemplo.
-     semilla-datos.ts y semilla-resenas.ts  Los datos de ejemplo en sí.
+     semilla-datos.ts, semilla-resenas.ts y semilla-inventario.ts
+                     Los datos de ejemplo en sí.
 
    ──────────────────────────────────────────────────────────────────────
 

@@ -6,6 +6,7 @@ import { config, DIR_LEGAL } from '../config.js'
 import { hashearContrasena, sha256 } from '../seguridad.js'
 import { cerrarPool, enTransaccion } from './pool.js'
 import { RESTAURANTES, TIPOS_COCINA } from './semilla-datos.js'
+import { DESPENSA, HISTORIA_STOCK, recetaPara } from './semilla-inventario.js'
 import { COMENSALES, PASSWORD_DEMO, RESENAS } from './semilla-resenas.js'
 
 /** Contraseña de las cuentas de personal sembradas. Solo para desarrollo. */
@@ -36,6 +37,9 @@ async function main(): Promise<void> {
     let productos = 0
     let mesas = 0
     let empleados = 0
+    let ingredientes = 0
+    let movimientos = 0
+    let recetas = 0
 
     // Una sola vez: bcrypt es lento a propósito, y son 33 cuentas.
     const hashStaff = await hashearContrasena(PASSWORD_STAFF)
@@ -96,10 +100,12 @@ async function main(): Promise<void> {
       // Se saltean los artículos, así «La Rambla de Chacarita» da rambla y no la.
       const slug = palabras.find((palabra) => !ARTICULOS.has(palabra)) ?? palabras[0]!
 
+      let adminId = 0
       for (const rol of ['admin', 'mozo', 'cocina'] as const) {
-        await cliente.query(
+        const { rows: cuenta } = await cliente.query<{ id: number }>(
           `INSERT INTO usuario (restaurante_id, nombre, email, password_hash, rol)
-           VALUES ($1, $2, $3, $4, $5)`,
+           VALUES ($1, $2, $3, $4, $5)
+           RETURNING id`,
           [
             restauranteId,
             `${rol === 'admin' ? 'Administración' : rol === 'mozo' ? 'Salón' : 'Cocina'} · ${r.nombre}`,
@@ -108,6 +114,9 @@ async function main(): Promise<void> {
             rol,
           ],
         )
+        // El admin es el que después figura como autor de los movimientos de
+        // stock sembrados: el depósito lo maneja él, no el mozo ni la cocina.
+        if (rol === 'admin') adminId = cuenta[0]!.id
         empleados += 1
       }
 
@@ -126,7 +135,9 @@ async function main(): Promise<void> {
           restauranteId,
           r.plan,
           r.plan === 'completo' ? 45000 : 28000,
-          acreditada ? 'activa' : 'pendiente_acreditacion',
+          // El período de la suscripción refleja el estado del local, no uno
+          // propio: si el local figura vencido, el período también lo está.
+          r.estado,
           acreditada ? `TRF-${String(restauranteId).padStart(6, '0')}` : null,
           acreditada ? new Date() : null,
         ],
@@ -140,6 +151,7 @@ async function main(): Promise<void> {
       }
 
       const idCategoria = new Map<string, number>()
+      const cartaCargada: { id: number; nombre: string }[] = []
       for (const p of r.carta) {
         let categoriaId = idCategoria.get(p.categoria)
         if (!categoriaId) {
@@ -151,18 +163,92 @@ async function main(): Promise<void> {
           idCategoria.set(p.categoria, categoriaId)
         }
 
-        await cliente.query(
+        const { rows: prod } = await cliente.query<{ id: number }>(
           `INSERT INTO producto
              (restaurante_id, categoria_id, nombre, descripcion, precio,
               activo, vegetariano, sin_tacc, destacado, orden)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+           RETURNING id`,
           [
             restauranteId, categoriaId, p.nombre, p.descripcion, p.precio,
             p.activo ?? true, p.vegetariano ?? false, p.sinTacc ?? false,
             p.destacado ?? false, productos,
           ],
         )
+        cartaCargada.push({ id: prod[0]!.id, nombre: p.nombre })
         productos += 1
+      }
+
+      // ── El depósito del local ─────────────────────────────
+      // Cada ingrediente entra con su movimiento de carga inicial: el saldo
+      // nunca aparece de la nada, siempre tiene un movimiento que lo explica.
+      const idIngrediente = new Map<string, number>()
+      for (const ing of DESPENSA) {
+        // Una variación chica por local, para que no tengan todos el mismo
+        // depósito y para que en algunos salte la alerta de stock mínimo.
+        const factor = 0.6 + ((restauranteId * 7 + ing.nombre.length) % 9) / 10
+        const stock = Math.round(ing.stock * factor * 1000) / 1000
+
+        const { rows: fila } = await cliente.query<{ id: number }>(
+          `INSERT INTO ingrediente
+             (restaurante_id, nombre, unidad, stock_actual, stock_minimo, costo_unitario)
+           VALUES ($1, $2, $3, $4, $5, $6)
+           RETURNING id`,
+          [restauranteId, ing.nombre, ing.unidad, stock, ing.minimo, ing.costo],
+        )
+        const ingredienteId = fila[0]!.id
+        idIngrediente.set(ing.nombre, ingredienteId)
+        ingredientes += 1
+
+        // Diez días atrás: la carga inicial tiene que ser el movimiento más
+        // viejo del libro, anterior a las compras de esta semana.
+        await cliente.query(
+          `INSERT INTO movimiento_stock
+             (restaurante_id, ingrediente_id, cantidad, motivo, saldo, usuario_id,
+              nota, creado_en)
+           VALUES ($1, $2, $3, 'inicial', $3, $4, 'Carga inicial del depósito',
+                   now() - interval '10 days')`,
+          [restauranteId, ingredienteId, stock, adminId],
+        )
+      }
+
+      // Un par de movimientos de historia, para que el libro no esté vacío
+      // cuando se muestra el panel.
+      for (const [dias, [nombre, cantidad, motivo, nota]] of HISTORIA_STOCK.entries()) {
+        const ingredienteId = idIngrediente.get(nombre)
+        if (!ingredienteId) continue
+        const { rows: saldo } = await cliente.query<{ stock_actual: string }>(
+          `UPDATE ingrediente SET stock_actual = stock_actual + $1, actualizado_en = now()
+           WHERE id = $2 AND stock_actual + $1 >= 0
+           RETURNING stock_actual`,
+          [cantidad, ingredienteId],
+        )
+        if (saldo.length === 0) continue
+        await cliente.query(
+          `INSERT INTO movimiento_stock
+             (restaurante_id, ingrediente_id, cantidad, motivo, saldo, usuario_id, nota, creado_en)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, now() - ($8 || ' days')::interval)`,
+          [restauranteId, ingredienteId, cantidad, motivo,
+           Number(saldo[0]!.stock_actual), adminId, nota, dias + 1],
+        )
+        movimientos += 1
+      }
+
+      // ── Las recetas de la carta ───────────────────────────
+      for (const plato of cartaCargada) {
+        const receta = recetaPara(plato.nombre)
+        if (!receta) continue
+        for (const [nombreIngrediente, cantidad] of receta) {
+          const ingredienteId = idIngrediente.get(nombreIngrediente)
+          if (!ingredienteId) continue
+          await cliente.query(
+            `INSERT INTO producto_ingrediente (producto_id, ingrediente_id, cantidad)
+             VALUES ($1, $2, $3)
+             ON CONFLICT DO NOTHING`,
+            [plato.id, ingredienteId, cantidad],
+          )
+        }
+        recetas += 1
       }
     }
 
@@ -279,6 +365,7 @@ async function main(): Promise<void> {
     return {
       cocinas: TIPOS_COCINA.length, restaurantes: RESTAURANTES.length, activos,
       productos, mesas, empleados, comensales: COMENSALES.length, resenas,
+      ingredientes, movimientos, recetas,
     }
   })
 
@@ -288,6 +375,11 @@ async function main(): Promise<void> {
       `${resumen.cocinas} tipos de cocina, ${resumen.productos} productos, ${resumen.mesas} mesas, ` +
       `${resumen.comensales} comensales, ${resumen.resenas} reseñas con su visita previa ` +
       `y ${resumen.empleados} cuentas de personal.`,
+  )
+
+  console.log(
+    `Depósito: ${resumen.ingredientes} ingredientes cargados, ` +
+      `${resumen.recetas} platos con receta y ${resumen.movimientos} movimientos de stock.`,
   )
 
   console.log(

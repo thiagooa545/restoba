@@ -6,10 +6,13 @@
 
    Qué hay en cada archivo:
 
-     cliente.ts      ← este. Todas las llamadas a la API en un solo lugar.
-     Sesion.tsx      Guarda quién está logueado y en qué nivel.
-     useUbicacion.ts Le pide la ubicación al navegador.
-     specular.ts     El motor de la animación de los botones.
+     cliente.ts       ← este. Todas las llamadas a la API en un solo lugar.
+     Sesion.tsx       Guarda quién está logueado y en qué nivel.
+     gestion.ts       Lo mismo que cliente.ts, pero para el panel del
+                      restaurante: otra sesión, otro token.
+     SesionGestion.tsx Quién del personal está logueado y en qué local.
+     useUbicacion.ts  Le pide la ubicación al navegador.
+     specular.ts      El motor de la animación de los botones.
 
    ──────────────────────────────────────────────────────────────────────
 
@@ -64,23 +67,39 @@ class ErrorApi extends Error {
  */
 let tokenEnMemoria: string | null = null
 
+/**
+ * El panel de gestión tiene su propio token, en otra variable. No es un detalle
+ * de implementación: son dos mundos de sesión distintos (un comensal no es
+ * empleado de un restaurante), y el backend los distingue con el campo `tipo`
+ * dentro del token. Tenerlos separados también acá evita que un token de
+ * gestión se mande por error a una ruta del comensal, o al revés.
+ */
+let tokenGestion: string | null = null
+
 export function guardarToken(token: string | null): void {
   tokenEnMemoria = token
 }
 
+export function guardarTokenGestion(token: string | null): void {
+  tokenGestion = token
+}
+
 type Opciones = {
-  metodo?: 'GET' | 'POST'
+  metodo?: 'GET' | 'POST' | 'PUT'
   cuerpo?: unknown
   senal?: AbortSignal
   conToken?: boolean
+  /** Cuál de los dos tokens usar. Por defecto, el del comensal. */
+  mundo?: 'comensal' | 'gestion'
 }
 
-async function pedir<T>(ruta: string, opciones: Opciones = {}): Promise<T> {
-  const { metodo = 'GET', cuerpo, senal, conToken = false } = opciones
+export async function pedir<T>(ruta: string, opciones: Opciones = {}): Promise<T> {
+  const { metodo = 'GET', cuerpo, senal, conToken = false, mundo = 'comensal' } = opciones
   const cabeceras: Record<string, string> = {}
+  const token = mundo === 'gestion' ? tokenGestion : tokenEnMemoria
 
   if (cuerpo !== undefined) cabeceras['Content-Type'] = 'application/json'
-  if (conToken && tokenEnMemoria) cabeceras['Authorization'] = `Bearer ${tokenEnMemoria}`
+  if (conToken && token) cabeceras['Authorization'] = `Bearer ${token}`
 
   const respuesta = await fetch(`${BASE}${ruta}`, {
     method: metodo,

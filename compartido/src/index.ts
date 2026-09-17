@@ -14,6 +14,7 @@
      reservas.ts     Los turnos y los estados de una reserva.
      resenas.ts      Las reseñas, los puntos y los cupones.
      staff.ts        El personal del restaurante y su suscripción (Fase B).
+     inventario.ts   Ingredientes, recetas y movimientos de stock (Fase B).
 
    ──────────────────────────────────────────────────────────────────────
    ════════════════════════════════════════════════════════════════════ */
@@ -40,3 +41,4 @@ export * from './restaurantes.js'
 export * from './reservas.js'
 export * from './resenas.js'
 export * from './staff.js'
+export * from './inventario.js'

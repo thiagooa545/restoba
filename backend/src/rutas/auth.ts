@@ -17,6 +17,7 @@
      reservas.ts     Turnos disponibles, reservar y cancelar.
      resenas.ts      Publicar reseñas, favoritos y canje de puntos.
      staff.ts        Ingreso del personal del local y gestión de empleados.
+     inventario.ts   Ingredientes, stock y recetas. Solo administrador.
      salud.ts        Un chequeo que dice si la API y PostGIS responden.
 
    ──────────────────────────────────────────────────────────────────────
