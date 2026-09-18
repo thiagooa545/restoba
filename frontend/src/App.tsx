@@ -26,6 +26,7 @@ import { Inicio } from './paginas/Inicio'
 import { Perfil } from './paginas/Perfil'
 import { Registro } from './paginas/Registro'
 import { Resultados } from './paginas/Resultados'
+import { Carta as CartaGestion } from './paginas/gestion/Carta'
 import { Inventario } from './paginas/gestion/Inventario'
 import { MarcoGestion } from './paginas/gestion/Panel'
 import { Recetas } from './paginas/gestion/Recetas'
@@ -46,7 +47,8 @@ export function App() {
           {/* El panel del restaurante. Va colgado de /gestion y con su propio
               marco: otra sesión, otras pantallas, el mismo servidor. */}
           <Route path="/gestion" element={<MarcoGestion />}>
-            <Route index element={<Inventario />} />
+            <Route index element={<CartaGestion />} />
+            <Route path="carta" element={<CartaGestion />} />
             <Route path="inventario" element={<Inventario />} />
             <Route path="recetas" element={<Recetas />} />
           </Route>

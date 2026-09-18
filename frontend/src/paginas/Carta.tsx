@@ -69,7 +69,7 @@ export function Carta() {
   }, [id])
 
   const platos = useMemo(() => resto?.carta.flatMap((c) => c.productos) ?? [], [resto])
-  const destacado = platos.find((p) => p.destacado && p.activo) ?? null
+  const destacado = platos.find((p) => p.destacado && p.activo && !p.sinStock) ?? null
 
   if (estado === 'cargando') {
     return (
@@ -229,7 +229,9 @@ function Seccion({ categoria }: { categoria: CategoriaCarta }) {
           <article
             key={p.id}
             className={`grid grid-cols-[116px_minmax(0,1fr)] gap-4 rounded-panel border border-regla bg-superficie p-3.5 transition ${
-              p.activo ? 'hover:-translate-y-0.5 hover:border-regla-2 hover:shadow-panel' : 'opacity-55'
+              p.activo && !p.sinStock
+                ? 'hover:-translate-y-0.5 hover:border-regla-2 hover:shadow-panel'
+                : 'opacity-55'
             }`}
           >
             {/* Marco de la foto del plato */}
@@ -252,7 +254,11 @@ function Seccion({ categoria }: { categoria: CategoriaCarta }) {
 
               <div className="flex flex-wrap gap-1.5">
                 {!p.activo && <span className="chip">HOY NO HAY</span>}
-                {p.destacado && p.activo && (
+                {/* Este cartel no lo pone nadie a mano: sale del stock del
+                    depósito. Si a la receta del plato no le alcanza algún
+                    ingrediente, aparece solo. */}
+                {p.activo && p.sinStock && <span className="chip chip-ambar">SIN STOCK HOY</span>}
+                {p.destacado && p.activo && !p.sinStock && (
                   <span className="chip chip-vino">
                     <Estrella tam={10} />
                     EL MÁS PEDIDO

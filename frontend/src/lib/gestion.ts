@@ -18,8 +18,10 @@
    ════════════════════════════════════════════════════════════════════ */
 
 import type {
+  CategoriaGestion,
   Ingrediente,
   MovimientoStock,
+  ProductoGestion,
   RecetaProducto,
   RespuestaSesionStaff,
 } from '@restoba/compartido'
@@ -121,4 +123,61 @@ export async function guardarReceta(
     cuerpo: { items },
   })
   return receta
+}
+
+// ── La carta ────────────────────────────────────────────────
+
+export async function verCarta(senal?: AbortSignal): Promise<CategoriaGestion[]> {
+  const { carta } = await pedir<{ carta: CategoriaGestion[] }>('/gestion/carta', { ...G, senal })
+  return carta
+}
+
+export async function crearSeccion(nombre: string): Promise<CategoriaGestion> {
+  const { categoria } = await pedir<{ categoria: CategoriaGestion }>('/gestion/carta/secciones', {
+    ...G,
+    metodo: 'POST',
+    cuerpo: { nombre },
+  })
+  return categoria
+}
+
+export function renombrarSeccion(id: number, nombre: string): Promise<unknown> {
+  return pedir(`/gestion/carta/secciones/${id}`, { ...G, metodo: 'PUT', cuerpo: { nombre } })
+}
+
+export function borrarSeccion(id: number): Promise<unknown> {
+  return pedir(`/gestion/carta/secciones/${id}`, { ...G, metodo: 'DELETE' })
+}
+
+export type DatosPlato = {
+  categoriaId?: number
+  nombre?: string
+  descripcion?: string | null
+  precio?: number
+  activo?: boolean
+  vegetariano?: boolean
+  sinTacc?: boolean
+  destacado?: boolean
+}
+
+export async function crearPlato(datos: DatosPlato & { categoriaId: number }): Promise<ProductoGestion> {
+  const { producto } = await pedir<{ producto: ProductoGestion }>('/gestion/carta/platos', {
+    ...G,
+    metodo: 'POST',
+    cuerpo: datos,
+  })
+  return producto
+}
+
+export async function editarPlato(id: number, datos: DatosPlato): Promise<ProductoGestion> {
+  const { producto } = await pedir<{ producto: ProductoGestion }>(`/gestion/carta/platos/${id}`, {
+    ...G,
+    metodo: 'PUT',
+    cuerpo: datos,
+  })
+  return producto
+}
+
+export function borrarPlato(id: number): Promise<unknown> {
+  return pedir(`/gestion/carta/platos/${id}`, { ...G, metodo: 'DELETE' })
 }

@@ -43,6 +43,7 @@ const MOTIVO_LECTURA: Record<EstadoSuscripcion, string> = {
 
 /** Las pestañas del panel, con el permiso que hace falta para verlas. */
 const SECCIONES = [
+  { a: '/gestion/carta', texto: 'Carta', permiso: 'carta' },
   { a: '/gestion/inventario', texto: 'Depósito', permiso: 'stock' },
   { a: '/gestion/recetas', texto: 'Recetas', permiso: 'stock' },
 ] as const

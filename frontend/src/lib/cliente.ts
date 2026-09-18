@@ -85,7 +85,7 @@ export function guardarTokenGestion(token: string | null): void {
 }
 
 type Opciones = {
-  metodo?: 'GET' | 'POST' | 'PUT'
+  metodo?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   cuerpo?: unknown
   senal?: AbortSignal
   conToken?: boolean

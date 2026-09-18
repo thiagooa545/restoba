@@ -283,10 +283,22 @@ export async function obtenerRestaurante(
     vegetariano: boolean
     sin_tacc: boolean
     destacado: boolean
+    sin_stock: boolean
   }>(
     `SELECT c.id AS categoria_id, c.nombre AS categoria,
             p.id, p.nombre, p.descripcion, p.precio,
-            p.activo, p.vegetariano, p.sin_tacc, p.destacado
+            p.activo, p.vegetariano, p.sin_tacc, p.destacado,
+            -- Acá se cruza el depósito con la carta pública: si el plato tiene
+            -- receta y a algún ingrediente no le alcanza ni para una porción,
+            -- el comensal lo ve agotado. Si no tiene receta cargada, EXISTS da
+            -- false y el plato se muestra normal: no se castiga al local que
+            -- todavía no cargó sus recetas.
+            EXISTS (
+              SELECT 1
+              FROM   producto_ingrediente pi
+              JOIN   ingrediente i ON i.id = pi.ingrediente_id
+              WHERE  pi.producto_id = p.id AND i.stock_actual < pi.cantidad
+            ) AS sin_stock
      FROM   producto p
      JOIN   categoria c ON c.id = p.categoria_id
      -- El filtro por restaurante_id va en las DOS tablas: es el aislamiento
@@ -312,6 +324,7 @@ export async function obtenerRestaurante(
       vegetariano: pr.vegetariano,
       sinTacc: pr.sin_tacc,
       destacado: pr.destacado,
+      sinStock: pr.sin_stock,
     })
   }
 

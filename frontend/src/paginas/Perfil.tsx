@@ -80,7 +80,11 @@ export function Perfil() {
     )
   }
 
-  const destacados = resto.carta.flatMap((c) => c.productos.filter((p) => p.destacado))
+  // Un plato agotado no puede ser el que encabeza el perfil: sería invitar al
+  // comensal con algo que hoy no se puede pedir.
+  const destacados = resto.carta.flatMap((c) =>
+    c.productos.filter((p) => p.destacado && p.activo && !p.sinStock),
+  )
   const platoEstrella = destacados[0] ?? null
 
   return (
@@ -237,7 +241,7 @@ export function Perfil() {
                   {categoria.productos.map((p) => (
                     <article
                       key={p.id}
-                      className={`border-b border-regla py-3 last:border-b-0 ${p.activo ? '' : 'opacity-50'}`}
+                      className={`border-b border-regla py-3 last:border-b-0 ${p.activo && !p.sinStock ? '' : 'opacity-50'}`}
                     >
                       <div className="flex items-baseline gap-2">
                         <span className="font-display text-[17px] font-semibold">{p.nombre}</span>
@@ -253,6 +257,9 @@ export function Perfil() {
 
                       <div className="mt-2 flex flex-wrap gap-1.5">
                         {!p.activo && <span className="chip">HOY NO HAY</span>}
+                        {p.activo && p.sinStock && (
+                          <span className="chip chip-ambar">SIN STOCK HOY</span>
+                        )}
                         {p.vegetariano && (
                           <span className="chip chip-verde">
                             <Hoja tam={11} />

@@ -18,6 +18,8 @@
      resenas.ts      Publicar reseñas, favoritos y canje de puntos.
      staff.ts        Ingreso del personal del local y gestión de empleados.
      inventario.ts   Ingredientes, stock y recetas. Solo administrador.
+     carta.ts        El menú del local: secciones y platos. Escribe en las
+                     mismas tablas que lee el perfil público.
      salud.ts        Un chequeo que dice si la API y PostGIS responden.
 
    ──────────────────────────────────────────────────────────────────────

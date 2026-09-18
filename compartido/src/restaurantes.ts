@@ -71,6 +71,12 @@ type ProductoCarta = {
   vegetariano: boolean
   sinTacc: boolean
   destacado: boolean
+  /**
+   * true cuando el plato tiene receta cargada y algún ingrediente no alcanza
+   * ni para una porción. Es el cruce entre el depósito del local y lo que ve
+   * el comensal: el mozo no tiene que acordarse de esconder el plato.
+   */
+  sinStock: boolean
 }
 
 export type CategoriaCarta = {

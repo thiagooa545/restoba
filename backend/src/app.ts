@@ -19,6 +19,7 @@ import express from 'express'
 import helmet from 'helmet'
 import { config } from './config.js'
 import { rutasAuth } from './rutas/auth.js'
+import { rutasCarta } from './rutas/carta.js'
 import { rutasInventario } from './rutas/inventario.js'
 import { rutasLegal } from './rutas/legal.js'
 import { rutasCuenta } from './rutas/cuenta.js'
@@ -55,6 +56,7 @@ export function crearApp(): express.Express {
   app.use('/api', rutasResenas)
   app.use('/api', rutasStaff)
   app.use('/api', rutasInventario)
+  app.use('/api', rutasCarta)
   app.use('/api', rutasCuenta)
 
   // 404 en JSON, para que el frontend nunca reciba HTML donde espera datos.

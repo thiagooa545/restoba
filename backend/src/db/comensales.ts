@@ -18,6 +18,7 @@
      resenas.ts      Las reseñas y el libro mayor de puntos.
      usuarios.ts     El personal del local: ingreso, roles y empleados.
      inventario.ts   Ingredientes, recetas y movimientos de stock.
+     carta.ts        El menú del local, escrito desde su panel.
      pool.ts         La conexión a PostgreSQL. Todos los demás la usan.
      migrar.ts       Aplica los archivos SQL de infra/db/migrations en orden.
      sembrar.ts      Carga los 12 restaurantes de ejemplo.

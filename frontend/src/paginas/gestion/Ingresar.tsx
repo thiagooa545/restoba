@@ -9,6 +9,7 @@
 
      Ingresar.tsx   ← este. La puerta del panel: login del personal.
      Panel.tsx      El marco: barra, pestañas según el rol y el candado.
+     Carta.tsx      El menú: secciones y platos. Lo que ve el comensal.
      Inventario.tsx El depósito: ingredientes, stock y libro de movimientos.
      Recetas.tsx    Qué lleva cada plato de la carta.
 
@@ -54,7 +55,7 @@ export function IngresarGestion() {
 
     try {
       await entrar(email, password)
-      navegar('/gestion/inventario')
+      navegar('/gestion/carta')
     } catch (e) {
       setError(
         e instanceof ErrorApi
