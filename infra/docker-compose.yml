@@ -1,4 +1,3 @@
-# ════════════════════════════════════════════════════════════════════
 # PARA LA EXPOSICIÓN
 #
 # Levanta PostgreSQL con PostGIS en un contenedor.
@@ -9,7 +8,6 @@
 #
 # El documento exigía PostgreSQL + PostGIS desde el análisis (apartado 16); lo
 # único que agregamos es la forma de instalarlo.
-# ════════════════════════════════════════════════════════════════════
 
 services:
   postgres:

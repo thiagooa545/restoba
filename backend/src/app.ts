@@ -3,8 +3,8 @@
 
    El armado de la API: acá se ve la capa de lógica completa de un vistazo.
 
-   Cada app.use es una familia de endpoints. Juntas son las 30 direcciones que el
-   navegador puede pedirle al servidor.
+   Cada app.use es una familia de endpoints. Juntas son las 51 direcciones que el
+   navegador puede pedirle al servidor: diez familias, de salud a carta.
 
    El orden importa: primero las protecciones (cabeceras de seguridad, permisos de
    origen), después las rutas, y al final la respuesta para lo que no existe. Cada

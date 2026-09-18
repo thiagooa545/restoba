@@ -13,7 +13,6 @@
 -- ordenados por distancia. Sin este cambio PostGIS no aportaría nada.
 --
 -- Responde a: RF-03 (cercanía) y RNF-02 (rendimiento).
--- ════════════════════════════════════════════════════════════════════
 
 -- ─────────────────────────────────────────────────────────────
 -- 002 · Restaurantes, tipos de cocina y horarios

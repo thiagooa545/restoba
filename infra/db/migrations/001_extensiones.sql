@@ -1,10 +1,8 @@
--- ════════════════════════════════════════════════════════════════════
 -- LA CARPETA  infra/db/migrations/
 --
--- La base de datos completa, en seis archivos que se aplican en orden.
---
--- Juntos crean las 15 tablas del DER. El número del principio es el orden: no se
--- puede crear la tabla de reservas antes que la de mesas.
+-- La base de datos completa, en ocho archivos que se aplican en orden.
+-- El número del principio es el orden: no se puede crear la tabla de reservas
+-- antes que la de mesas.
 --
 -- Qué crea cada uno:
 --
@@ -14,11 +12,11 @@
 --   004_comensal_y_legal.sql     Cuentas, sesiones y constancias de aceptación.
 --   005_reservas.sql             Mesas y reservas.
 --   006_resenas_favoritos_puntos.sql  Reseñas, favoritos, cupones y puntos.
+--   007_personal_y_suscripcion.sql    Empleados del local y su suscripción.
+--   008_inventario.sql           Ingredientes, recetas y movimientos de stock.
 --
--- ──────────────────────────────────────────────────────────────────────
--- ════════════════════════════════════════════════════════════════════
-
--- ════════════════════════════════════════════════════════════════════
+-- Las dos últimas son de la Fase B, la parte que usan los restaurantes.
+--
 -- PARA LA EXPOSICIÓN
 --
 -- Primera migración: las extensiones que necesita la base.
@@ -32,23 +30,10 @@
 -- integrantes terminen con bases distintas sin darse cuenta.
 --
 -- postgis es la extensión que habilita la búsqueda por cercanía (RF-03).
--- ════════════════════════════════════════════════════════════════════
-
--- ─────────────────────────────────────────────────────────────
--- 001 · Extensiones de PostgreSQL
---
--- postgis  → consultas por cercanía (RF-03). Sin esto no hay
---            ST_DWithin ni ST_Distance ni el tipo geography.
--- pgcrypto → gen_random_uuid() para identificadores de token.
--- unaccent → buscar «bodegon» y que encuentre «bodegón».
--- ─────────────────────────────────────────────────────────────
 
 CREATE EXTENSION IF NOT EXISTS postgis;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 CREATE EXTENSION IF NOT EXISTS unaccent;
-
--- Función de normalización para las búsquedas por texto del buscador.
--- IMMUTABLE para poder usarla dentro de un índice.
 CREATE OR REPLACE FUNCTION normalizar(texto TEXT)
 RETURNS TEXT
 LANGUAGE sql
