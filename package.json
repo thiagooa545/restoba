@@ -25,6 +25,7 @@
     "db:logs": "docker compose -f infra/docker-compose.yml logs -f postgres",
     "db:migrate": "npm run migrate -w @restoba/backend",
     "db:seed": "npm run seed -w @restoba/backend",
+    "db:mostrar": "node scripts/mostrar-base.mjs",
     "db:reset": "npm run migrate -w @restoba/backend -- --reset",
     "pack:offline": "node scripts/pack-offline.mjs"
   },
