@@ -19,20 +19,38 @@ export const HORAS_PARA_CANCELAR = 2
 export const ESTADOS_RESERVA = ['confirmada', 'cancelada', 'cumplida', 'no_show'] as const
 export type EstadoReserva = (typeof ESTADOS_RESERVA)[number]
 
+/**
+ * Cuántos comensales admite una reserva por la plataforma. El tope no es una
+ * limitación técnica: arriba de veinte ya es un evento privado, que se arregla
+ * hablando con el local y no por un formulario.
+ *
+ * Los dos números viven acá y no repetidos en cada lado: la pantalla los usa
+ * para armar el campo y el servidor para validar lo que llega. Si mañana un
+ * local acepta grupos de treinta, se cambia en un solo lugar.
+ */
+export const MIN_PERSONAS = 1
+export const MAX_PERSONAS = 20
+
+const cantidadDePersonas = z.coerce
+  .number()
+  .int('Tiene que ser un número entero')
+  .min(MIN_PERSONAS, 'Al menos una persona')
+  .max(MAX_PERSONAS, `Para grupos de más de ${MAX_PERSONAS} hay que llamar al restaurante`)
+
 export const nuevaReservaSchema = z.object({
   restauranteId: z.coerce.number().int().positive(),
   /** AAAA-MM-DD */
   fecha: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Fecha inválida'),
   /** HH:MM */
   hora: z.string().regex(/^\d{2}:\d{2}$/, 'Hora inválida'),
-  personas: z.coerce.number().int().min(1).max(20),
+  personas: cantidadDePersonas,
   notas: z.string().trim().max(300).optional(),
 })
 export type NuevaReserva = z.infer<typeof nuevaReservaSchema>
 
 export const consultaDisponibilidadSchema = z.object({
   fecha: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  personas: z.coerce.number().int().min(1).max(20).default(2),
+  personas: cantidadDePersonas.default(2),
 })
 
 export type Turno = {

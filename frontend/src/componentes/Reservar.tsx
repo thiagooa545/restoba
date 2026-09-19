@@ -1,6 +1,8 @@
 import {
   formatearFecha,
   hoyEnBuenosAires,
+  MAX_PERSONAS,
+  MIN_PERSONAS,
   sumarDias,
   type Disponibilidad,
   type Reserva,
@@ -13,6 +15,11 @@ import { useSesion } from '../lib/Sesion'
 import { BotonSpecular } from './BotonSpecular'
 import { Aviso, Reloj } from './Iconos'
 
+/**
+ * Atajos para los tamaños de grupo más comunes. No son el límite: al lado hay
+ * un campo para escribir cualquier número, porque una mesa de nueve existe y
+ * antes no se podía pedir.
+ */
 const PERSONAS = [2, 4, 6, 8]
 
 /** Se ofrece reservar hasta con un mes de anticipación. */
@@ -24,6 +31,9 @@ export function Reservar({ restauranteId, nombre }: { restauranteId: number; nom
 
   const [fecha, setFecha] = useState(hoy)
   const [personas, setPersonas] = useState(2)
+  // El input necesita poder quedar vacío mientras alguien borra para reescribir,
+  // pero `personas` tiene que seguir siendo un número válido para la consulta.
+  const [textoPersonas, setTextoPersonas] = useState('2')
   const [hora, setHora] = useState<string | null>(null)
   const [disp, setDisp] = useState<Disponibilidad | null>(null)
   const [cargando, setCargando] = useState(true)
@@ -126,6 +136,14 @@ export function Reservar({ restauranteId, nombre }: { restauranteId: number; nom
     )
   }
 
+  /** Único camino para cambiar la cantidad: deja el número y el texto de acuerdo. */
+  function elegirPersonas(n: number) {
+    const valido = Math.min(MAX_PERSONAS, Math.max(MIN_PERSONAS, Math.round(n)))
+    setPersonas(valido)
+    setTextoPersonas(String(valido))
+    setHora(null) // el turno elegido puede no servir para un grupo más grande
+  }
+
   const turnos = disp?.turnos ?? []
   const hayLibres = turnos.some((t) => t.libre)
   const noEntra = disp && personas > disp.capacidadMaxima
@@ -145,21 +163,70 @@ export function Reservar({ restauranteId, nombre }: { restauranteId: number; nom
       </label>
 
       <span className="volanta mb-1.5 block text-tinta-3">Personas</span>
-      <div className="mb-4 flex gap-1.5">
+      <div className="mb-2 flex gap-1.5">
         {PERSONAS.map((n) => (
           <button
             key={n}
             type="button"
-            onClick={() => setPersonas(n)}
+            onClick={() => elegirPersonas(n)}
             className={`grow cursor-pointer rounded-[10px] border py-2 font-mono text-sm transition ${
               personas === n
                 ? 'border-vino bg-vino-suave font-semibold text-vino'
                 : 'border-regla-2 bg-superficie text-tinta-2 hover:border-regla-2'
             }`}
           >
-            {n === 8 ? '8+' : n}
+            {n}
           </button>
         ))}
+      </div>
+
+      {/* Para cualquier otro número. Antes el tope era 8 y una mesa de nueve
+          simplemente no se podía pedir desde acá. */}
+      <div className="mb-4 flex items-center gap-1.5">
+        <button
+          type="button"
+          aria-label="Una persona menos"
+          disabled={personas <= MIN_PERSONAS}
+          onClick={() => elegirPersonas(personas - 1)}
+          className="size-9 shrink-0 cursor-pointer rounded-[10px] border border-regla-2 bg-superficie font-mono text-tinta-2 transition hover:border-vino hover:text-vino disabled:cursor-not-allowed disabled:text-tinta-3 disabled:hover:border-regla-2"
+        >
+          −
+        </button>
+
+        <input
+          type="number"
+          inputMode="numeric"
+          min={MIN_PERSONAS}
+          max={MAX_PERSONAS}
+          value={textoPersonas}
+          aria-label="Cantidad de personas"
+          onChange={(e) => {
+            setTextoPersonas(e.target.value)
+            const n = Number(e.target.value)
+            // Solo se consulta disponibilidad con un valor que tenga sentido;
+            // mientras tanto el campo puede estar vacío o a medio escribir.
+            if (e.target.value !== '' && Number.isFinite(n) && n >= MIN_PERSONAS && n <= MAX_PERSONAS) {
+              setPersonas(Math.round(n))
+              setHora(null)
+            }
+          }}
+          onBlur={() => elegirPersonas(Number(textoPersonas) || personas)}
+          className="h-9 min-w-0 grow rounded-[10px] border border-regla-2 bg-superficie px-3 text-center font-mono text-sm text-tinta outline-none focus:border-vino"
+        />
+
+        <button
+          type="button"
+          aria-label="Una persona más"
+          disabled={personas >= MAX_PERSONAS}
+          onClick={() => elegirPersonas(personas + 1)}
+          className="size-9 shrink-0 cursor-pointer rounded-[10px] border border-regla-2 bg-superficie font-mono text-tinta-2 transition hover:border-vino hover:text-vino disabled:cursor-not-allowed disabled:text-tinta-3 disabled:hover:border-regla-2"
+        >
+          +
+        </button>
+
+        <span className="shrink-0 pl-1 text-[12.5px] text-tinta-3">
+          {personas === 1 ? 'persona' : 'personas'}
+        </span>
       </div>
 
       <span className="volanta mb-1.5 block text-tinta-3">Horario</span>
